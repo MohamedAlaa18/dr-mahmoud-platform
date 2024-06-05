@@ -1,0 +1,97 @@
+<mat-sidenav-container class="example-container" *ngIf="!hideHeader">
+  <!-- Side nav goes here -->
+  <mat-sidenav #sidenav [opened]="isShowing" fixedTopGap="56" position="end"
+    [@openClose]="isShowing ? 'open' : 'closed'">
+    <!-- Side nav content -->
+    <div class="flex">
+      <div style="flex-grow: 1;"></div>
+      <button class="close-btn" mat-icon-button (click)="toggleRightSidenav()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="side-btns">
+      <button mat-button routerLink="/home" routerLinkActive="active">الرئيسية</button>
+      <button mat-button routerLink="/courses" routerLinkActive="active">الكورسات</button>
+      <button mat-button routerLink="/offers" routerLinkActive="active">العروض</button>
+    </div>
+    <hr>
+    <div class="flex gap-2 side-btns">
+      <button mat-button routerLink="/login" class="custom-button disk rounded-2"> سجل مجاناً </button>
+      <button mat-button routerLink="/signup" class="rounded-2 disk bg-light">دخول</button>
+    </div>
+
+    <div class="flex justify-content-center my-3 theme-mobile">
+      <p class="m-0 ps-2">الوضع</p>
+      <label>
+        <input #toggleCheckbox class='toggle-checkbox' type='checkbox' [formControl]="theme" [checked]="theme.value" />
+        <div class='toggle-slot'>
+          <div class='sun-icon-wrapper'>
+            <i class="fa fa-sun sun-icon"></i>
+          </div>
+          <div class='toggle-button'></div>
+          <div class='moon-icon-wrapper'>
+            <i class="fa fa-moon moon-icon"></i>
+          </div>
+        </div>
+      </label>
+    </div>
+  </mat-sidenav>
+
+  <!-- Header -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <header class="container-lg flex justify-content-between">
+        <!-- <div>Logo</div> -->
+        <div class="d-flex gap-3 logo-container">
+          <!-- <img *ngIf="isDark()" src="/assets/image/edunex-dark.png" alt="eduNex-dark" class="logo">
+          <img *ngIf="!isDark()" src="/assets/image/edunex-light.png" alt="eduNex-light" class="logo"> -->
+          <p class="mb-0">logo</p>
+
+          <div class="divider"></div>
+
+          <label class="theme-desktop">
+            <input #toggleCheckbox class='toggle-checkbox' type='checkbox' [formControl]="theme"
+              [checked]="theme.value" />
+            <div class='toggle-slot'>
+              <div class='sun-icon-wrapper'>
+                <i class="fa fa-sun sun-icon"></i>
+              </div>
+              <div class='toggle-button'></div>
+              <div class='moon-icon-wrapper'>
+                <i class="fa fa-moon moon-icon"></i>
+              </div>
+            </div>
+          </label>
+        </div>
+        <!-- <div></div> -->
+
+        <div class="nav-items flex gap-1">
+          <button #button1 routerLink="/home" color="title" class="unset-button" routerLinkActive="active"
+            (click)="moveMarker(button1)">الرئيسية</button>
+          <button #button2 routerLink="/courses" class="unset-button" routerLinkActive="active"
+            (click)="moveMarker(button2)">الكورسات</button>
+          <div id="marker"></div>
+          <button #button2 routerLink="/offers" class="unset-button" routerLinkActive="active"
+            (click)="moveMarker(button2)">العروض</button>
+        </div>
+
+        <div class="flex justify-content-end button-left-section gap-3">
+          <button mat-button routerLink="/login" class="custom-button disk rounded-2"> سجل مجاناً </button>
+          <button mat-button routerLink="/signup" class="ounded-5 disk rounded-2 disk bg-light">دخول</button>
+
+          <button mat-icon-button aria-label="Toggle Right Sidebar" class="menu-btn toggle-btn"
+            (click)="toggleRightSidenav()">
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <div class="nav-item dropdown" matDropdown>
+          </div>
+        </div>
+      </header>
+    </mat-toolbar>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+
+<div class="overlay" [class.active]="isShowing" (click)="toggleRightSidenav()"></div>

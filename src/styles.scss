@@ -1,0 +1,307 @@
+@use '@angular/material' as mat;
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200..1000&family=Lemonada:wght@300..700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@include mat.core();
+
+$dr-mahmoud-platform-primary: mat.define-palette(mat.$indigo-palette);
+$dr-mahmoud-platform-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$dr-mahmoud-platform-warn: mat.define-palette(mat.$red-palette);
+
+$dr-mahmoud-platform-theme: mat.define-light-theme((color: (primary: $dr-mahmoud-platform-primary,
+        accent: $dr-mahmoud-platform-accent,
+        warn: $dr-mahmoud-platform-warn,
+      )));
+
+@include mat.all-component-themes($dr-mahmoud-platform-theme);
+
+html {
+  letter-spacing: 0.1px;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  direction: rtl;
+  // overflow-x: hidden;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+* {
+  border: 0;
+  margin: 0;
+  font-family: "Lemonada", sans-serif;
+  // font-family: "Almarai", sans-serif;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+:root {
+  --secondary: rgb(24, 24, , 27);
+
+  --border: rgb(66, 66, 66);
+
+  --active: rgba(255, 255, 255, 0.04);
+
+  --title: rgb(39, 39, 42);
+  --subtitle: rgb(82, 82, 91);
+
+  --bgHeader: rgb(253, 253, 253);
+  --bg: #212121;
+
+  --icon-hover: #333;
+
+  --loading: #b2b2b2;
+  --checkbox: #cccccc4d;
+
+  --bg-light: rgb(45, 45, 50);
+
+  --btn1: linear-gradient(120deg, var(--color1), var(--color2));
+
+  --btn2: linear-gradient(120deg, var(--color3), var(--color4));
+
+  --color1: rgb(246, 169, 27);
+  --color2: rgb(246, 169, 27);
+  --color3: #067d68;
+  --color4: #50d5b7;
+  --color5: #D60000;
+  --color6: #FF5353;
+
+  --color2Shadow: rgba(246, 169, 27, 0.1);
+}
+
+.theme-light {
+  --secondary: rgb(255, 255, , 255);
+
+  --border: rgb(244, 244, 255);
+
+  --active: rgba(0, 0, 0, 0.04);
+
+  --title: rgb(244, 244, 255);
+  --subtitle: rgb(161, 161, 170);
+
+  --bgHeader: rgb(39, 39, 42);
+  --bg: #FBFBFB;
+
+  --icon-hover: #d4d4d8;
+
+  --loading: #f5f5f5;
+  --checkbox: #ccccccba;
+
+  --bg-light: rgb(205, 205, 200);
+}
+
+button:active,
+button:hover {
+  scale: 0.97;
+}
+
+//custom buttons
+.custom-button,
+custom-checkbox.checked {
+  color: #ffffff !important;
+  background: var(--color2) !important;
+  transition: 0.3s;
+  border-radius: 20rem;
+}
+
+.custom-button:hover {
+  background: var(--bg) !important;
+  color: var(--bgHeader) !important;
+  border: 1px solid var(--color2);
+}
+
+.green-button {
+  color: #ffffff !important;
+  background: linear-gradient(90deg, var(--color3, #f6d365), var(--color4, #fda085) 51%, var(--color3, #f6d365)) var(--x, 0)/ 200% !important;
+  transition: 0.3s;
+  border-radius: 20rem;
+}
+
+.red-button {
+  color: #ffffff !important;
+  background: linear-gradient(90deg, var(--color5, #f6d365), var(--color6, #fda085) 51%, var(--color5, #f6d365)) var(--x, 0)/ 200% !important;
+  transition: 0.3s;
+  border-radius: 20rem;
+}
+
+.custom-button:hover,
+.green-button:hover,
+.red-button:hover {
+  --x: 100%;
+}
+
+.custom-button:disabled,
+.green-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 1s forwards;
+  -webkit-animation: slideIn 1s forwards;
+}
+
+.slide-from-left {
+  animation: slideFromLeft 1s forwards;
+}
+
+.slide-from-right {
+  animation: slideFromRight 1s forwards;
+}
+
+@keyframes beating {
+  0% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+.beating-animation {
+  animation: beating 3s infinite;
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  border: 7px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--subtitle);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+$indigo-palette: (
+  50: #fff,
+  100: var(--color2),
+  200: #201AD9,
+  300: #4E49FF,
+  400: #5c6bc0,
+  500: #212121,
+  600: var(--color2),
+  700: #303f9f,
+  800: #283593,
+  900: #1a237e,
+  contrast: (50: rgba(#121212, 0.87),
+    100: rgba(#121212, 0.87),
+    200: rgba(#121212, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+
+
+$light-primary: mat.define-palette($indigo-palette, 50);
+$light-accent: mat.define-palette($indigo-palette, 100);
+$light-warn: mat.define-palette($indigo-palette, 500);
+
+$dark-primary: mat.define-palette($indigo-palette, 500);
+$dark-accent: mat.define-palette($indigo-palette, 600);
+$dark-warn: mat.define-palette($indigo-palette, 50);
+
+$light-theme: mat.define-light-theme((color: (primary: $light-primary,
+        accent: $light-accent,
+        warn: $light-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+$dark-theme: mat.define-dark-theme((color: (primary: $dark-primary,
+        accent: $dark-accent,
+        warn: $dark-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+.theme-light {
+  @include mat.all-component-colors($light-theme);
+  background-color: #ffffff;
+  color: #2B3445;
+}
+
+.theme-dark {
+  @include mat.all-component-colors($dark-theme);
+  background-color: #121212;
+  color: #ffffff;
+}
+
+$EduNexProject-primary: mat.define-palette(mat.$indigo-palette);
+$EduNexProject-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$EduNexProject-warn: mat.define-palette(mat.$red-palette);
+
+$EduNexProject-theme: mat.define-light-theme((color: (primary: $EduNexProject-primary,
+        accent: $EduNexProject-accent,
+        warn: $EduNexProject-warn,
+      )));
+
+
+@include mat.all-component-themes($EduNexProject-theme);
+
+mat-error {
+  color: red !important;
+}
