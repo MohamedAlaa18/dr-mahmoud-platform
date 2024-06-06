@@ -4,6 +4,7 @@ import { MainComponent } from './Components/main/main.component';
 
 const routes: Routes = [
   { path: "", component: MainComponent, data: { title: 'EduNex' } },
+  { path: "home", component: MainComponent, data: { title: 'EduNex' } },
   { path: "courses", component: MainComponent, data: { title: 'EduNex' } },
   { path: "offers", component: MainComponent, data: { title: 'EduNex' } },
 ];

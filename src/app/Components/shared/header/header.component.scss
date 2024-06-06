@@ -33,11 +33,15 @@ $active: var(--active);
 
 .mat-toolbar {
   justify-content: space-between;
-  box-shadow: $border 0px 4px 10px -10px;
   position: fixed;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid $border;
+  // transition: 0.3s;
+
+  &.scrolled {
+    box-shadow: $border 0px 4px 10px -10px;
+    border-bottom: 1px solid $border;
+  }
 }
 
 .header div {

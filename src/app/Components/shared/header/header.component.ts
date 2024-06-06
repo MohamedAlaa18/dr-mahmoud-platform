@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -29,6 +29,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('overlay') overlay!: ElementRef;
   @ViewChild('toggleCheckbox') toggleCheckbox!: ElementRef<HTMLInputElement>;
 
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    this.showToolbarBorder = scrollPosition > 0;
+  }
+
+  showToolbarBorder = false;
+
   darkClass = 'theme-dark';
   lightClass = 'theme-light';
   isShowing: boolean = false;
@@ -49,13 +57,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const currentTheme = savedTheme === 'dark';
 
     this.theme.setValue(currentTheme);
-
     this.applyTheme(currentTheme);
 
     this.theme.valueChanges.subscribe((currentTheme) => {
       this.applyTheme(currentTheme);
     });
-
 
     if (this.overlay && this.sidenav) {
       this.renderer.listen('document', 'click', (event) => {
@@ -65,9 +71,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       });
     }
 
+    if (this.router.url === '/') {
+      this.setHomeButtonActive();
+    }
+
     this.MarkerActiveDetect();
 
-    // Call MarkerActiveDetect() on window resize
     window.addEventListener('resize', () => {
       this.MarkerActiveDetect();
     });
@@ -85,7 +94,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
 
     localStorage.setItem('themePreference', currentTheme ? 'dark' : 'light');
-
     this.className = currentTheme ? this.darkClass : this.lightClass;
     const bodyElement = document.getElementsByTagName('body')[0];
 
@@ -110,14 +118,23 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   MarkerActiveDetect() {
     setTimeout(() => {
-      const activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
-      if (activeButton) {
-        this.moveMarker(activeButton);
-      } else {
-        // Move marker to home button if no button is active
+      let activeButton: HTMLElement | null = null;
+
+      if (this.router.url === '/') {
+        this.setHomeButtonActive();
         const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
         if (homeButton) {
           this.moveMarker(homeButton);
+        }
+      } else {
+        activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
+        if (activeButton) {
+          this.moveMarker(activeButton);
+        } else {
+          const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
+          if (homeButton) {
+            this.moveMarker(homeButton);
+          }
         }
       }
     });
@@ -125,14 +142,23 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         setTimeout(() => {
-          const activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
-          if (activeButton) {
-            this.moveMarker(activeButton);
-          } else {
-            // Move marker to home button if no button is active
+          let activeButton: HTMLElement | null = null;
+
+          if (this.router.url === '/') {
+            this.setHomeButtonActive();
             const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
             if (homeButton) {
               this.moveMarker(homeButton);
+            }
+          } else {
+            activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
+            if (activeButton) {
+              this.moveMarker(activeButton);
+            } else {
+              const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
+              if (homeButton) {
+                this.moveMarker(homeButton);
+              }
             }
           }
         });
@@ -140,7 +166,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
   }
 
+  private setHomeButtonActive(): void {
+    const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
+    if (homeButton) {
+      homeButton.classList.add('active');
+    }
+  }
+
   isDark() {
-    return localStorage.getItem('themePreference') == 'dark';
+    return localStorage.getItem('themePreference') === 'dark';
   }
 }

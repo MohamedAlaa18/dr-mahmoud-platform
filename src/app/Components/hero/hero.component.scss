@@ -1,5 +1,5 @@
 .hero {
-  min-height: calc(85dvh);
+  min-height: calc(90dvh);
 }
 
 .img-fluid {
@@ -76,10 +76,32 @@ button span svg {
 .text {
   position: relative;
   letter-spacing: 0.5px;
+  cursor: context-menu;
 }
 
 .text h3:first-of-type {
   margin-bottom: 0;
+}
+
+h1 span,
+h3 span {
+  background-color: var(--color2);
+  color: white;
+  transition: 0.3s;
+}
+
+h1 span:hover,
+h3 span:hover {
+  background-color: transparent;
+  color: var(--title);
+}
+
+h1 span {
+  padding-inline: 1.25rem;
+}
+
+h3 span {
+  padding-inline: 0.75rem;
 }
 
 .shape {
@@ -96,14 +118,8 @@ button span svg {
 }
 
 .svg-1 {
-  /* min-height: 69.25dvh; */
   width: 100%;
 }
-
-/* .shape2 {
-  position: relative;
-  width: 150px;
-} */
 
 .shape2 svg {
   position: absolute;
@@ -114,13 +130,26 @@ button span svg {
   opacity: 0.5;
 }
 
-.flipped {
-  flex-direction: row-reverse;
-}
+// .flipped {
+//   flex-direction: row-reverse;
+// }
 
-.flipped>span:first-child {
-  margin-right: 16px;
-}
+// .flipped>span:first-child {
+//   margin-right: 16px;
+// }
+
+// .rugrats {
+//   margin: 0 auto;
+//   text-align: center;
+// }
+
+// .rugrats span {
+//   display: inline-block;
+//   transition: color linear 0.5s forwards;
+//   -webkit-text-stroke-width: .32vw;
+//   -webkit-text-stroke-color: black;
+//   text-shadow: .4vw .5vw #000;
+// }
 
 @media (max-width: 990px) {
   .flex {

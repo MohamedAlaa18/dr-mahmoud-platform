@@ -10,14 +10,18 @@
       </button>
     </div>
     <div class="side-btns">
-      <button mat-button routerLink="/home" routerLinkActive="active">الرئيسية</button>
+      <button mat-button routerLink="/" routerLinkActive="active">الرئيسية</button>
       <button mat-button routerLink="/courses" routerLinkActive="active">الكورسات</button>
       <button mat-button routerLink="/offers" routerLinkActive="active">العروض</button>
     </div>
     <hr>
     <div class="flex gap-2 side-btns">
-      <button mat-button routerLink="/login" class="custom-button disk rounded-2"> سجل مجاناً </button>
-      <button mat-button routerLink="/signup" class="rounded-2 disk bg-light">دخول</button>
+      <button mat-button routerLink="/login" class="custom-button disk rounded-2">
+        <i class="fas fa-user-plus"></i> سجل مجاناً
+      </button>
+      <button mat-button routerLink="/signup" class="rounded-2 disk bg-light">
+        <i class="fas fa-sign-in-alt"></i> دخول
+      </button>
     </div>
 
     <div class="flex justify-content-center my-3 theme-mobile">
@@ -39,7 +43,7 @@
 
   <!-- Header -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" [class.scrolled]="showToolbarBorder" [attr.data-show-border]="showToolbarBorder ? 'true' : 'false'">
       <header class="container-lg flex justify-content-between">
         <!-- <div>Logo</div> -->
         <div class="d-flex gap-3 logo-container">
@@ -66,18 +70,22 @@
         <!-- <div></div> -->
 
         <div class="nav-items flex gap-1">
-          <button #button1 routerLink="/home" color="title" class="unset-button" routerLinkActive="active"
+          <button #button1 routerLink="/home" color="title" class="unset-button active" routerLinkActive="active"
             (click)="moveMarker(button1)">الرئيسية</button>
           <button #button2 routerLink="/courses" class="unset-button" routerLinkActive="active"
             (click)="moveMarker(button2)">الكورسات</button>
+          <button #button3 class="unset-button" routerLink="/offers" routerLinkActive="active"
+            (click)="moveMarker(button3)">العروض</button>
           <div id="marker"></div>
-          <button #button2 routerLink="/offers" class="unset-button" routerLinkActive="active"
-            (click)="moveMarker(button2)">العروض</button>
         </div>
 
         <div class="flex justify-content-end button-left-section gap-3">
-          <button mat-button routerLink="/login" class="custom-button disk rounded-2"> سجل مجاناً </button>
-          <button mat-button routerLink="/signup" class="ounded-5 disk rounded-2 disk bg-light">دخول</button>
+          <button mat-button routerLink="/login" class="custom-button disk rounded-2">
+            <i class="fas fa-user-plus"></i> سجل مجاناً
+          </button>
+          <button mat-button routerLink="/signup" class="rounded-2 disk bg-light">
+            <i class="fas fa-sign-in-alt"></i> دخول
+          </button>
 
           <button mat-icon-button aria-label="Toggle Right Sidebar" class="menu-btn toggle-btn"
             (click)="toggleRightSidenav()">
