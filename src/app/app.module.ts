@@ -8,11 +8,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/shared/header/header.component';
 import { MainComponent } from './Components/main/main.component';
 import { HeroComponent } from './Components/hero/hero.component';
 import { FooterComponent } from './Components/shared/footer/footer.component';
+import { CoursesComponent } from './Components/courses/courses.component';
+import { CourseCardComponent } from './Components/shared/course-card/course-card.component';
+import { LoadingCardsComponent } from './Components/shared/loading-cards/loading-cards.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +28,10 @@ import { FooterComponent } from './Components/shared/footer/footer.component';
     HeaderComponent,
     MainComponent,
     HeroComponent,
-    FooterComponent
+    FooterComponent,
+    CoursesComponent,
+    CourseCardComponent,
+    LoadingCardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +42,10 @@ import { FooterComponent } from './Components/shared/footer/footer.component';
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

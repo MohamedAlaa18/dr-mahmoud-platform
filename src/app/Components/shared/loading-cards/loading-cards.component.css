@@ -1,0 +1,51 @@
+.card {
+  width: 325px;
+  height: 405px;
+  border-radius: 10px;
+  box-shadow: var(--border) 0px 0px 0px 1px;
+  background-color: var(--bg);
+}
+.card .image img {
+  max-width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card .content {
+  padding: 20px 30px;
+}
+
+.card.is-loading .image,
+.card.is-loading h2,
+.card.is-loading p {
+  background: var(--border);
+  background: linear-gradient(
+    110deg,
+    var(--border) 8%,
+    var(--loading) 18%,
+    var(--border) 33%
+  );
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+.card.is-loading .image {
+  height: 200px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card.is-loading h2 {
+  height: 30px;
+}
+
+.card.is-loading p {
+  height: 70px;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

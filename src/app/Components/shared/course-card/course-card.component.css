@@ -1,0 +1,101 @@
+.example-card {
+  width: 325px;
+  height: 405px;
+  /* margin: 10px; */
+  border-radius: 10px;
+  box-shadow: var(--border) 0px 0px 0px 1px;
+  background-color: var(--bg);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.example-card:hover {
+  transform: rotateY(-5deg) rotateX(10deg);
+  cursor: pointer;
+}
+
+.top-bottom-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.bottom {
+  padding: 16px;
+  padding-top: 0;
+}
+
+.rounded-picture {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  z-index: 1;
+}
+
+.thumbnail {
+  width: 325px;
+  height: 225px;
+  /* width: auto;
+  height: auto */
+}
+
+.name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.price,
+.category {
+  display: block;
+  margin-top: 8px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+}
+.category {
+  opacity: 0.75;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.profile {
+  margin-top: -50px;
+}
+
+.label {
+  position: absolute;
+  background-image: var(--btn);
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-top: 1rem;
+}
+
+.label p {
+  margin: auto;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+a {
+  all: unset;
+}

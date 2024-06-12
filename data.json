@@ -1,0 +1,545 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة الاقتصاد",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 200,
+      "lesson": [
+        {
+          "id": "620420",
+          "title": "الحصة التمهيدية",
+          "content": [
+            {
+              "id": "202279",
+              "title": "مراجعه الحصه ااخيره",
+              "videoUrl": "RPReplayTempo1710633664.mp4",
+              "pdfUrl": null
+            },
+            {
+              "id": "806012",
+              "title": "شرح الحصه الاخيره",
+              "videoUrl": "RPReplayFinal1710633664.mp4",
+              "pdfUrl": null
+            },
+            {
+              "id": "649999",
+              "title": "حل الواجب",
+              "videoUrl": null,
+              "pdfUrl": "نظرية التطور.pdf"
+            },
+            {
+              "id": "687518",
+              "title": "ملخص الحصه",
+              "videoUrl": null,
+              "pdfUrl": "نظرية التطور.pdf"
+            }
+          ]
+        },
+        {
+          "id": "604356",
+          "title": "الحصه الأولي",
+          "content": []
+        },
+        {
+          "id": "892792",
+          "title": "الحصه الثانيه",
+          "content": []
+        },
+        {
+          "id": "806246",
+          "title": "الحصة الثالثه",
+          "content": []
+        },
+        {
+          "id": "690330",
+          "title": "الحصه الرابعه",
+          "content": [
+            {
+              "id": "474184",
+              "title": "1",
+              "videoUrl": "P1.mp4",
+              "pdfUrl": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة الفيزياء",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 250,
+      "lesson": []
+    },
+    {
+      "id": "3",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة الكيمياء",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 220,
+      "lesson": []
+    },
+    {
+      "id": "4",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة الرياضيات",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 180,
+      "lesson": []
+    },
+    {
+      "id": "5",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة اللغة العربية",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 210,
+      "lesson": []
+    },
+    {
+      "id": "6",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة الجغرافيا",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 230,
+      "lesson": []
+    },
+    {
+      "id": "7",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة التاريخ",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 190,
+      "lesson": []
+    },
+    {
+      "id": "8",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة اللغة الإنجليزية",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 240,
+      "lesson": []
+    },
+    {
+      "id": "9",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة الفلسفة",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 210,
+      "lesson": [
+        {
+          "id": "863137",
+          "title": "r",
+          "content": [
+            {
+              "id": "918465",
+              "title": "rr",
+              "videoUrl": "RPReplayFinal1710633664.mp4",
+              "pdfUrl": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "thumbnail": "https://via.placeholder.com/325x225",
+      "profilePhoto": "https://via.placeholder.com/75",
+      "description": "كورس مادة علم النفس",
+      "levelName": "الصف الثالث الثانوي",
+      "price": 230,
+      "lesson": []
+    }
+  ],
+  "teachers": [
+    {
+      "id": "1",
+      "name": "منه جاد",
+      "subject": "الإحصاء",
+      "thumbnail": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "2",
+      "name": "أحمد علي",
+      "subject": "الفيزياء",
+      "thumbnail": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "3",
+      "name": "محمد أحمد",
+      "subject": "الكيمياء",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "4",
+      "name": "سارة عمر",
+      "subject": "الرياضيات",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "5",
+      "name": "أحمد سعيد",
+      "subject": "اللغة العربية",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "6",
+      "name": "ليلى محمود",
+      "subject": "الجغرافيا",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "7",
+      "name": "محمد خالد",
+      "subject": "التاريخ",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "8",
+      "name": "مريم يوسف",
+      "subject": "اللغة الإنجليزية",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "9",
+      "name": "منه جاد",
+      "subject": "الإحصاء",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "10",
+      "name": "أحمد علي",
+      "subject": "الفيزياء",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "11",
+      "name": "محمد أحمد",
+      "subject": "الكيمياء",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "12",
+      "name": "سارة عمر",
+      "subject": "الرياضيات",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "13",
+      "name": "أحمد سعيد",
+      "subject": "اللغة العربية",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "14",
+      "name": "ليلى محمود",
+      "subject": "الجغرافيا",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "15",
+      "name": "محمد خالد",
+      "subject": "التاريخ",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    },
+    {
+      "id": "16",
+      "name": "مريم يوسف",
+      "subject": "اللغة الإنجليزية",
+      "imageUrl": "https://via.placeholder.com/325x405"
+    }
+  ],
+  "exams": [
+    {
+      "id": "1",
+      "title": "واجب - الحصه الثالثه",
+      "startDateTime": "2024-03-30T18:37:45.709Z",
+      "endDateTime": "2024-04-16T05:37:45.709Z",
+      "duration": 60,
+      "type": "exam",
+      "questions": [
+        {
+          "questionId": 1,
+          "header": "هل لديك تجربة سابقة في العمل مع فرق دولية؟ هل لديك مهارات تواصل قوية تساعدك على التفاعل مع فرق متعددة الثقافات؟ كيف تتعامل مع التحديات التي تنشأ من تعدد الثقافات في بيئة العمل؟ هل يمكنك تقديم مثال على كيفية حل صراع ثقافي في العمل؟",
+          "type": "multipleChoice",
+          "points": 10,
+          "answers": [
+            {
+              "answerId": 0,
+              "header": "tEcXNQqZSN",
+              "isCorrect": true
+            },
+            {
+              "answerId": 1,
+              "header": "jukItctBPI",
+              "isCorrect": false
+            },
+            {
+              "answerId": 2,
+              "header": "oFGoyYPlpv",
+              "isCorrect": false
+            },
+            {
+              "answerId": 3,
+              "header": "NLrDXAjJKW",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 2,
+          "header": "هل يمكنك وصف مشروعًا صعبًا ومعقدًا كنت مسؤولا عن إدارته؟ ما هي التحديات التي واجهتك في هذا المشروع؟ كيف قمت بتنظيم الجدول الزمني وإدارة الموارد لضمان نجاح المشروع؟ هل كانت هناك أية مشكلات كبيرة وكيف تم التعامل معها؟ ما الدروس التي تعلمتها من هذه التجربة؟",
+          "type": "trueFalse",
+          "points": 10,
+          "answers": [
+            {
+              "answerId": 0,
+              "header": "tEcXNQqZSN",
+              "isCorrect": true
+            },
+            {
+              "answerId": 1,
+              "header": "jukItctBPI",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 3,
+          "header": "ما هي أهمية الابتكار في بيئة العمل؟ كيف تعزز الابتكار في مجموعتك أو فريقك؟ هل يمكنك تقديم مثال على مرة قمت فيها بتطبيق فكرة جديدة أو غير تقليدية لحل مشكلة في العمل؟ كيف كان استقبال فكرتك وما كانت النتيجة النهائية؟ ما هي الخطوات التي تتخذها لتشجيع الابتكار في فريقك؟",
+          "type": "multipleChoice",
+          "points": 10,
+          "answers": [
+            {
+              "answerId": 0,
+              "header": "cXAXEgwvFN",
+              "isCorrect": true
+            },
+            {
+              "answerId": 1,
+              "header": "cXvkJmaXFr",
+              "isCorrect": false
+            },
+            {
+              "answerId": 2,
+              "header": "mWJhDTncJM",
+              "isCorrect": false
+            },
+            {
+              "answerId": 3,
+              "header": "rHmVheIdfA",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 4,
+          "header": "هل تستخدم تقنيات معينة لإدارة الوقت وزيادة الإنتاجية؟ كيف تنظم يومك العملي لتحقيق أقصى استفادة من وقتك؟ كيف تتعامل مع المهام الطارئة والضغط الزمني؟ هل لديك نصائح لتحسين إدارة الوقت للآخرين؟",
+          "type": "multipleChoice",
+          "points": 10,
+          "answers": [
+            {
+              "answerId": 0,
+              "header": "dYcfMnDWfo",
+              "isCorrect": false
+            },
+            {
+              "answerId": 1,
+              "header": "FyQYQkIeSc",
+              "isCorrect": false
+            },
+            {
+              "answerId": 2,
+              "header": "GOIEAEHgTV",
+              "isCorrect": true
+            },
+            {
+              "answerId": 3,
+              "header": "IOVtMVaUGy",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 5,
+          "header": "ما هي الصفات التي تعتقد أنها تجعلك مرشحًا جيدًا لهذه الوظيفة؟ هل لديك قدرة على العمل تحت الضغط وتحت المواعيد النهائية؟ كيف تتعامل مع الضغط في بيئة العمل؟ هل يمكنك تقديم مثال على موقف تحت الضغط وكيف تم التعامل معه؟",
+          "type": "trueFalse",
+          "points": 10,
+          "answers": [
+            {
+              "answerId": 0,
+              "header": "dYcfMnDWfo",
+              "isCorrect": false
+            },
+            {
+              "answerId": 1,
+              "header": "FyQYQkIeSc",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 6,
+          "header": "ما هي نظرتك إلى التعلم المستمر وتطوير المهارات؟ هل تتبع أي استراتيجيات خاصة لتطوير نفسك مهنيًا؟ هل لديك أية تجارب سابقة في تحسين مهاراتك أو تعلم مهارات جديدة؟ كيف تعتقد أن يمكن لتعلم مستمر أن يؤثر على أدائك في العمل؟",
+          "type": "oneChoice",
+          "points": 10,
+          "answers": [
+            {
+              "answerId": 0,
+              "header": "hLUMADGOlo",
+              "isCorrect": false
+            },
+            {
+              "answerId": 1,
+              "header": "DmZDfnboIx",
+              "isCorrect": false
+            },
+            {
+              "answerId": 2,
+              "header": "vGZfWWVEzF",
+              "isCorrect": true
+            },
+            {
+              "answerId": 3,
+              "header": "wXowzMOjFk",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examResult": {
+    "SubmitResult": "Submitted",
+    "ExamName": "امتحان العلوم",
+    "ExamType": "امتحان",
+    "ExamlevelName": 80,
+    "StudentlevelName": 75,
+    "StudentAnswersWithCorrectAnswers": [
+      {
+        "QuestionId": 1,
+        "QuestionHeader": "ما هو الاسم العلمي للعملية التي تقوم بها النباتات لإنتاج الطعام باستخدام الطاقة من الشمس وإطلاق الأكسجين وما هي الأهمية البيئية لهذه العملية؟",
+        "QuestionType": "اختيار متعدد",
+        "AnswerChoices": [
+          {
+            "AnswerId": 1,
+            "AnswerHeader": "بكين"
+          },
+          {
+            "AnswerId": 2,
+            "AnswerHeader": "طوكيو"
+          },
+          {
+            "AnswerId": 3,
+            "AnswerHeader": "سيول"
+          },
+          {
+            "AnswerId": 4,
+            "AnswerHeader": "بانكوك"
+          }
+        ],
+        "StudentAnswerIds": [1, 2, 3],
+        "CorrectAnswerIds": [1, 2, 3],
+        "IsCorrect": true
+      },
+      {
+        "QuestionId": 2,
+        "QuestionHeader": "اشرح الفرق بين السرعة والسرعة، وكيف ترتبطان بالحركة الخطية والدورانية؟ كما اشرح كيفية قياس السرعة في كل من الحركتين؟",
+        "QuestionType": "املأ الفراغ",
+        "AnswerChoices": [
+          {
+            "AnswerId": 1,
+            "AnswerHeader": "H2O"
+          },
+          {
+            "AnswerId": 2,
+            "AnswerHeader": "HO"
+          },
+          {
+            "AnswerId": 3,
+            "AnswerHeader": "H"
+          },
+          {
+            "AnswerId": 4,
+            "AnswerHeader": "O"
+          }
+        ],
+        "StudentAnswerIds": [1],
+        "CorrectAnswerIds": [1],
+        "IsCorrect": true
+      },
+      {
+        "QuestionId": 3,
+        "QuestionHeader": "صف عملية الانقسام الميوزي وأهميتها في الوراثة وتطور الكائنات الحية، وارتباطها بظاهرة التنوع البيولوجي.",
+        "QuestionType": "اختيار متعدد",
+        "AnswerChoices": [
+          { "AnswerId": 1, "AnswerHeader": "الأرض" },
+          { "AnswerId": 2, "AnswerHeader": "المريخ" },
+          { "AnswerId": 3, "AnswerHeader": "المشتري" },
+          { "AnswerId": 4, "AnswerHeader": "زحل" }
+        ],
+        "StudentAnswerIds": [4],
+        "CorrectAnswerIds": [3],
+        "IsCorrect": false
+      },
+      {
+        "QuestionId": 4,
+        "QuestionHeader": "ما هي أنواع الروابط الكيميائية الرئيسية وكيفية تكوينها وتأثيرها على الخصائص الفيزيائية والكيميائية للمواد، وارتباطها بالظواهر الطبيعية والصناعية؟",
+        "QuestionType": "اختيار متعدد",
+        "AnswerChoices": [
+          { "AnswerId": 1, "AnswerHeader": "إسحاق نيوتن" },
+          { "AnswerId": 2, "AnswerHeader": "ألكسندر فليمنج" },
+          { "AnswerId": 3, "AnswerHeader": "ألبرت أينشتاين" },
+          { "AnswerId": 4, "AnswerHeader": "ماري كوري" }
+        ],
+        "StudentAnswerIds": [1],
+        "CorrectAnswerIds": [2],
+        "IsCorrect": false
+      },
+      {
+        "QuestionId": 5,
+        "QuestionHeader": "ناقش دور الإنزيمات في العمليات البيولوجية مع الإشارة إلى تأثير درجة الحرارة والتركيز والpH على نشاطها، وكيف يمكن استخدام الإنزيمات في الصناعة والطب؟",
+        "QuestionType": "املأ الفراغ",
+        "AnswerChoices": [
+          { "AnswerId": 1, "AnswerHeader": "98" },
+          { "AnswerId": 2, "AnswerHeader": "100" },
+          { "AnswerId": 3, "AnswerHeader": "50" },
+          { "AnswerId": 4, "AnswerHeader": "200" }
+        ],
+        "StudentAnswerIds": [1],
+        "CorrectAnswerIds": [2],
+        "IsCorrect": false
+      },
+      {
+        "QuestionId": 6,
+        "QuestionHeader": "ما هو مصدر الطاقة في الخلية؟",
+        "QuestionType": "اختيار متعدد",
+        "AnswerChoices": [
+          { "AnswerId": 1, "AnswerHeader": "النواة" },
+          { "AnswerId": 2, "AnswerHeader": "الريبوسوم" },
+          { "AnswerId": 3, "AnswerHeader": "الميتوكوندريا" },
+          { "AnswerId": 4, "AnswerHeader": "الليزوسوم" }
+        ],
+        "StudentAnswerIds": [1],
+        "CorrectAnswerIds": [3],
+        "IsCorrect": false
+      }
+    ]
+  },
+  "metadata": {
+    "total": 100,
+    "skip": 0,
+    "limit": 30
+  }
+}

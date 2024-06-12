@@ -1,0 +1,43 @@
+.sub-radio {
+  opacity: 0.75;
+}
+
+.custom-expansion-panel {
+  box-shadow: var(--border) 0px 0px 0px 1px !important;
+  border-radius: 10px !important;
+  width: 225px;
+  background-color: var(--bg);
+}
+
+.price-text {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.card-container div,
+.card-container {
+  width: 100%;
+  min-height: calc(405px + 405px + 1rem);
+}
+
+::ng-deep mat-radio-button {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+@media (max-width: 920px) {
+  .parent {
+    flex-direction: column;
+  }
+  .filter-container {
+    flex-direction: row;
+  }
+  .custom-expansion-panel {
+    width: 165px;
+  }
+}
+@media (min-width: 920px) {
+  .filter-container {
+    flex-direction: column;
+  }
+}

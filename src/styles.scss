@@ -61,14 +61,22 @@ html {
 
   --btn1: linear-gradient(120deg, var(--color1), var(--color2));
 
-  --btn2: linear-gradient(120deg, var(--color3), var(--color4));
+  --btn2: linear-gradient(120deg, var(--green1), var(--green2));
 
-  --color1: rgb(246, 169, 27);
-  --color2: rgb(246, 169, 27);
-  --color3: #067d68;
-  --color4: #50d5b7;
-  --color5: #D60000;
-  --color6: #FF5353;
+  --color1: #FFC200;
+  --color2: #FF9D00;
+  --color3: #FF7300;
+
+  --color4: #F1F4F4;
+
+  --color5: #1976D3;
+  --color6: #07448E;
+
+  --green1: #067d68;
+  --green2: #50d5b7;
+
+  --red1: #D60000;
+  --red2: #FF5353;
 
   --color2Shadow: rgba(246, 169, 27, 0.1);
 }
@@ -96,13 +104,14 @@ html {
 button:active,
 button:hover {
   scale: 0.97;
+  rotate: 1deg;
 }
 
 //custom buttons
 .custom-button,
 custom-checkbox.checked {
   color: #ffffff !important;
-  background: var(--color2) !important;
+  background: var(--color1) !important;
   transition: 0.3s;
   border-radius: 20rem;
 }
@@ -115,14 +124,14 @@ custom-checkbox.checked {
 
 .green-button {
   color: #ffffff !important;
-  background: linear-gradient(90deg, var(--color3, #f6d365), var(--color4, #fda085) 51%, var(--color3, #f6d365)) var(--x, 0)/ 200% !important;
+  background: linear-gradient(90deg, var(--green1, #f6d365), var(--green2, #fda085) 51%, var(--green1, #f6d365)) var(--x, 0)/ 200% !important;
   transition: 0.3s;
   border-radius: 20rem;
 }
 
 .red-button {
   color: #ffffff !important;
-  background: linear-gradient(90deg, var(--color5, #f6d365), var(--color6, #fda085) 51%, var(--color5, #f6d365)) var(--x, 0)/ 200% !important;
+  background: linear-gradient(90deg, var(--red1, #f6d365), var(--red2, #fda085) 51%, var(--red1, #f6d365)) var(--x, 0)/ 200% !important;
   transition: 0.3s;
   border-radius: 20rem;
 }
