@@ -2,10 +2,11 @@
   "courses": [
     {
       "id": "1",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة الاقتصاد",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 200,
       "lesson": [
         {
@@ -69,195 +70,73 @@
     },
     {
       "id": "2",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة الفيزياء",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 250,
       "lesson": []
     },
     {
       "id": "3",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة الكيمياء",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 220,
       "lesson": []
     },
     {
       "id": "4",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة الرياضيات",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 180,
       "lesson": []
     },
     {
       "id": "5",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة اللغة العربية",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 210,
       "lesson": []
     },
     {
       "id": "6",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة الجغرافيا",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 230,
       "lesson": []
     },
     {
       "id": "7",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة التاريخ",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 190,
       "lesson": []
     },
     {
       "id": "8",
-      "thumbnail": "https://via.placeholder.com/325x225",
+      "thumbnail": "https://via.placeholder.com/305x225",
       "profilePhoto": "https://via.placeholder.com/75",
       "description": "كورس مادة اللغة الإنجليزية",
       "levelName": "الصف الثالث الثانوي",
+      "courseName":"المراجعة النهائية كامله",
       "price": 240,
       "lesson": []
-    },
-    {
-      "id": "9",
-      "thumbnail": "https://via.placeholder.com/325x225",
-      "profilePhoto": "https://via.placeholder.com/75",
-      "description": "كورس مادة الفلسفة",
-      "levelName": "الصف الثالث الثانوي",
-      "price": 210,
-      "lesson": [
-        {
-          "id": "863137",
-          "title": "r",
-          "content": [
-            {
-              "id": "918465",
-              "title": "rr",
-              "videoUrl": "RPReplayFinal1710633664.mp4",
-              "pdfUrl": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "10",
-      "thumbnail": "https://via.placeholder.com/325x225",
-      "profilePhoto": "https://via.placeholder.com/75",
-      "description": "كورس مادة علم النفس",
-      "levelName": "الصف الثالث الثانوي",
-      "price": 230,
-      "lesson": []
-    }
-  ],
-  "teachers": [
-    {
-      "id": "1",
-      "name": "منه جاد",
-      "subject": "الإحصاء",
-      "thumbnail": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "2",
-      "name": "أحمد علي",
-      "subject": "الفيزياء",
-      "thumbnail": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "3",
-      "name": "محمد أحمد",
-      "subject": "الكيمياء",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "4",
-      "name": "سارة عمر",
-      "subject": "الرياضيات",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "5",
-      "name": "أحمد سعيد",
-      "subject": "اللغة العربية",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "6",
-      "name": "ليلى محمود",
-      "subject": "الجغرافيا",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "7",
-      "name": "محمد خالد",
-      "subject": "التاريخ",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "8",
-      "name": "مريم يوسف",
-      "subject": "اللغة الإنجليزية",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "9",
-      "name": "منه جاد",
-      "subject": "الإحصاء",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "10",
-      "name": "أحمد علي",
-      "subject": "الفيزياء",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "11",
-      "name": "محمد أحمد",
-      "subject": "الكيمياء",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "12",
-      "name": "سارة عمر",
-      "subject": "الرياضيات",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "13",
-      "name": "أحمد سعيد",
-      "subject": "اللغة العربية",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "14",
-      "name": "ليلى محمود",
-      "subject": "الجغرافيا",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "15",
-      "name": "محمد خالد",
-      "subject": "التاريخ",
-      "imageUrl": "https://via.placeholder.com/325x405"
-    },
-    {
-      "id": "16",
-      "name": "مريم يوسف",
-      "subject": "اللغة الإنجليزية",
-      "imageUrl": "https://via.placeholder.com/325x405"
     }
   ],
   "exams": [

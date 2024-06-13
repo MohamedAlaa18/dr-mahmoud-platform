@@ -1,6 +1,6 @@
 .example-card {
-  width: 325px;
-  height: 405px;
+  width: 305px;
+  height: 366px;
   /* margin: 10px; */
   border-radius: 10px;
   box-shadow: var(--border) 0px 0px 0px 1px;
@@ -38,7 +38,7 @@
 }
 
 .thumbnail {
-  width: 325px;
+  width: 305px;
   height: 225px;
   /* width: auto;
   height: auto */
@@ -50,12 +50,12 @@
 }
 
 .description {
-  font-size: 20px;
+  font-size: 1rem;
   margin-bottom: 30px;
 }
 
 .price,
-.category {
+.level {
   display: block;
   margin-top: 8px;
 }
@@ -64,9 +64,9 @@
   font-size: 16px;
   font-weight: 700;
 }
-.category {
+.level {
   opacity: 0.75;
-  font-size: 15px;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 

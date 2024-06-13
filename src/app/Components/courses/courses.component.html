@@ -1,7 +1,26 @@
-<div class="d-flex align-items-start parent container gap-4">
+<div class="d-flex flex-column align-items-start parent container gap-5">
   <div class="card-container">
-    <h1 class="my-3">احدث العروض</h1>
-    <div class="d-flex flex-wrap gap-3">
+    <h1>احدث <span data-replace="العروض"><span>العروض</span></span></h1>
+
+    <!-- <h1 class="mb-5"><span>احدث</span> العروض</h1> -->
+    <div class="flex flex-wrap justify-content-center justify-content-xl-start gap-3">
+      <ng-container *ngFor="let course of courses">
+        <app-course-card [course]="course"></app-course-card>
+      </ng-container>
+
+      <ng-container *ngIf="courses.length === 0">
+        <ng-container *ngFor="let course of [1,2,3,4,5,6]">
+          <app-loading-cards></app-loading-cards>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="card-container">
+    <h1>احدث <span data-replace="العروض"><span>العروض</span></span></h1>
+
+    <!-- <h1 class="mb-5"><span>احدث</span> العروض</h1> -->
+    <div class="flex flex-wrap justify-content-center justify-content-xl-start gap-3">
       <ng-container *ngFor="let course of courses">
         <app-course-card [course]="course"></app-course-card>
       </ng-container>
