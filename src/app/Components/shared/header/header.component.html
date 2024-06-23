@@ -43,17 +43,20 @@
 
   <!-- Header -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary" [class.scrolled]="showToolbarBorder" [attr.data-show-border]="showToolbarBorder ? 'true' : 'false'">
+    <mat-toolbar color="primary" [class.scrolled]="showToolbarBorder"
+      [attr.data-show-border]="showToolbarBorder ? 'true' : 'false'">
       <header class="container-lg flex justify-content-between">
         <!-- <div>Logo</div> -->
-        <div class="d-flex gap-3 logo-container">
+        <div class="d-flex gap-3 logo-container justify-content-center">
+          <div class="logo">
+            <app-logo></app-logo>
+          </div>
           <!-- <img *ngIf="isDark()" src="/assets/image/edunex-dark.png" alt="eduNex-dark" class="logo">
           <img *ngIf="!isDark()" src="/assets/image/edunex-light.png" alt="eduNex-light" class="logo"> -->
-          <p class="mb-0">logo</p>
 
-          <div class="divider"></div>
+          <div class="divider align-self-center"></div>
 
-          <label class="theme-desktop">
+          <label class="theme-desktop align-self-center">
             <input #toggleCheckbox class='toggle-checkbox' type='checkbox' [formControl]="theme"
               [checked]="theme.value" />
             <div class='toggle-slot'>

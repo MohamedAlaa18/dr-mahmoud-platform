@@ -57,6 +57,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const currentTheme = savedTheme === 'dark';
 
     this.theme.setValue(currentTheme);
+
     this.applyTheme(currentTheme);
 
     this.theme.valueChanges.subscribe((currentTheme) => {
@@ -71,12 +72,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       });
     }
 
-    if (this.router.url === '/') {
-      this.setHomeButtonActive();
-    }
-
     this.MarkerActiveDetect();
 
+    // Call MarkerActiveDetect() on window resize
     window.addEventListener('resize', () => {
       this.MarkerActiveDetect();
     });
@@ -109,6 +107,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   moveMarker(target: HTMLElement | null): void {
     const marker = document.getElementById('marker');
     if (marker && target) {
+      console.log(target)
       const rect = target.getBoundingClientRect();
       const offsetX = rect.left + window.pageXOffset;
       marker.style.width = target.offsetWidth + 'px';
@@ -118,23 +117,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   MarkerActiveDetect() {
     setTimeout(() => {
-      let activeButton: HTMLElement | null = null;
-
-      if (this.router.url === '/') {
-        this.setHomeButtonActive();
+      const activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
+      if (activeButton) {
+        this.moveMarker(activeButton);
+      } else {
         const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
         if (homeButton) {
           this.moveMarker(homeButton);
-        }
-      } else {
-        activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
-        if (activeButton) {
-          this.moveMarker(activeButton);
-        } else {
-          const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
-          if (homeButton) {
-            this.moveMarker(homeButton);
-          }
         }
       }
     });
@@ -142,35 +131,18 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         setTimeout(() => {
-          let activeButton: HTMLElement | null = null;
-
-          if (this.router.url === '/') {
-            this.setHomeButtonActive();
+          const activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
+          if (activeButton) {
+            this.moveMarker(activeButton);
+          } else {
             const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
             if (homeButton) {
               this.moveMarker(homeButton);
-            }
-          } else {
-            activeButton = document.querySelector('.nav-items button.active') as HTMLElement;
-            if (activeButton) {
-              this.moveMarker(activeButton);
-            } else {
-              const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
-              if (homeButton) {
-                this.moveMarker(homeButton);
-              }
             }
           }
         });
       }
     });
-  }
-
-  private setHomeButtonActive(): void {
-    const homeButton = document.querySelector('.nav-items button.router-link-active') as HTMLElement;
-    if (homeButton) {
-      homeButton.classList.add('active');
-    }
   }
 
   isDark() {

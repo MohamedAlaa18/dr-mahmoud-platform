@@ -1,3 +1,8 @@
+.parent {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 .sub-radio {
   opacity: 0.75;
 }
@@ -39,7 +44,7 @@ span::after {
 }
 
 span::before {
-  background-color: var(--color4);
+  background-color: var(--color5);
   height: 2px;
   bottom: 0;
   transform-origin: 100% 50%;
@@ -54,7 +59,7 @@ span::after {
   transform-origin: 100% 50%;
   transform: translate3d(200%, 0, 0);
   transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-  color: var(--color4);
+  color: var(--color5);
 }
 
 span:hover::before {

@@ -8,7 +8,7 @@ $active: var(--active);
 .mat-sidenav-container {
   position: relative;
   z-index: 11;
-  margin-bottom: 5rem;
+  // margin-bottom: 4rem;
 }
 
 .mat-sidenav {
@@ -36,11 +36,29 @@ $active: var(--active);
   position: fixed;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
-  // transition: 0.3s;
+  transition: 0.3s;
+  background-color: transparent;
+
+  .unset-button {
+    color: white;
+  }
+
+  .divider {
+    border-color: white;
+  }
 
   &.scrolled {
     box-shadow: $border 0px 4px 10px -10px;
     border-bottom: 1px solid $border;
+    background-color: var(--bg);
+
+    .unset-button {
+      color: var(--title);
+    }
+
+    .divider {
+      border-color: var(--border)
+    }
   }
 }
 
@@ -77,9 +95,9 @@ $active: var(--active);
   padding: 10px;
   transition: 0.3s;
 
-  &.active {
-    color: red $bgHeader !important;
-  }
+  // &.active {
+  //   color: red $bgHeader !important;
+  // }
 
   &:hover {
     color: $color2;
@@ -208,12 +226,13 @@ $active: var(--active);
   transition: 0.3s;
 }
 
-.logo {
-  width: 150px;
-}
+// .logo {
+//   width: 50px;
+// }
 
 .divider {
   border-right: 2px solid var(--border);
+  height: 50px;
 }
 
 .dropdown-toggle {

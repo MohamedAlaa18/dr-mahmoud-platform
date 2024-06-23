@@ -70,8 +70,8 @@ export class HeroComponent implements AfterViewInit {
     const originalTransform = image.style.transform;
 
     const sensitivity = 0.05;
-
     image.addEventListener('mousemove', (event) => {
+
       const rect = image.getBoundingClientRect();
       const imageCenterX = rect.left + rect.width / 2;
       const imageCenterY = rect.top + rect.height / 2;
@@ -79,7 +79,7 @@ export class HeroComponent implements AfterViewInit {
       const mouseX = event.clientX;
       const mouseY = event.clientY;
 
-      const dx = imageCenterX - mouseX;
+      const dx = mouseX - imageCenterX;
       const dy = mouseY - imageCenterY;
 
       const translateX = dx * sensitivity;

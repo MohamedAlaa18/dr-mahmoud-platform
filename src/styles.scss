@@ -15,6 +15,13 @@ $dr-mahmoud-platform-theme: mat.define-light-theme((color: (primary: $dr-mahmoud
 
 @include mat.all-component-themes($dr-mahmoud-platform-theme);
 
+@font-face {
+  font-family: 'Custom Font';
+  src: url('assets/arfonts-motken-k-farnaz.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   letter-spacing: 0.1px;
   scroll-behavior: smooth;
@@ -32,8 +39,13 @@ html {
 * {
   border: 0;
   margin: 0;
+  // font-family: 'Custom Font', sans-serif;
   font-family: "El Messiri", sans-serif;
   // font-family: "Almarai", sans-serif;
+}
+
+.custom-font {
+  font-family: 'Custom Font', sans-serif;
 }
 
 .flex {

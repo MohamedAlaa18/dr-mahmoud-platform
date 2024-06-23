@@ -20,6 +20,8 @@ import { FooterComponent } from './Components/shared/footer/footer.component';
 import { CoursesComponent } from './Components/courses/courses.component';
 import { CourseCardComponent } from './Components/shared/course-card/course-card.component';
 import { LoadingCardsComponent } from './Components/shared/loading-cards/loading-cards.component';
+import { LogoComponent } from '../assets/svgs/logo/logo.component';
+import { HeroLogoComponent } from './Components/shared/hero-logo/hero-logo.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { LoadingCardsComponent } from './Components/shared/loading-cards/loading
     CoursesComponent,
     CourseCardComponent,
     LoadingCardsComponent,
+    LogoComponent,
+    HeroLogoComponent
   ],
   imports: [
     BrowserModule,
