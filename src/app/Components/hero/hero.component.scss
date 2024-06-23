@@ -86,7 +86,6 @@ button span svg {
   top: -4dvw;
   right: 4dvw;
   transform: translateX(8%);
-  z-index: 1;
 }
 
 .text {
@@ -145,13 +144,27 @@ h1 {
   font-size: 99px;
 }
 
+h3 {
+  font-size: 35px;
+}
+
 h2 {
   font-size: 70px;
   color: #FFC200;
+  position: relative;
+  width: fit-content;
+  z-index: 1;
 }
 
-h3 {
-  font-size: 35px;
+h2::after {
+  content: '';
+  background: #1976D3;
+  position: absolute;
+  right: -7px;
+  bottom: 13px;
+  width: 105%;
+  height: 35px;
+  z-index: -1;
 }
 
 .shape {
