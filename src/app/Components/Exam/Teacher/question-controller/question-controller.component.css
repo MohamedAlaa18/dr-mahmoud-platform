@@ -1,0 +1,85 @@
+section {
+  border-radius: 10px;
+  box-shadow: var(--border) 0px 1px 3px 0px, var(--border) 0px 0px 0px 1px;
+  background-color: var(--bg);
+  width: 250px;
+  height: 300px;
+}
+
+.questions-container {
+ overflow-y: scroll;
+}
+
+.circle-button {
+  height: 2.75rem;
+  width: 2.75rem;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background-color: var(--bg);
+  color: var(--wave2);
+  transition: 0.3s;
+  outline: none;
+  font-weight: 700;
+}
+
+.circle-button:active {
+  background-color: var(--bgHeader);
+  transform: scale(0.9);
+}
+
+.circle-button:hover {
+  background-color: var(--border);
+}
+
+.selected {
+  background-color: var(--border);
+  color: var(--bgHeader);
+}
+
+.invalid {
+  background-color: var(--wave5);
+  color: white;
+}
+
+.invalid:hover {
+  background-color: #800000;
+}
+.selected.invalid {
+  background-color: #800000;
+}
+
+.add-question {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-image: var(--btn);
+  font-weight: 700;
+  color: white !important;
+  box-shadow: 0 9px var(--wave1);
+  transition: 0.3;
+  width: 80%;
+  margin-top: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.add-question:hover {
+  box-shadow: 0 4px var(--wave1);
+  top: 2px;
+}
+
+.add-question:active {
+  box-shadow: none;
+  top: 6px;
+}
+
+/*
+.form-button-2:disabled {
+  cursor: auto;
+} */
+
+/* .form-button-2:active {
+  border-width: 4px 0 0;
+  background: none;
+} */

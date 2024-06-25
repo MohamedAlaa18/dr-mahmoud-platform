@@ -1,0 +1,48 @@
+section {
+  background-color: #2d2d2d;
+  position: relative;
+  margin-top: -2rem;
+  min-height: 20rem;
+}
+
+svg:first-of-type {
+  margin-top: -12vw;
+}
+
+section img:first-of-type {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  height: 100%;
+}
+
+section img:last-of-type {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  height: 100%;
+  rotate: 180deg;
+}
+
+img {
+  width: 300px;
+}
+
+.cards-container {
+  margin-top: 2rem;
+  font-size: 25px;
+}
+
+.cards-container svg {
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+}
+
+.cards-container p {
+  margin: 0;
+}
+
+.center {
+  padding-top: 7.5rem;
+}

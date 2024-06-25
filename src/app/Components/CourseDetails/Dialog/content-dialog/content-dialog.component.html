@@ -1,0 +1,47 @@
+<form #contentForm="ngForm" class="pt-1 pb-4">
+  <div class="dialog-container">
+    <div class="flex justify-content-between">
+      <div></div>
+      <button mat-icon-button (click)="onNoClick()" style="color: red;">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="flex flex-column justify-content-center mt-3 form" dir="rtl">
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>أسم المحتوي</mat-label>
+          <input matInput [(ngModel)]="contentType" name="contentType" required>
+          <mat-icon matSuffix>library_add</mat-icon>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="data.contentType !== 'file' && data.operation === 'add'">
+        <mat-form-field appearance="outline">
+          <mat-label>ملف الفيديو</mat-label>
+          <button mat-icon-button matPrefix (click)="videoInput.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <input type="text" readonly matInput [value]="file?.[0]?.name" name="videoFile" ngModel />
+          <input type="file" multiple hidden #videoInput (change)="onFileSelected($event)" accept="video/*" required />
+          <mat-error *ngIf="contentForm.controls['videoFile']?.invalid">this field is required</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="data.contentType !== 'video' && data.operation === 'add'">
+        <mat-form-field appearance="outline">
+          <mat-label>ملف PDF</mat-label>
+          <button mat-icon-button matPrefix (click)="pdfInput.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <input type="text" readonly matInput [value]="file?.[0]?.name" name="pdfFile" ngModel />
+          <input type="file" multiple hidden #pdfInput (change)="onFileSelected($event)" accept=".pdf" required />
+          <mat-error *ngIf="contentForm.controls['pdfFile']?.invalid">this field is required</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <button mat-button class="custom-button" type="submit" [disabled]="contentForm.invalid" (click)="onYesClick()">
+        {{ data.confirmButtonText }}
+      </button>
+    </div>
+  </div>
+</form>

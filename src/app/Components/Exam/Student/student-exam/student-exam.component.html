@@ -1,0 +1,111 @@
+<div class="container flex gap-3 gap-lg-5" *ngIf="exam">
+  <!-- Exam Header and Timer -->
+  <div class="flex flex-column gap-3 mb-auto">
+    <!-- Exam Header -->
+    <div class="flex flex-column gap-3 mobile-row flex-wrap justify-content-center">
+      <section class="section-header p-3 d-flex flex-column ">
+        <h5 *ngIf="lecture">
+          {{ lecture.lectureTitle }}
+        </h5>
+        <h6>{{ exam.title }}</h6>
+      </section>
+      <!-- Timer Section -->
+      <section class="section-timer p-3 d-flex flex-column">
+        <app-timer [duration]="duration" [type]="exam.type" [examId]="exam.id"
+          (submitExam)="submitExam(exam.id)"></app-timer>
+      </section>
+    </div>
+    <!-- Questions Navigation Section -->
+    <section class="questions-section">
+      <div class="flex flex-wrap justify-content-center gap-2 p-2 questions-container">
+        <button class="rounded-circle circle-button" type="button"
+          *ngFor="let question of exam.questions; let i = index" [ngClass]="{
+          'selected': selectedQuestionIndex === i,
+          'solved': visitedQuestions[i] && form.get('question_' + i)?.valid,
+          'skipped': visitedQuestions[i] && form.get('question_' + i)?.invalid
+        }" [disabled]="!visitedQuestions[i]" (click)="selectQuestion(i)">
+          {{ i + 1 }}
+        </button>
+        <!-- <h5 class="w-100 text-center mb-0">نهاية الاسئلة</h5> -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Exam Questions Section -->
+  <form [formGroup]="form" class="d-flex flex-column gap-3 mb-auto w-100">
+    <section class="exam-section p-4">
+      <div *ngFor="let question of questions; let i = index">
+        <div *ngIf="selectedQuestionIndex == i">
+          <div class="flex gap-2 ms-auto">
+            <div class="book-mark">
+              <div id="triangle-topleft"></div>
+              <div id="triangle-topright"></div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between gap-3 gap-md-5">
+              <h5 class="m-0">السؤال رقم : <span>{{ i + 1 }}</span></h5>
+              <h5>{{question.type == 'MultipleChoice' ?'اختيار من متعدد'
+                : question.type == 'OneChoice' ? 'اختيار من متعدد (اختيار واحد)' : 'صح أم خطأ'}}</h5>
+            </div>
+          </div>
+          <h6 class="mt-3 mb-5 question-header">{{ question.header }}</h6>
+          <div formGroupName="question_{{ i }}">
+            <div *ngFor="let answer of question.answers; let j = index">
+              <ng-container *ngIf="question.type === 'MultipleChoice'">
+                <mat-checkbox [checked]="form.get('question_' + i + '.answer_' + i + '_' + j)?.value"
+                  (change)="form.get('question_' + i + '.answer_' + i + '_' + j)?.setValue($event.checked)">
+                  {{ answer.header }}
+                </mat-checkbox>
+              </ng-container>
+              <ng-container *ngIf="question.type !== 'MultipleChoice'">
+                <mat-radio-button [value]="answer.header"
+                  [checked]="form.get('question_' + i + '.answer_' + i)?.value === answer.header"
+                  (change)="form.get('question_' + i + '.answer_' + i)?.setValue($event.value)">
+                  {{ answer.header }}
+                </mat-radio-button>
+              </ng-container>
+            </div>
+            <mat-error *ngIf="(form.get('question_' + selectedQuestionIndex)?.invalid &&
+            form.get('question_' + selectedQuestionIndex)?.touched &&
+            form.get('question_' + selectedQuestionIndex)?.hasError('atLeastOneCheckboxChecked')) ||
+          (form.get('question_' + selectedQuestionIndex)?.invalid &&
+            form.get('question_' + selectedQuestionIndex)?.touched &&
+            form.get('question_' + selectedQuestionIndex)?.hasError('atLeastOneRadioButtonChecked'))">
+              الرجاء اختيار خيار واحد على الأقل
+            </mat-error>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Navigation Buttons -->
+    <div class="flex justify-content-between navigation-section">
+      <!-- Back Button -->
+      <button mat-button class="flex" type="button" (click)="navigateBack()" [disabled]="selectedQuestionIndex === 0">
+        <mat-icon class="fa-rotate-180">keyboard_backspace</mat-icon> &nbsp; رجوع
+      </button>
+      <!-- Skip Button -->
+      <div class="flex gap-3">
+        <button mat-button class="" type="button" (click)="skipQuestion()"
+          [disabled]="selectedQuestionIndex === exam.questions.length - 1 || selectedQuestionIndex >= exam.questions.length ">
+          تخطي
+        </button>
+        <!-- Next Button -->
+        <button mat-button class="custom-button" type="button" dir="ltr" (click)="navigateForward()"
+          [disabled]="selectedQuestionIndex >= exam.questions.length">
+          <span *ngIf="!loading" class="flex justify-content-center gap-2">
+            <mat-icon>
+              {{ selectedQuestionIndex === exam.questions.length - 1 ? 'done' : 'keyboard_backspace'}}
+            </mat-icon>
+            <span>
+              {{ selectedQuestionIndex === exam.questions.length - 1 ? 'تسليم الاختبار' : 'التالي' }}
+            </span>
+          </span>
+          <span *ngIf="loading"><mat-spinner diameter="20"></mat-spinner></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="!exam" class="spinner flex justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>

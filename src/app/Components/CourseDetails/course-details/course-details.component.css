@@ -1,0 +1,179 @@
+section {
+  margin-top: -6vw;
+}
+
+.content-container {
+  width: 60%;
+}
+
+.custom-checkbox-container {
+  display: flex;
+  width: 100%;
+}
+
+.custom-checkbox-container.teacherCheckbox {
+  width: calc(100% - 48px - 48px);
+}
+
+.custom-checkbox {
+  display: inline-block;
+  flex-grow: 1;
+  padding-top: 0.75rem;
+  padding-bottom: 2.25rem;
+  background-color: rgba(204, 204, 204, 0.3);
+  cursor: pointer;
+  transition: 0.3s;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  color: var(--bgHeader);
+}
+
+.custom-checkbox.checked {
+  background-color: rgba(204, 204, 204, 0.7);
+  border-bottom: 3px solid transparent;
+  border-image: var(--btn) 1;
+  color: var(--bgHeader);
+}
+
+.expanded .title {
+  color: orange;
+  transition: color 0.3s ease;
+}
+
+.custom-expansion-panel {
+  box-shadow: var(--border) 0px 0px 0px 1px !important;
+  border-radius: 10px !important;
+  background-color: var(--bg);
+}
+
+.custom-expansion-panel,
+.teacher p {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.button-container button {
+  margin-left: auto;
+}
+
+.teacher p {
+  opacity: 0.75;
+  line-height: 2;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.teacher .image-panel img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-expansion-panel button {
+  margin-inline: 1.5rem;
+  width: 90%;
+  text-align: right;
+  border-radius: 10px;
+}
+
+.custom-icon-button {
+  background-color: var(--active);
+  border-radius: 50% !important;
+}
+
+.width-50 {
+  width: 50px !important;
+}
+
+.exam-button {
+  width: max-content !important;
+  font-weight: 500 !important;
+  color: var(--wave4);
+  border-radius: 10px !important;
+}
+
+.custom-expansion-panel ::ng-deep .mat-expansion-panel-header-title {
+  padding-inline: 0 !important;
+}
+
+.spinner {
+  min-height: 90dvh;
+}
+
+.spinner ::ng-deep circle {
+  stroke: var(--wave2);
+}
+
+@media (max-width: 460px) {
+  .cards-container {
+    flex-direction: column-reverse;
+  }
+  .center {
+    justify-content: center !important;
+    text-align: center;
+  }
+}
+
+@media (min-width: 460px) {
+  mat-panel-title span {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 570px) {
+  .crud-buttons {
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+
+  .custom-checkbox-container.teacherCheckbox {
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .custom-checkbox-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 990px) {
+  .content-container {
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  .card-container {
+    margin-inline: auto;
+  }
+
+  section {
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  .teacher {
+    flex-direction: column;
+  }
+
+  .teacher img {
+    margin-top: 3rem;
+    margin-bottom: 0rem;
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 990px) {
+  .teacher,
+  .course {
+    min-height: 60dvh;
+  }
+}

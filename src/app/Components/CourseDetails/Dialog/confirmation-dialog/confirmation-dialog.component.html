@@ -1,0 +1,10 @@
+<div class="dialog-container pt-1 pb-4">
+  <div class="flex justify-content-between">
+    <div></div>
+    <button mat-icon-button (click)="onNoClick()" style="color: red;"> <mat-icon>close</mat-icon></button>
+  </div>
+  <div class="flex flex-column justify-content-center mt-3">
+    <h3 style="font-weight: 700;">{{ data.message }}</h3>
+    <button mat-button class="red-button mt-3" (click)="onYesClick()">{{ data.confirmButtonText }}</button>
+  </div>
+</div>

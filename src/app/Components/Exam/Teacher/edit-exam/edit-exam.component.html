@@ -1,0 +1,237 @@
+<form [formGroup]="examForm" (ngSubmit)="onSaveClicked()" class="container flex" *ngIf="exam && lecture">
+  <div class="flex column flex-wrap gap-3 justify-content-center column-mobile mb-auto">
+    <section class="section-header p-3 d-flex flex-column">
+      <h5>{{courseTitle}}</h5>
+      <h6>{{lecture.lectureTitle}}</h6>
+    </section>
+    <div class="flex column flex-wrap gap-3 justify-content-center column-mobile mb-auto">
+      <app-exam-controller (sectionChange)="activeSection = $event"
+        [activeSection]="activeSection"></app-exam-controller>
+      <app-question-controller [examForm]="examForm" [formSubmitted]="formSubmitted"
+        (questionIndexClicked)="handleQuestionIndexClicked($event)"
+        (addQuestionClicked)="onAddQuestionClicked()"></app-question-controller>
+    </div>
+  </div>
+
+  <div class="section-container p-4 w-100" dir="rtl">
+    <!-- question -->
+    <div *ngIf="activeSection === 'questionSettings'" class="section">
+      <div *ngFor="let question of questionsControls.controls; let i = index">
+        <form [formGroup]="getQuestionFormGroup(i)" *ngIf="activeQuestionIndex === i">
+          <div class="flex justify-content-between flex-wrap gap-4 align-items-baseline column-mobile mt-md-1 mt-5">
+            <div class="flex gap-2 ms-auto">
+              <div class="book-mark">
+                <div id="triangle-topleft"></div>
+                <div id="triangle-topright"></div>
+              </div>
+              <h5 class="m-0">السؤال رقم : <span>{{ activeQuestionIndex + 1 }}</span></h5>
+            </div>
+            <div class="me-md-auto">
+              <label for="points">الدرجة &nbsp;</label>
+              <mat-form-field appearance="outline">
+                <mat-label>الدرجة</mat-label>
+                <mat-icon matPrefix>grade</mat-icon> <!-- Add icon as prefix -->
+                <input matInput type="number" formControlName="points" [(ngModel)]="selectedValue" required>
+                <mat-error *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors">
+                  <ng-container *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors?.['required']">
+                    هذا الحقل مطلوب
+                  </ng-container>
+                  <ng-container *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors?.['min']">
+                    الدرجة يجب أن تكون أكبر من أو تساوي 0
+                  </ng-container>
+                  <ng-container *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors?.['max']">
+                    الدرجة يجب أن تكون أقل من أو تساوي 100
+                  </ng-container>
+                </mat-error>
+              </mat-form-field>
+
+              <div id="book-mark-tail"></div>
+            </div>
+          </div>
+          <div class="flex flex-column gap-2">
+            <label for="header" class="ms-auto" style="font-size: 1.15rem;">نص السؤال :</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-icon matPrefix>question_answer</mat-icon>
+              <mat-label>نص السؤال</mat-label>
+              <textarea matInput formControlName="header" required></textarea>
+              <mat-error
+                *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('required') && (getQuestionFormGroup(i)?.get('header')?.touched)">
+                هذا الحقل مطلوب
+              </mat-error>
+              <mat-error
+                *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('pattern') && (getQuestionFormGroup(i)?.get('header')?.touched)">
+                يجب أن يحتوي نص السؤال على أحرف وأرقاف فقط
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="flex align-items-baseline flex-wrap">
+            <label for="type">نوع السؤال &nbsp;</label>
+            <mat-form-field appearance="outline">
+              <mat-label>نوع السؤال</mat-label>
+              <mat-select formControlName="type" #type required>
+                <mat-option value="MultipleChoice" selected>اختيار من متعدد</mat-option>
+                <mat-option value="OneChoice">اختيار من متعدد (اختيار واحد)</mat-option>
+                <mat-option value="TrueFalse">صح أم خطأ</mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="getQuestionFormGroup(i).get('type')?.invalid && (getQuestionFormGroup(i).get('type')?.dirty || getQuestionFormGroup(i).get('type')?.touched)">
+                هذا الحقل مطلوب
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="flex mb-3">
+            <label [ngClass]="{ 'disabled-label': isAnswersLimitReached(i) }">
+              الاجابات
+              &nbsp;
+            </label>
+            <button mat-icon-button type="button" class="add-answer" (click)="addAnswer(i)"
+              [disabled]="isAnswersLimitReached(i)">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </div>
+
+          <!-- Answer fields -->
+          <div *ngFor="let answer of getFormArrayControls(getQuestionFormGroup(i).get('answers')); let j = index">
+            <form [formGroup]="getAnswerFormGroup(i,j)">
+              <div class="d-flex ms-auto">
+                <button mat-icon-button type="button" class="close align-self-auto" (click)="removeAnswer(i, j)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <div class="flex gap-sm-2 align-items-baseline mb-sm-5 mb-md-0 answer">
+                  <mat-form-field appearance="outline">
+                    <mat-label>نص الاجابة</mat-label>
+                    <input matInput type="text" formControlName="header"
+                      [readonly]="getQuestionFormGroup(i).get('type')?.value === 'TrueFalse'" required>
+                    <mat-error
+                      *ngIf="answer.get('header')?.hasError('required') && (answer.get('header')?.dirty || answer.get('header')?.touched)">
+                      هذا الحقل مطلوب
+                    </mat-error>
+                    <mat-icon matSuffix>library_add</mat-icon>
+                  </mat-form-field>
+                  <div class="flex flex-wrap gap-1 me-auto truefalse">
+                    <input type="radio" [id]="'true' + j" class="true" (change)="handleAnswerSelection(i, j, true)"
+                      formControlName="isCorrect" [value]="true">
+                    <label [for]="'true' + j">صح</label>
+                    <input type="radio" [id]="'false' + j" class="false" (change)="handleAnswerSelection(i, j, false)"
+                      formControlName="isCorrect" [value]="false">
+                    <label [for]="'false' + j">خطأ</label>
+                    <div>
+                      <mat-error
+                        *ngIf="answer.get('isCorrect')?.hasError('required') && (answer.get('isCorrect')?.dirty || answer.get('isCorrect')?.touched)">
+                        هذا الحقل مطلوب
+                      </mat-error>
+                      <mat-error
+                        *ngIf="getAnswerFormGroup(i,j).get('isCorrect')?.invalid
+                     && (getAnswerFormGroup(i,j).get('isCorrect')?.dirty || getAnswerFormGroup(i,j).get('isCorrect')?.touched)">
+                        يجب اختيار إجابة واحدة صح على الأقل
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <mat-error *ngIf="getQuestionFormGroup(i)?.get('answers')?.value.length < 2 && formSubmitted">
+            يجب أن يحتوي السؤال على ما لا يقل عن إجابتين
+          </mat-error>
+        </form>
+      </div>
+    </div>
+
+    <!-- exam -->
+    <div *ngIf="activeSection === 'examSettings'" class="section" dir="rtl">
+      <h5>بيانات الامتحان</h5>
+
+      <mat-card-content class="mt-3">
+        <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+          <label for="title" class="ms-auto">العنوان &nbsp;</label>
+
+          <mat-form-field appearance="outline">
+            <mat-label>العنوان</mat-label>
+            <input matInput type="text" formControlName="title">
+            <mat-icon matSuffix>library_add</mat-icon>
+            <mat-error *ngIf="examForm.get('title')?.hasError('required')">العنوان مطلوب</mat-error>
+            <mat-error *ngIf="examForm.get('title')?.hasError('pattern')">
+              يجب أن يحتوي العنوان على أحرف وأرقام فقط
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="flex flex-wrap gap-3 justify-content-center">
+          <div class="flex gap-3 flex-wrap justify-content-center">
+            <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+              <label for="startTime" class="ms-auto">وقت البدء &nbsp;</label>
+
+              <mat-form-field appearance="outline">
+                <mat-label>وقت البدء</mat-label>
+                <input matInput type="time" formControlName="startTime">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <mat-error *ngIf="examForm.get('startTime')?.hasError('required')">وقت البدء مطلوب</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+              <label for="startDate" class="ms-auto">تاريخ البدء &nbsp;</label>
+
+              <mat-form-field appearance="outline">
+                <mat-label>تاريخ البدء</mat-label>
+                <input matInput [matDatepicker]="startDatePicker" placeholder="تاريخ البدء" formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+                <mat-error *ngIf="examForm.get('startDate')?.hasError('required')">تاريخ البدء مطلوب</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="flex gap-3 flex-wrap justify-content-center">
+            <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+              <label for="endTime" class="ms-auto">وقت الانتهاء &nbsp;</label>
+
+              <mat-form-field appearance="outline">
+                <mat-label>وقت الانتهاء</mat-label>
+                <input matInput type="time" formControlName="endTime">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <mat-error *ngIf="examForm.get('endTime')?.hasError('required')">وقت الانتهاء مطلوب</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+              <label for="endDate" class="ms-auto">تاريخ الانتهاء &nbsp;</label>
+
+              <mat-form-field appearance="outline">
+                <mat-label>تاريخ الانتهاء</mat-label>
+                <input matInput [matDatepicker]="endDatePicker" placeholder="تاريخ الانتهاء" formControlName="endDate">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+                <mat-error *ngIf="examForm.get('endDate')?.hasError('required')">تاريخ الانتهاء مطلوب</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+          <label for="duration" class="ms-auto">المدة &nbsp;</label>
+
+          <mat-form-field appearance="outline">
+            <mat-label>المدة (بالدقائق)</mat-label>
+            <input matInput type="number" formControlName="duration">
+            <mat-icon matSuffix>access_time</mat-icon>
+            <mat-error *ngIf="examForm.get('duration')?.hasError('required')">
+              المدة مطلوبة
+            </mat-error>
+            <mat-error *ngIf="examForm.get('duration')?.hasError('min')">
+              المدة يجب أن تكون على الأقل 5 دقائق
+            </mat-error>
+            <mat-error *ngIf="examForm.get('duration')?.hasError('max')">
+              المدة يجب أن لا تتجاوز 180 دقيقة
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="!(exam && lecture)" class="spinner flex justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>

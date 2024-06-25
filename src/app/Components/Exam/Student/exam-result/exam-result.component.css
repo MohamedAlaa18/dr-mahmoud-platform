@@ -1,0 +1,165 @@
+.result-section,
+.question-section {
+  border-radius: 10px;
+  box-shadow: var(--border) 0px 1px 3px 0px, var(--border) 0px 0px 0px 1px;
+  background-color: var(--bg);
+}
+
+.result-section {
+  min-width: 325px;
+}
+
+h5 {
+  font-weight: 700;
+}
+
+h5 span {
+  color: var(--wave2);
+}
+
+.question-header {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  margin-right: 1.75rem;
+}
+
+.grade p {
+  font-size: 1.25rem;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.question-section {
+  min-height: 80dvh;
+  overflow: hidden;
+}
+
+p {
+  margin-bottom: 0;
+  /* margin-right: 1.75rem; */
+}
+
+.answer,
+.correct-wrong-answer {
+  margin-right: 1.75rem;
+}
+
+.correct-answer::before {
+  content: "\2713";
+  margin-inline: 5px;
+  color: green;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.wrong-answer::before {
+  content: "\2716";
+  margin-inline: 5px;
+  color: red;
+  font-size: 1.25rem;
+}
+
+ul {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+
+li {
+  counter-increment: my-awesome-counter;
+}
+
+li::before {
+  content: counter(my-awesome-counter);
+  /* background-image: var(--btn); */
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-inline: 0.5rem;
+  display: inline-block;
+  line-height: 2rem;
+  color: white;
+  text-align: center;
+  margin-right: 0.5rem;
+
+  background: linear-gradient(
+    180deg,
+    var(--wave5, #f6d365),
+    var(--wave6, #fda085) 51%,
+    var(--wave5, #f6d365)
+  );
+}
+
+/* .wrong-choice.student-answer::before {
+  background: linear-gradient(
+      180deg,
+      var(--wave5, #f6d365),
+      var(--wave6, #fda085) 51%,
+      var(--wave5, #f6d365)
+    )
+    var(--x, 0) / 200% !important;
+} */
+
+.correct-choice::before {
+  background: linear-gradient(
+      180deg,
+      var(--wave3, #f6d365),
+      var(--wave4, #fda085) 51%,
+      var(--wave3, #f6d365)
+    )
+    var(--x, 0) / 200% !important;
+}
+
+svg {
+  width: 1.75rem;
+  /* height: 3rem; */
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    var(--bgHeader),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.book-mark {
+  margin-top: -0.5rem;
+}
+
+#triangle-topleft {
+  width: 0;
+  height: 0;
+  border-top: 35px solid var(--wave2);
+  border-right: 20px solid transparent;
+  rotate: 90deg;
+  margin-bottom: -2.25rem;
+  margin-right: -0.75rem;
+}
+
+#triangle-topright {
+  width: 0;
+  height: 0;
+  border-top: 35px solid var(--wave2);
+  border-left: 20px solid transparent;
+  rotate: 90deg;
+  margin-bottom: -0.15rem;
+  margin-right: -0.75rem;
+}
+
+.spinner {
+  min-height: 90dvh;
+}
+
+.spinner ::ng-deep circle {
+  stroke: var(--wave2);
+}
+
+@media (max-width: 992px) {
+  .result-section {
+    align-items: center;
+    width: 100%;
+  }
+}

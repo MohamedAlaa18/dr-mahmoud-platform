@@ -1,0 +1,38 @@
+.example-card {
+  top: -19rem;
+  box-shadow: var(--border) 0px 2px 8px 0px;
+  background-color: var(--bg);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.top-bottom-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.top-bottom-container p {
+  font-size: 16px;
+}
+
+.top-bottom-container svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.green-button {
+  border-radius: 20rem;
+  width: 150px;
+}
+
+.thumbnail {
+  width: 325px;
+  height: 225px;
+}
+
+@media (max-width: 990px) {
+  .example-card {
+    position: static;
+    margin-inline: auto;
+  }
+}

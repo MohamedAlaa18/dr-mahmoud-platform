@@ -1,0 +1,107 @@
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+  display: block;
+}
+
+.clock:before,
+.count:after {
+  content: "";
+  position: absolute;
+}
+
+.clock-wrap {
+  margin: auto;
+  position: relative;
+}
+
+.clock {
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background-color: var(--border2);
+}
+
+.clock:before {
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -75px;
+  border-radius: inherit;
+  background-image: var(--btn);
+  box-shadow: 0 0 15px var(--border), 0 0 3px var(--border2) inset;
+  border: 1px solid var(--bg);
+}
+
+.count {
+  color: var(--border2);
+  margin-top: 82px;
+  margin-right: 44px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 50px;
+  position: absolute;
+  text-align: center;
+}
+
+.count:after {
+  width: 100%;
+  display: block;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 18px;
+  text-align: center;
+  position: relative;
+}
+
+.count.sec:after {
+  content: "sec";
+}
+
+.count.min:after {
+  content: "min";
+}
+
+.clock-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bar-background {
+  fill: none;
+  stroke: var(--border1);
+  stroke-width: 10;
+}
+
+.bar-progress {
+  fill: none;
+  stroke: var(--wave2);
+  stroke-width: 10;
+  stroke-dasharray: 0, 100;
+  transition: stroke-dasharray 1s linear;
+  margin-left: 2rem;
+  opacity: 0.3;
+}
+
+/* .clock-bar[_ngcontent-ng-c3743505146] {
+  top: 1px;
+  left: 9px;
+} */

@@ -1,0 +1,57 @@
+<section class="container d-flex flex-wrap align-items-start gap-3" *ngIf="result">
+  <div class="d-flex flex-column col-md-3 result-section p-3 col-12">
+    <h5>نتيجة الامتحان <span> - </span> {{ result.examName }}</h5>
+    <div class="grade">
+      <p>درجة الامتحان: {{ result.examGrade }}</p>
+      <p>درجة الطالب: {{ result.studentGrade }}</p>
+    </div>
+  </div>
+  <div class="col-md-7 col-12 flex-grow-1 question-section p-3">
+    <div class="exam-questions">
+      <div *ngFor="let question of result.studentAnswersWithCorrectAnswers; let i = index; let last = last"
+        class="question">
+        <div class="d-flex flex-column gap-3">
+          <div class="flex gap-2 ms-auto">
+            <div class="book-mark">
+              <div id="triangle-topleft"></div>
+              <div id="triangle-topright"></div>
+            </div>
+
+            <h5>السؤال رقم : <span>{{ i + 1 }}</span></h5>
+          </div>
+
+          <h6 class="pb-3 question-header">{{ question.questionHeader }}</h6>
+        </div>
+        <ul class="d-flex flex-column gap-3 p-0">
+          <div *ngFor="let choice of question.answerChoices; let j = index;" class="flex"
+            [ngClass]="{'answer': !question.studentAnswerIds.includes(choice.answerId)}">
+            <span *ngIf="question.studentAnswerIds.includes(choice.answerId)" class="arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"
+                class="fa-rotate-270">
+                <path fill="#0096FF"
+                  d="M16.21 16H7.79a1.76 1.76 0 0 1-1.59-1a2.1 2.1 0 0 1 .26-2.21l4.21-5.1a1.76 1.76 0 0 1 2.66 0l4.21 5.1A2.1 2.1 0 0 1 17.8 15a1.76 1.76 0 0 1-1.59 1" />
+              </svg>
+            </span>
+            <li [ngClass]="{'correct-choice': question.correctAnswerIds.includes(choice.answerId)}">
+              {{ choice.answerHeader }}
+            </li>
+          </div>
+        </ul>
+        <div class="correct-wrong-answer">
+          <p [ngClass]="{'correct-answer': question.isCorrect, 'wrong-answer': !question.isCorrect}"
+            style="margin-right: -1.75rem;">
+            إجابة الطالب : {{ getStudentAnswers(question.studentAnswerIds, question.answerChoices) }}
+          </p>
+          <p>
+            الإجابة الصحيحة : {{ getCorrectAnswers(question.correctAnswerIds, question.answerChoices) }}
+          </p>
+        </div>
+        <hr *ngIf="!last" class="my-5">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="!result" class="spinner flex justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>

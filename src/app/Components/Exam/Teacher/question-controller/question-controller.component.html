@@ -1,0 +1,15 @@
+<section class="container" *ngIf="examForm && questionsArray">
+  <div class="flex flex-column justify-content-center gap-2 mb-auto">
+    <button mat-button type="button" class="add-question" (click)="onAddQuestionClicked()">
+      <span>اضافة سؤال</span> &nbsp;
+    </button>
+
+    <div class="flex flex-wrap justify-content-center gap-2 questions-container">
+      <button class="rounded-circle circle-button" type="button"
+        [ngClass]="{ 'selected': questionIndex === i, 'invalid': isQuestionInvalid(i) }"
+        *ngFor="let question of questionsArray.controls; let i = index" (click)="sendIndexToParent(i)">
+        {{ i + 1 }}
+      </button>
+    </div>
+  </div>
+</section>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ICourse } from 'src/app/Models/iCourse';
-import { CoursesService } from 'src/app/Services/courses.service';
+import { CoursesService } from 'src/app/Services/Courses/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -29,7 +29,7 @@ export class CoursesComponent implements OnInit {
 
   getAllCourses() {
     this.courseData.getAllCourses().subscribe(courses => {
-      console.log(courses);
+      // console.log(courses);
       this.courses = courses;
     });
   }

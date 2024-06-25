@@ -1,0 +1,17 @@
+.custom-button {
+  border-radius: 20rem;
+  padding-inline: 2rem;
+}
+
+h3 {
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.form {
+  text-align: right;
+}
+
+/* mat-card-content {
+  width: 250px;
+} */

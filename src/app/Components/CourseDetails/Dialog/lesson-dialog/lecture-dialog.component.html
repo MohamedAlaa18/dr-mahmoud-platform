@@ -1,0 +1,24 @@
+<div class="dialog-container pt-1 pb-4">
+  <div class="flex justify-content-between">
+    <div></div>
+    <button mat-icon-button (click)="onNoClick()" style="color: red;"> <mat-icon>close</mat-icon></button>
+  </div>
+  <div class="flex flex-column justify-content-center" dir="rtl">
+    <!-- <h3>مرحباً <span>أ.</span> {{ data.name }}</h3> -->
+    <h3>{{data.header}}</h3>
+    <mat-form-field appearance="outline">
+      <mat-label>أسم الحصة</mat-label>
+      <input matInput [(ngModel)]="lectureTitle" [ngModel]="data.initialLectureTitle"
+        [ngModelOptions]="{ standalone: true }">
+      <mat-icon matSuffix>library_add</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>السعر</mat-label>
+      <input matInput type="number" [(ngModel)]="price" [ngModel]="data.initialPrice"
+        [ngModelOptions]="{ standalone: true }">
+      <mat-icon matSuffix>attach_money</mat-icon>
+    </mat-form-field>
+    <button mat-button class="custom-button" (click)="onSubmit()" [disabled]="!lectureTitle">{{ data.confirmButtonText
+      }}</button>
+  </div>
+</div>

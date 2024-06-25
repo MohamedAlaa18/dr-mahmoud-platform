@@ -1,0 +1,95 @@
+<form [formGroup]="contentForm" class="pt-1 pb-4" (ngSubmit)="onYesClick($event)">
+  <div class="flex justify-content-between">
+    <div></div>
+    <button mat-icon-button (click)="onNoClick()" type="button" style="color: red;">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="flex flex-column justify-content-center" dir="rtl">
+    <h3 class="mb-5" style="font-weight: 700;">{{data.header}}</h3>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>العنوان</mat-label>
+        <input matInput type="text" formControlName="title">
+        <mat-icon matSuffix>library_add</mat-icon>
+        <mat-error *ngIf="contentForm.get('title')?.hasError('required')">
+          العنوان مطلوب
+        </mat-error>
+        <mat-error *ngIf="contentForm.get('title')?.hasError('pattern')">
+          العنوان يجب أن يحتوي العنوان على أحرف وأرقام فقط
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Start Date Errors -->
+      <div class="flex gap-3 column">
+        <mat-form-field appearance="outline">
+          <mat-label>تاريخ البدء</mat-label>
+          <input matInput [matDatepicker]="startDatePicker" placeholder="تاريخ البدء" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+          <mat-error *ngIf="contentForm.get('startDate')?.hasError('required')">
+            تاريخ البدء مطلوب
+          </mat-error>
+          <mat-error *ngIf="contentForm.errors?.['dateMismatch']">
+            تاريخ البدء يجب أن يكون قبل تاريخ الانتهاء
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>وقت البدء</mat-label>
+          <input matInput type="time" formControlName="startTime">
+          <mat-icon matSuffix>access_time</mat-icon>
+          <mat-error *ngIf="contentForm.get('startTime')?.hasError('required')">
+            وقت البدء مطلوب
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- End Date Errors -->
+      <div class="flex gap-3 column">
+        <mat-form-field appearance="outline">
+          <mat-label>تاريخ الانتهاء</mat-label>
+          <input matInput [matDatepicker]="endDatePicker" placeholder="تاريخ الانتهاء" formControlName="endDate">
+          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+          <mat-error *ngIf="contentForm.get('endDate')?.hasError('required')">
+            تاريخ الانتهاء مطلوب
+          </mat-error>
+          <mat-error *ngIf="contentForm.errors?.['dateMismatch']">
+            تاريخ البدء يجب أن يكون قبل تاريخ الانتهاء
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>وقت الانتهاء</mat-label>
+          <input matInput type="time" formControlName="endTime">
+          <mat-icon matSuffix>access_time</mat-icon>
+          <mat-error *ngIf="contentForm.get('endTime')?.hasError('required')">
+            وقت الانتهاء مطلوب
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Duration Error -->
+      <mat-form-field appearance="outline">
+        <mat-label>المدة (بالدقائق)</mat-label>
+        <input matInput type="number" formControlName="duration">
+        <mat-icon matSuffix>access_time</mat-icon>
+        <mat-error *ngIf="contentForm.get('duration')?.hasError('required')">
+          المدة مطلوبة
+        </mat-error>
+        <mat-error *ngIf="contentForm.get('duration')?.hasError('min')">
+          المدة يجب أن تكون على الأقل 5 دقائق
+        </mat-error>
+        <mat-error *ngIf="contentForm.get('duration')?.hasError('max')">
+          المدة يجب أن لا تتجاوز 180 دقيقة
+        </mat-error>
+      </mat-form-field>
+
+    </mat-card-content>
+
+    <button mat-button class="green-button mt-3">{{ data.confirmButtonText }}</button>
+  </div>
+</form>

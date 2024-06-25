@@ -1,0 +1,23 @@
+.green-button {
+  border-radius: 20rem !important;
+}
+h3 {
+  text-align: center;
+}
+
+mat-card-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+mat-error {
+  color: red !important;
+}
+
+@media (max-width: 690px) {
+  .column {
+    flex-direction: column-reverse;
+  }
+}

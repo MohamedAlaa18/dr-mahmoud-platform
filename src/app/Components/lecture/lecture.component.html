@@ -1,0 +1,50 @@
+<section class="d-flex align-items-start gap-3 container" *ngIf="lecture">
+
+  <div class="accordion-section flex gap-2">
+    <button mat-menu-item class="flex px-2 mx-2 my-0 home-work-button"
+      *ngIf="lecture.assignment && (isStudentAllowed())"
+      [routerLink]="['/course', courseId, 'lesson', lecture.id, 'view']"
+      [queryParams]="{ examType: 'Assignment', examId: lecture.assignment }">
+      <i class="fas fa-clipboard-list"></i>
+      الواجب
+    </button>
+
+    <mat-accordion class="flex flex-column gap-3 w-100">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" expanded="true"
+        class="custom-expansion-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-weight: 700;">
+            الملحقات
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a *ngFor="let opt of fileOptions; let i = index" class="ms-auto content-file" [href]="opt.pdfUrl" download>
+          <button mat-button class="ms-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24">
+              <path fill="var(--bgHeader)"
+                d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z" />
+            </svg>
+            {{ opt.label }}
+          </button>
+          <div></div>
+        </a>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="w-100">
+    <h5>{{ lecture.lectureTitle }}</h5>
+
+    <div class="custom-checkbox-container flex flex-wrap gap-2 my-3">
+      <button mat-button *ngFor="let opt of videoOptions; let i = index" class="custom-checkbox flex-grow-1"
+        [class.checked]="opt.selected" (click)="toggleOption(i)">
+        <span>{{ opt.label }}</span>
+      </button>
+
+      <video [src]="selectedVideoUrl" width="100%" controls></video>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="!lecture" class="spinner flex justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>

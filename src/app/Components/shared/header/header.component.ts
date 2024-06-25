@@ -107,7 +107,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   moveMarker(target: HTMLElement | null): void {
     const marker = document.getElementById('marker');
     if (marker && target) {
-      console.log(target)
+      // console.log(target)
       const rect = target.getBoundingClientRect();
       const offsetX = rect.left + window.pageXOffset;
       marker.style.width = target.offsetWidth + 'px';

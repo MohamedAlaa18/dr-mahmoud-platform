@@ -6,11 +6,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/shared/header/header.component';
@@ -22,6 +28,16 @@ import { CourseCardComponent } from './Components/shared/course-card/course-card
 import { LoadingCardsComponent } from './Components/shared/loading-cards/loading-cards.component';
 import { LogoComponent } from '../assets/svgs/logo/logo.component';
 import { HeroLogoComponent } from './Components/shared/hero-logo/hero-logo.component';
+import { LectureComponent } from './Components/lecture/lecture.component';
+import { CourseDetailsComponent } from './Components/CourseDetails/course-details/course-details.component';
+import { CourseDetailsCardComponent } from './Components/CourseDetails/course-details-card/course-details-card.component';
+import { CourseDetailsHeaderComponent } from './Components/CourseDetails/course-details-header/course-details-header.component';
+import { ConfirmationDialogComponent } from './Components/CourseDetails/Dialog/confirmation-dialog/confirmation-dialog.component';
+import { EnrollDialogComponent } from './Components/CourseDetails/Dialog/enroll-dialog/enroll-dialog.component';
+import { ExamDialogComponent } from './Components/CourseDetails/Dialog/exam-dialog/exam-dialog.component';
+import { LectureDialogComponent } from './Components/CourseDetails/Dialog/lesson-dialog/lecture-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ContentDialogComponent } from './Components/CourseDetails/Dialog/content-dialog/content-dialog.component';
 
 
 @NgModule({
@@ -35,7 +51,16 @@ import { HeroLogoComponent } from './Components/shared/hero-logo/hero-logo.compo
     CourseCardComponent,
     LoadingCardsComponent,
     LogoComponent,
-    HeroLogoComponent
+    HeroLogoComponent,
+    LectureComponent,
+    CourseDetailsComponent,
+    CourseDetailsCardComponent,
+    CourseDetailsHeaderComponent,
+    ConfirmationDialogComponent,
+    EnrollDialogComponent,
+    ExamDialogComponent,
+    LectureDialogComponent,
+    ContentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +74,15 @@ import { HeroLogoComponent } from './Components/shared/hero-logo/hero-logo.compo
     ReactiveFormsModule,
     MatExpansionModule,
     MatCardModule,
-    HttpClientModule
+    MatProgressSpinnerModule,
+    HttpClientModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

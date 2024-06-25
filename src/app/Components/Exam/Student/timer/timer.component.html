@@ -1,0 +1,12 @@
+<div class="clock-wrap">
+  <div class="clock pro-0">
+    <span class="count">{{ timeLeftString }}</span>
+
+
+    <svg class="clock-bar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle class="bar-background" cx="50" cy="50" r="45" />
+      <circle class="bar-progress" cx="50" cy="50" r="45"
+        [style.strokeDasharray]="timeElapsedPercentage * 2.83 + ' 283'" />
+    </svg>
+  </div>
+</div>
