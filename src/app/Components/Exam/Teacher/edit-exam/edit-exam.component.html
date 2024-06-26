@@ -7,8 +7,8 @@
 </svg>
 
 <form [formGroup]="examForm" (ngSubmit)="onSaveClicked()" class="container flex" *ngIf="exam && lecture">
-  <div class="flex column flex-wrap gap-3 justify-content-center column-mobile mb-auto">
-    <section class="section-header p-3 d-flex flex-column">
+  <div class="flex column flex-wrap gap-3 justify-content-center column-mobile mb-auto controllers-section">
+    <section class="section-header section-border p-3 d-flex flex-column">
       <h5>{{courseTitle}}</h5>
       <h6>{{lecture.lectureTitle}}</h6>
     </section>
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="section-container p-4 w-100" dir="rtl">
+  <div class="section-container section-border p-4 w-100" dir="rtl">
     <!-- question -->
     <div *ngIf="activeSection === 'questionSettings'" class="section">
       <div *ngFor="let question of questionsControls.controls; let i = index">

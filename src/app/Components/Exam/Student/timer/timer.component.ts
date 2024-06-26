@@ -19,7 +19,7 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   timerEnded: boolean = false;
   timeLeft: number = 0;
   timeLeftString!: string;
-  circleOffset: number = 283;
+  circleOffset: number = 283; // This is the circumference of the circle
   timeElapsedPercentage: number = 0;
   private destroyed$: Subject<void> = new Subject();
 
@@ -51,6 +51,7 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   startTimer() {
+    this.duration = 1;
     if (this.duration) {
       this.timeLeft = this.duration * 60;
       this.timerStarted = true;
@@ -62,7 +63,8 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
 
         this.timeLeftString = `${this.formatTime(hours)}:${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
 
-        this.timeElapsedPercentage = ((this.duration - this.timeLeft) / this.duration) * 100;
+        this.timeElapsedPercentage = ((this.duration * 60 - this.timeLeft) / (this.duration * 60)) * 100;
+        this.circleOffset = 283 - (283 * this.timeElapsedPercentage / 100);
 
         this.timeLeft--;
 
@@ -83,8 +85,6 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
     const examId = this.route.snapshot.queryParamMap.get('examId');
 
     const expectedRoute = `/course/${courseId}/lesson/${lessonId}/view`;
-    // console.log(expectedRoute)
-    // console.log(routeUrl)
     if (
       routeUrl === expectedRoute &&
       courseId &&

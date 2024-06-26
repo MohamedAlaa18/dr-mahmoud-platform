@@ -113,12 +113,6 @@ html {
   --bg-light: rgb(205, 205, 200);
 }
 
-button:active,
-button:hover {
-  scale: 0.97;
-  rotate: 1deg;
-}
-
 //custom buttons
 .custom-button,
 custom-checkbox.checked {
@@ -162,6 +156,12 @@ custom-checkbox.checked {
 
 .hidden {
   opacity: 0;
+}
+
+.section-border {
+  border-radius: 10px;
+  box-shadow: var(--border) 0px 1px 3px 0px, var(--color6) 0px 0px 0px 1px;
+  backdrop-filter: blur(10px);
 }
 
 @keyframes slideIn {

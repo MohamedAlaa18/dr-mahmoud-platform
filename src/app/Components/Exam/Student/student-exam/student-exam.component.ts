@@ -55,7 +55,8 @@ export class StudentExamComponent implements OnInit {
 
     this.activatedRoute.queryParamMap.subscribe(queryParams => {
       this.examId = +queryParams.get('examId')!;
-      this.startExam(this.examId);
+      // this.startExam(this.examId);
+      this.getExamById(this.examId);
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -93,7 +94,7 @@ export class StudentExamComponent implements OnInit {
       this.exam = exam;
       this.questions = exam.questions;
       this.buildFormControls();
-      this.getStartData(this.examId, this.studentId);
+      // this.getStartData(this.examId, this.studentId);
     });
   }
 

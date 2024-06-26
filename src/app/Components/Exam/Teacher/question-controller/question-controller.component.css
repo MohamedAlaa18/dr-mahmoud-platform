@@ -1,13 +1,10 @@
 section {
-  border-radius: 10px;
-  box-shadow: var(--border) 0px 1px 3px 0px, var(--border) 0px 0px 0px 1px;
-  background-color: var(--bg);
   width: 250px;
   height: 300px;
 }
 
 .questions-container {
- overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 .circle-button {
@@ -45,31 +42,32 @@ section {
 .invalid:hover {
   background-color: #800000;
 }
+
 .selected.invalid {
   background-color: #800000;
 }
 
-.add-question {
+.custom-submit1 {
   outline: none;
   border: none;
   cursor: pointer;
   position: relative;
-  background-image: var(--btn);
+  background-image: linear-gradient(120deg, var(--color1), var(--color2));
   font-weight: 700;
   color: white !important;
-  box-shadow: 0 9px var(--color1);
+  box-shadow: 0 9px var(--color2);
   transition: 0.3;
   width: 80%;
   margin-top: 2rem;
   margin-bottom: 2.25rem;
 }
 
-.add-question:hover {
+.custom-submit1:hover {
   box-shadow: 0 4px var(--color1);
   top: 2px;
 }
 
-.add-question:active {
+.custom-submit1:active {
   box-shadow: none;
   top: 6px;
 }

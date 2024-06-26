@@ -258,6 +258,16 @@ hr {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $bgHeader, rgba(0, 0, 0, 0));
 }
 
+button {
+  transition: 0.3s;
+}
+
+button:active,
+button:hover {
+  scale: 0.97;
+  rotate: 1deg;
+}
+
 @media (max-width: 920px) {
 
   .nav-items,
@@ -272,7 +282,7 @@ hr {
 
   .mat-sidenav {
     padding: 16px;
-    transition: transform 0.3s ease-in-out;
+    transition: 0.3s;
     transform: translateX(-100%);
 
     &.open {
@@ -286,6 +296,7 @@ hr {
     transition: opacity 0.3s ease-in-out;
     padding-top: 0;
     padding-bottom: 0;
+    transition: 0.3s;
   }
 
   .mat-sidenav button.rounded-2 {

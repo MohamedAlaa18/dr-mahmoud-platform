@@ -3,15 +3,17 @@ svg {
 }
 
 form {
-  margin-top: -6vw;
   padding: 1px;
+  /* margin-top: -6vw; */
+}
+
+.controllers-section,
+.section-container {
+  margin-top: -6vw;
 }
 
 .section-container {
-  border-radius: 10px;
   padding-bottom: 5rem;
-  box-shadow: var(--border) 0px 1px 3px 0px, var(--border) 0px 0px 0px 1px;
-  background-color: var(--bg);
   width: 100%;
   position: relative;
   min-height: calc(700px + 2rem);
@@ -26,9 +28,6 @@ form {
 }
 
 .section-header {
-  border-radius: 10px;
-  box-shadow: var(--border) 0px 1px 3px 0px, var(--border) 0px 0px 0px 1px;
-  background-color: var(--bg);
   width: 250px;
   height: 100px;
   justify-content: center;
@@ -47,13 +46,22 @@ h5 span {
   color: var(--color2);
 }
 
+/* #book-mark-tail {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background-color: var(--color2);
+  top: 2rem;
+  left: -1.25rem;
+} */
+
 #triangle-topleft {
   width: 0;
   height: 0;
   border-top: 35px solid var(--color2);
   border-right: 20px solid transparent;
   rotate: 90deg;
-  margin-bottom: -2.25rem;
+  margin-bottom: -2rem;
   margin-right: -1.25rem;
 }
 
@@ -63,18 +71,9 @@ h5 span {
   border-top: 35px solid var(--color2);
   border-left: 20px solid transparent;
   rotate: 90deg;
-  margin-bottom: -0.15rem;
+  margin-bottom: 0.1rem;
   margin-right: -1.25rem;
 }
-
-/* #book-mark-tail {
-  position: absolute;
-  width: 40px;
-  height: 20px;
-  background-color: var(--color2);
-  top: 2rem;
-  left: -1.25rem;
-} */
 
 .close {
   color: red;
@@ -155,6 +154,32 @@ form.container {
   gap: 2rem;
 }
 
+
+.custom-submit1 {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-image: linear-gradient(120deg, var(--color1), var(--color2));
+  font-weight: 700;
+  color: white !important;
+  box-shadow: 0 9px var(--color2);
+  transition: 0.3;
+  width: 80%;
+  margin-top: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.custom-submit1:hover {
+  box-shadow: 0 4px var(--color1);
+  top: 2px;
+}
+
+.custom-submit1:active {
+  box-shadow: none;
+  top: 6px;
+}
+
 mat-form-field mat-label {
   color: var(--bgHeader);
 }
@@ -181,6 +206,10 @@ mat-error {
 
   .section-header {
     align-items: center;
+  }
+
+  .section-container {
+    margin-top: 0;
   }
 }
 

@@ -16,10 +16,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/shared/header/header.component';
@@ -97,6 +99,7 @@ import { ExamResultComponent } from './Components/Exam/Student/exam-result/exam-
     MatDialogModule,
     MatTooltipModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatSnackBarModule,
     MatSelectModule,
     MatCheckboxModule,

@@ -1,7 +1,9 @@
-section {
-  border-radius: 10px;
-  box-shadow: var(--border) 0px 1px 3px 0px, var(--border) 0px 0px 0px 1px;
-  background-color: var(--bg);
+svg {
+  margin-top: -7vw;
+}
+
+div.container {
+  margin-top: -6vw;
 }
 
 .questions-section,
@@ -20,7 +22,7 @@ section {
 }
 
 .questions-container h5 {
-  color: var(--wave2);
+  color: var(--color2);
 }
 
 .circle-button {
@@ -30,7 +32,7 @@ section {
   border-radius: 50%;
   border: 3px solid var(--border);
   background-color: var(--bg);
-  color: var(--wave2);
+  color: var(--color2);
   transition: 0.3s;
   outline: none;
   font-weight: 700;
@@ -69,9 +71,6 @@ section {
 }
 
 .section-header {
-  border-radius: 10px;
-  box-shadow: var(--border) 0px 1px 3px 0px, var(--border) 0px 0px 0px 1px;
-  background-color: var(--bg);
   width: 242px;
   height: 100px;
   justify-content: center;
@@ -87,7 +86,7 @@ h5 {
 }
 
 h5 span {
-  color: var(--wave2);
+  color: var(--color2);
 }
 
 .question-header {
@@ -96,13 +95,13 @@ h5 span {
 }
 
 .book-mark {
-  margin-top: -0.5rem;
+  margin-top: -1rem;
 }
 
 #triangle-topleft {
   width: 0;
   height: 0;
-  border-top: 35px solid var(--wave2);
+  border-top: 35px solid var(--color2);
   border-right: 20px solid transparent;
   rotate: 90deg;
   margin-bottom: -2.25rem;
@@ -112,7 +111,7 @@ h5 span {
 #triangle-topright {
   width: 0;
   height: 0;
-  border-top: 35px solid var(--wave2);
+  border-top: 35px solid var(--color2);
   border-left: 20px solid transparent;
   rotate: 90deg;
   margin-bottom: -0.15rem;
@@ -149,7 +148,7 @@ h5 span {
 }
 
 .spinner ::ng-deep circle {
-  stroke: var(--wave2);
+  stroke: var(--color2);
 }
 
 mat-form-field mat-label {
@@ -164,13 +163,28 @@ mat-error {
   .container {
     flex-direction: column;
   }
+
   .questions-section {
     width: 100%;
   }
+
   .mobile-row {
     flex-direction: row !important;
   }
+
   .section-header {
     text-align: center;
+  }
+}
+
+@media (max-width: 700px) {
+  svg {
+    margin-top: -3.5vw;
+  }
+}
+
+@media (max-width: 500px) {
+  svg {
+    margin-top: 1.5vw;
   }
 }
