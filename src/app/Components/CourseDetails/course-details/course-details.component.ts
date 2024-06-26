@@ -29,10 +29,10 @@ export class CourseDetailsComponent implements OnInit {
   userId: string;
   isEnrolled!: boolean;
 
-  options = [
-    { label: 'محتوي الكورس', selected: true },
-    { label: 'عن المعلم', selected: false },
-  ];
+  // options = [
+  //   { label: 'محتوي الكورس', selected: true },
+  //   { label: 'عن المعلم', selected: false },
+  // ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -84,12 +84,12 @@ export class CourseDetailsComponent implements OnInit {
     });
   }
 
-  toggleOption(index: number) {
-    this.options.forEach((option, i) => {
-      option.selected = i === index;
-    });
-    this.showDetails = !this.showDetails;
-  }
+  // toggleOption(index: number) {
+  //   this.options.forEach((option, i) => {
+  //     option.selected = i === index;
+  //   });
+  //   this.showDetails = !this.showDetails;
+  // }
 
   //add lesson
   openLessonDialog(): void {

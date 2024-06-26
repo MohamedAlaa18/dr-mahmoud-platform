@@ -39,7 +39,8 @@ $active: var(--active);
   transition: 0.3s;
   background-color: transparent;
 
-  .unset-button {
+  .unset-button,
+  .menu-btn {
     color: white;
   }
 
@@ -52,7 +53,8 @@ $active: var(--active);
     border-bottom: 1px solid $border;
     background-color: var(--bg);
 
-    .unset-button {
+    .unset-button,
+    .menu-btn {
       color: var(--title);
     }
 
@@ -259,7 +261,8 @@ hr {
 @media (max-width: 920px) {
 
   .nav-items,
-  .disk {
+  .disk,
+  .divider {
     display: none;
   }
 

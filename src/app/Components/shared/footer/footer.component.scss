@@ -1,8 +1,10 @@
+svg {
+  margin-bottom: -8vw;
+}
+
 footer {
-  min-height: 20dvh;
-  background-color: var(--subtitle);
+  background-color: #07448E;
   box-shadow: var(--subtitle) 0px 13px 27px 5px, var(--subtitle) 0px 8px 16px 8px;
-  // margin-top: 4rem;
 }
 
 .social-icons button .mat-icon {

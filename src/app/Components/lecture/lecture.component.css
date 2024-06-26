@@ -1,6 +1,10 @@
+svg {
+  margin-top: -7vw;
+}
+
 section {
-  padding-top: 7.5rem;
-  padding-bottom: 7.5rem;
+  margin-top: -6vw;
+  margin-bottom: 7.5rem;
 }
 
 h5 {
@@ -24,7 +28,6 @@ h5 {
 
 .custom-checkbox {
   display: inline-block;
-  /* width: 49%; */
   padding-top: 0.75rem;
   padding-bottom: 2.25rem;
   background-color: rgba(204, 204, 204, 0.3);
@@ -33,12 +36,13 @@ h5 {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   color: rgba(var(--bgHeader), 0.75);
+  rotate: 0 !important;
 }
 
 .custom-checkbox.checked {
   background-color: rgba(204, 204, 204, 0.7);
   border-bottom: 3px solid transparent;
-  border-image: var(--btn) 1;
+  border-image: linear-gradient(120deg, var(--color2), var(--color1)) 1;
   color: var(--bgHeader);
 }
 
@@ -65,7 +69,7 @@ h5 {
 }
 
 .home-work-button:hover {
-  color: var(--wave1);
+  color: var(--green1);
 }
 
 .home-work-button:focus {
@@ -81,7 +85,7 @@ h5 {
 }
 
 .spinner ::ng-deep circle {
-  stroke: var(--wave2);
+  stroke: var(--color1);
 }
 
 @media (min-width: 990px) {
@@ -102,5 +106,16 @@ h5 {
     flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  svg {
+    margin-top: -3.5vw;
+  }
+}
+@media (max-width: 500px) {
+  svg {
+    margin-top: 1.5vw;
   }
 }

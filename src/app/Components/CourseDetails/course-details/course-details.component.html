@@ -5,14 +5,14 @@
     <div class="container d-flex flex-wrap gap-3 justify-content-between">
       <div class="content-container">
         <!-- Custom checkbox container -->
-        <div class="custom-checkbox-container flex flex-wrap gap-2 my-3 teacherCheckbox">
+        <!-- <div class="custom-checkbox-container flex flex-wrap gap-2 my-3 teacherCheckbox">
           <button mat-button *ngFor="let opt of options; let i = index" class="custom-checkbox"
             [class.checked]="opt.selected" (click)="toggleOption(i)">
             <span>{{ opt.label }}</span>
           </button>
-        </div>
+        </div> -->
 
-        <div class="course d-flex flex-column gap-2" *ngIf="options[0].selected">
+        <div class="course d-flex flex-column gap-2">
           <div class="flex gap-1 mb-2">
             <h3 class="m-0" style="font-weight: 700;">محتوي الكورس</h3>
             <button mat-icon-button (click)="openLessonDialog()"><mat-icon>note_add</mat-icon></button>
@@ -40,7 +40,6 @@
                   </div>
 
                   <mat-menu #menu="matMenu" class="lesson-menu" AppearFromRight>
-
                     <button mat-menu-item (click)="addContentDialog('file', lecture.id)" style="direction: rtl;">
                       ملف
                     </button>
@@ -55,7 +54,6 @@
                       (click)="openExamDialog('Assignment', course!, lecture, i)" style="direction: rtl;">
                       واجب
                     </button>
-
                   </mat-menu>
 
                 </mat-panel-title>
@@ -66,7 +64,7 @@
                   <div class="flex crud-buttons gap-2">
                     <button mat-button class="d-flex justify-content-start gap-2" [routerLink]="['/lesson', lecture.id]"
                       [queryParams]="{ courseId: course.id }">
-                      <mat-icon style="color:var(--wave2);">airplay</mat-icon>
+                      <mat-icon style="color:var(--color1);">airplay</mat-icon>
                       <span>{{ getContentTitle(content) }}</span>
                     </button>
 
@@ -97,17 +95,16 @@
           </mat-accordion>
         </div>
 
-        <div class="teacher d-flex align-items-center align-items-lg-start gap-3 mt-4" *ngIf="options[1].selected">
+        <!--<div class="teacher d-flex align-items-center align-items-lg-start gap-3 mt-4" *ngIf="options[1].selected">
           <div class="image-panel">
             <img mat-card-image [src]="course.profilePhoto" alt="Sample Image">
           </div>
           <div class="mt-5">
-            <!-- <h3 style="font-weight: 700;" class="mb-4">أ. {{course.teacherName}}</h3> -->
             <p>
               {{course.aboutTeacher}}
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="card-container">
