@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { AnswerChoices, IExamResult } from 'src/app/Model/iexam-result';
+import { AnswerChoices, IExamResult } from 'src/app/Models/iexam-result';
 
 
 @Component({

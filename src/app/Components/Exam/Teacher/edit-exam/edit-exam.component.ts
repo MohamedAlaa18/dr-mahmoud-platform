@@ -4,12 +4,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { convertDateFormat, convertTimeFormat } from 'src/app/Components/Exam/DateTimeFormat';
-import { ILecture } from 'src/app/Model/icourse';
-import { IExam } from 'src/app/Model/iexam';
+import { ILecture } from 'src/app/Models/iCourse';
+import { IExam } from 'src/app/Models/iexam';
 import { AuthService } from 'src/app/Services/Auth/auth.service';
 import { ExamService } from 'src/app/Services/Exam/exam.service';
 import { LecturesService } from 'src/app/Services/Lectures/lectures.service';
-import { isAnyValueMissing, isDurationValid, isStartDateBeforeEndDate, isStartDateInFuture } from 'src/app/Validator/exam-validators';
+import { isAnyValueMissing, isDurationValid, isStartDateBeforeEndDate, isStartDateInFuture } from 'src/app/Validators/exam-validators';
 
 @Component({
   selector: 'app-edit-exam',
@@ -110,7 +110,7 @@ export class EditExamComponent implements OnInit {
       validators: [
         isAnyValueMissing,
         isStartDateBeforeEndDate,
-        // isStartDateInFuture,
+        isStartDateInFuture,
         isDurationValid,
       ]
     });

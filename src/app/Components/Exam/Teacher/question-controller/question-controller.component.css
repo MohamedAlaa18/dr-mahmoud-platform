@@ -17,7 +17,7 @@ section {
   border-radius: 50%;
   border: 3px solid var(--border);
   background-color: var(--bg);
-  color: var(--wave2);
+  color: var(--color2);
   transition: 0.3s;
   outline: none;
   font-weight: 700;
@@ -38,7 +38,7 @@ section {
 }
 
 .invalid {
-  background-color: var(--wave5);
+  background-color: var(--color5);
   color: white;
 }
 
@@ -57,7 +57,7 @@ section {
   background-image: var(--btn);
   font-weight: 700;
   color: white !important;
-  box-shadow: 0 9px var(--wave1);
+  box-shadow: 0 9px var(--color1);
   transition: 0.3;
   width: 80%;
   margin-top: 2rem;
@@ -65,7 +65,7 @@ section {
 }
 
 .add-question:hover {
-  box-shadow: 0 4px var(--wave1);
+  box-shadow: 0 4px var(--color1);
   top: 2px;
 }
 

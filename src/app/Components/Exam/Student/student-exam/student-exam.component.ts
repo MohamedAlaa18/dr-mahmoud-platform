@@ -3,13 +3,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { ILecture } from 'src/app/Model/icourse';
-import { IExam, IQuestion } from 'src/app/Model/iexam';
+import { ILecture } from 'src/app/Models/iCourse';
+import { IExam, IQuestion } from 'src/app/Models/iexam';
 import { AuthService } from 'src/app/Services/Auth/auth.service';
 import { ExamService } from 'src/app/Services/Exam/exam.service';
 import { LecturesService } from 'src/app/Services/Lectures/lectures.service';
-
-import { atLeastOneCheckboxChecked, atLeastOneRadioButtonChecked } from 'src/app/Validator/exam-validators';
+import { atLeastOneCheckboxChecked, atLeastOneRadioButtonChecked } from 'src/app/Validators/exam-validators';
 
 @Component({
   selector: 'app-student-exam',
@@ -103,9 +102,9 @@ export class StudentExamComponent implements OnInit {
       startData => {
         this.startData = startData;
         // console.log(startData)
-        if(!this.startData.endTime){
+        if (!this.startData.endTime) {
           this.duration = this.exam.duration - durationCalculation(this.startData.startTime);
-        }else{
+        } else {
           this.duration = 0;
           this.submitExam(this.examId);
         }

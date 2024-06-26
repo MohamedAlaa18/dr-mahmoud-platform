@@ -1,5 +1,6 @@
 svg {
   margin-bottom: -8vw;
+  background-color: var(--bg);
 }
 
 footer {
@@ -88,3 +89,93 @@ ul {
     gap: 1.5rem;
   }
 }
+
+
+/*-------------------------------------------------------------*/
+/* Change the border color */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+  border-color: var(--bgHeader) !important;
+  transition: 0.3s;
+}
+
+/* Change the border width */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-width: 1.5px !important;
+}
+
+/* Change the border focused color */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: var(--wave2) !important;
+}
+
+/* Change the border hover color */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: var(--wave2) !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface,
+::ng-deep .mat-mdc-menu-panel,
+::ng-deep .mat-mdc-select-panel.ng-trigger,
+::ng-deep .mat-datepicker-content {
+  background-color: var(--bg) !important;
+  box-shadow: var(--border) 0px 0px 0px 1px !important;
+  border-radius: 10px !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+  margin-top: 0.65rem !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+  direction: rtl !important;
+}
+
+::ng-deep .mdc-snackbar__surface,
+::ng-deep .mat-mdc-snack-bar-label {
+  background-color: brown !important;
+  border-radius: 10px !important;
+}
+
+::ng-deep .snackbar-success .mdc-snackbar__surface,
+::ng-deep .snackbar-success .mat-mdc-snack-bar-label {
+  background-color: green !important;
+}
+
+::ng-deep .mat-mdc-snack-bar-actions .mdc-button__label,
+::ng-deep .mat-mdc-snack-bar-label {
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text,
+::ng-deep .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: #4bb543 !important;
+}
+
+::ng-deep mat-label {
+  color: var(--bgHeader) !important;
+}
+
+::ng-depp mat-error {
+  color: red !important;
+}
+
+::ng-deep .mat-mdc-card {
+  border-radius: 10px !important;
+}
+
+::ng-deep .mat-datepicker-toggle {
+  color: var(--bgHeader) !important;
+}
+
+/* ::ng-deep .mat-mdc-row:hover {
+  background-color: var(--active) !important;
+  transition: 0.3s;
+} */
