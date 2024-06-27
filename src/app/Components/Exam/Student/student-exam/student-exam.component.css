@@ -1,11 +1,3 @@
-svg {
-  margin-top: -7vw;
-}
-
-div.container {
-  margin-top: -6vw;
-}
-
 .questions-section,
 .header-section,
 .section-timer {
@@ -174,17 +166,5 @@ mat-error {
 
   .section-header {
     text-align: center;
-  }
-}
-
-@media (max-width: 700px) {
-  svg {
-    margin-top: -3.5vw;
-  }
-}
-
-@media (max-width: 500px) {
-  svg {
-    margin-top: 1.5vw;
   }
 }

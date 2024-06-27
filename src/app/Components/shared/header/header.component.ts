@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit, ViewChild, ElementRef, Renderer2, After
 import { FormControl } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   showToolbarBorder = false;
-
   darkClass = 'theme-dark';
   lightClass = 'theme-light';
   isShowing: boolean = false;
@@ -45,7 +44,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
   ) { }
 
   toggleRightSidenav() {
@@ -57,7 +56,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const currentTheme = savedTheme === 'dark';
 
     this.theme.setValue(currentTheme);
-
     this.applyTheme(currentTheme);
 
     this.theme.valueChanges.subscribe((currentTheme) => {
@@ -73,8 +71,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
 
     this.MarkerActiveDetect();
-
-    // Call MarkerActiveDetect() on window resize
     window.addEventListener('resize', () => {
       this.MarkerActiveDetect();
     });
@@ -107,7 +103,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   moveMarker(target: HTMLElement | null): void {
     const marker = document.getElementById('marker');
     if (marker && target) {
-      // console.log(target)
       const rect = target.getBoundingClientRect();
       const offsetX = rect.left + window.pageXOffset;
       marker.style.width = target.offsetWidth + 'px';

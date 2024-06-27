@@ -2,7 +2,7 @@
   top: -19rem;
   box-shadow: var(--border) 0px 2px 8px 0px;
   background-color: var(--bg);
-  transition: transform 0.5s, box-shadow 0.5s;
+  transition: 0.5s;
 }
 
 .top-bottom-container {

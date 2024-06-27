@@ -1,15 +1,5 @@
-svg {
-  margin-top: -7vw;
-}
-
 form {
   padding: 1px;
-  /* margin-top: -6vw; */
-}
-
-.controllers-section,
-.section-container {
-  margin-top: -6vw;
 }
 
 .section-container {
@@ -225,18 +215,5 @@ mat-error {
 
   .truefalse {
     margin-bottom: 2rem;
-  }
-}
-
-
-@media (max-width: 700px) {
-  svg {
-    margin-top: -3.5vw;
-  }
-}
-
-@media (max-width: 500px) {
-  svg {
-    margin-top: 1.5vw;
   }
 }
