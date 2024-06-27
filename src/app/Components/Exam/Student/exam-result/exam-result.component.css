@@ -76,9 +76,9 @@ li::before {
 
   background: linear-gradient(
     180deg,
-    var(--color5, #f6d365),
-    var(--color6, #fda085) 51%,
-    var(--color5, #f6d365)
+    var(--red1, #f6d365),
+    var(--red2, #fda085) 51%,
+    var(--red1, #f6d365)
   );
 }
 
@@ -95,9 +95,9 @@ li::before {
 .correct-choice::before {
   background: linear-gradient(
       180deg,
-      var(--color3, #f6d365),
-      var(--color4, #fda085) 51%,
-      var(--color3, #f6d365)
+      var(--green1, #f6d365),
+      var(--green2, #fda085) 51%,
+      var(--green1, #f6d365)
     )
     var(--x, 0) / 200% !important;
 }
