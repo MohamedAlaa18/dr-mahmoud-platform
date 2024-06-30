@@ -1,0 +1,73 @@
+<div *ngIf="activeSection === 'questionSettings'" class="section">
+  <div *ngFor="let question of questionsControls.controls; let i = index">
+    <form [formGroup]="getQuestionFormGroup(i)" *ngIf="activeQuestionIndex === i">
+      <div class="flex justify-content-between flex-wrap gap-4 align-items-baseline column-mobile mt-md-1 mt-5">
+        <div class="flex gap-2 ms-auto">
+          <div class="book-mark">
+            <div id="triangle-topleft"></div>
+            <div id="triangle-topright"></div>
+          </div>
+          <h5 class="m-0">السؤال رقم : <span>{{ activeQuestionIndex + 1 }}</span></h5>
+        </div>
+        <div class="me-md-auto">
+          <label for="points">الدرجة &nbsp;</label>
+          <mat-form-field appearance="outline">
+            <mat-label>الدرجة</mat-label>
+            <mat-icon matPrefix>grade</mat-icon> <!-- Add icon as prefix -->
+            <input matInput type="number" formControlName="points" [(ngModel)]="selectedValue" required>
+            <mat-error *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors">
+              <ng-container *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors?.['required']">
+                هذا الحقل مطلوب
+              </ng-container>
+              <ng-container *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors?.['min']">
+                الدرجة يجب أن تكون أكبر من أو تساوي 0
+              </ng-container>
+              <ng-container *ngIf="getQuestionFormGroup(activeQuestionIndex)?.get('points')?.errors?.['max']">
+                الدرجة يجب أن تكون أقل من أو تساوي 100
+              </ng-container>
+            </mat-error>
+          </mat-form-field>
+
+          <div id="book-mark-tail"></div>
+        </div>
+      </div>
+      <div class="flex flex-column gap-2">
+        <label for="header" class="ms-auto" style="font-size: 1.15rem;">نص السؤال :</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-icon matPrefix>question_answer</mat-icon>
+          <mat-label>نص السؤال</mat-label>
+          <textarea matInput formControlName="header" required></textarea>
+          <mat-error
+            *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('required') && (getQuestionFormGroup(i)?.get('header')?.touched)">
+            هذا الحقل مطلوب
+          </mat-error>
+          <mat-error
+            *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('pattern') && (getQuestionFormGroup(i)?.get('header')?.touched)">
+            يجب أن يحتوي نص السؤال على أحرف وأرقاف فقط
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex align-items-baseline flex-wrap">
+        <label for="type">نوع السؤال &nbsp;</label>
+        <mat-form-field appearance="outline">
+          <mat-label>نوع السؤال</mat-label>
+          <mat-select formControlName="type" #type required>
+            <mat-option value="MultipleChoice" selected>اختيار من متعدد</mat-option>
+            <mat-option value="OneChoice">اختيار من متعدد (اختيار واحد)</mat-option>
+            <mat-option value="TrueFalse">صح أم خطأ</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="getQuestionFormGroup(i).get('type')?.invalid && (getQuestionFormGroup(i).get('type')?.dirty || getQuestionFormGroup(i).get('type')?.touched)">
+            هذا الحقل مطلوب
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <app-answers-form [questionsControls]="questionsControls" [i]="i"></app-answers-form>
+
+      <mat-error *ngIf="getQuestionFormGroup(i)?.get('answers')?.value.length < 2 && formSubmitted">
+        يجب أن يحتوي السؤال على ما لا يقل عن إجابتين
+      </mat-error>
+    </form>
+  </div>
+</div>

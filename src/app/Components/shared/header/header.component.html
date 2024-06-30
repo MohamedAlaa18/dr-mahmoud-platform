@@ -9,13 +9,13 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div class="side-btns">
+    <!-- <div class="side-btns">
       <button mat-button routerLink="/" routerLinkActive="active">الرئيسية</button>
       <button mat-button routerLink="/courses" routerLinkActive="active">الكورسات</button>
       <button mat-button routerLink="/offers" routerLinkActive="active">العروض</button>
-    </div>
+    </div> -->
     <hr>
-    <div class="flex gap-2 side-btns">
+    <div class="flex flex-column gap-2 side-btns">
       <button mat-button routerLink="/login" class="custom-button disk rounded-2">
         <i class="fas fa-user-plus"></i> سجل مجاناً
       </button>
@@ -48,9 +48,9 @@
       <header class="container-lg flex justify-content-between">
         <!-- <div>Logo</div> -->
         <div class="d-flex gap-3 logo-container justify-content-center">
-          <div class="logo">
+          <a [routerLink]="['/home']" class="logo">
             <app-logo></app-logo>
-          </div>
+          </a>
           <!-- <img *ngIf="isDark()" src="/assets/image/edunex-dark.png" alt="eduNex-dark" class="logo">
           <img *ngIf="!isDark()" src="/assets/image/edunex-light.png" alt="eduNex-light" class="logo"> -->
 
@@ -72,7 +72,7 @@
         </div>
         <!-- <div></div> -->
 
-        <div class="nav-items flex gap-1">
+        <!-- <div class="nav-items flex gap-1">
           <button #button1 routerLink="/home" color="title" class="unset-button active" routerLinkActive="active"
             (click)="moveMarker(button1)">الرئيسية</button>
           <button #button2 routerLink="/courses" class="unset-button" routerLinkActive="active"
@@ -80,7 +80,7 @@
           <button #button3 class="unset-button" routerLink="/offers" routerLinkActive="active"
             (click)="moveMarker(button3)">العروض</button>
           <div id="marker"></div>
-        </div>
+        </div> -->
 
         <div class="flex justify-content-end button-left-section gap-3">
           <button mat-button routerLink="/login" class="custom-button disk rounded-2">

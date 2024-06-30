@@ -43,12 +43,15 @@ import { ExamDialogComponent } from './Components/CourseDetails/Dialog/exam-dial
 import { LectureDialogComponent } from './Components/CourseDetails/Dialog/lesson-dialog/lecture-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ContentDialogComponent } from './Components/CourseDetails/Dialog/content-dialog/content-dialog.component';
-import { EditExamComponent } from './Components/Exam/Teacher/edit-exam/edit-exam.component';
+import { EditExamComponent } from './Components/Exam/Teacher/EditExam/edit-exam/edit-exam.component';
 import { ExamControllerComponent } from './Components/Exam/Teacher/exam-controller/exam-controller.component';
 import { QuestionControllerComponent } from './Components/Exam/Teacher/question-controller/question-controller.component';
 import { TimerComponent } from './Components/Exam/Student/timer/timer.component';
 import { StudentExamComponent } from './Components/Exam/Student/student-exam/student-exam.component';
 import { ExamResultComponent } from './Components/Exam/Student/exam-result/exam-result.component';
+import { ExamFormComponent } from './Components/Exam/Teacher/EditExam/exam-form/exam-form.component';
+import { AnswersFormComponent } from './Components/Exam/Teacher/EditExam/answers-form/answers-form.component';
+import { QuestionsFormComponent } from './Components/Exam/Teacher/EditExam/questions-form/questions-form.component';
 
 
 @NgModule({
@@ -78,6 +81,9 @@ import { ExamResultComponent } from './Components/Exam/Student/exam-result/exam-
     TimerComponent,
     StudentExamComponent,
     ExamResultComponent,
+    ExamFormComponent,
+    AnswersFormComponent,
+    QuestionsFormComponent,
   ],
   imports: [
     BrowserModule,

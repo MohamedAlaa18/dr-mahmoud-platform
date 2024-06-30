@@ -1,0 +1,42 @@
+.book-mark {
+  margin-top: -0.4rem;
+}
+
+#triangle-topleft {
+  width: 0;
+  height: 0;
+  border-top: 35px solid var(--color2);
+  border-right: 20px solid transparent;
+  rotate: 90deg;
+  margin-bottom: -2.25rem;
+  margin-right: -1.25rem;
+}
+
+#triangle-topright {
+  width: 0;
+  height: 0;
+  border-top: 35px solid var(--color2);
+  border-left: 20px solid transparent;
+  rotate: 90deg;
+  margin-bottom: -0.15rem;
+  margin-right: -1.25rem;
+}
+
+h5,
+label {
+  font-weight: 700;
+}
+
+h5 span {
+  color: var(--color2);
+}
+
+label {
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .column-mobile {
+    flex-direction: column;
+  }
+}

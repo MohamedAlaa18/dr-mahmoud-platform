@@ -1,0 +1,90 @@
+<form [formGroup]="examForm" *ngIf="activeSection === 'examSettings' && examForm" class="section" dir="rtl">
+  <h5>بيانات الامتحان</h5>
+
+  <mat-card-content class="mt-5 flex flex-wrap justify-content-center">
+    <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+      <label for="title" class="ms-auto">العنوان &nbsp;</label>
+
+      <mat-form-field appearance="outline">
+        <mat-label>العنوان</mat-label>
+        <input matInput type="text" formControlName="title">
+        <mat-icon matSuffix>library_add</mat-icon>
+        <mat-error *ngIf="examForm.get('title')?.hasError('required')">العنوان مطلوب</mat-error>
+        <mat-error *ngIf="examForm.get('title')?.hasError('pattern')">
+          يجب أن يحتوي العنوان على أحرف وأرقام فقط
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-wrap gap-3 justify-content-center">
+      <div class="flex gap-3 flex-wrap justify-content-center">
+        <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+          <label for="startTime" class="ms-auto">وقت البدء &nbsp;</label>
+
+          <mat-form-field appearance="outline">
+            <mat-label>وقت البدء</mat-label>
+            <input matInput type="time" formControlName="startTime">
+            <mat-icon matSuffix>access_time</mat-icon>
+            <mat-error *ngIf="examForm.get('startTime')?.hasError('required')">وقت البدء مطلوب</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+          <label for="startDate" class="ms-auto">تاريخ البدء &nbsp;</label>
+
+          <mat-form-field appearance="outline">
+            <mat-label>تاريخ البدء</mat-label>
+            <input matInput [matDatepicker]="startDatePicker" placeholder="تاريخ البدء" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+            <mat-error *ngIf="examForm.get('startDate')?.hasError('required')">تاريخ البدء مطلوب</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="flex gap-3 flex-wrap justify-content-center">
+        <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+          <label for="endTime" class="ms-auto">وقت الانتهاء &nbsp;</label>
+
+          <mat-form-field appearance="outline">
+            <mat-label>وقت الانتهاء</mat-label>
+            <input matInput type="time" formControlName="endTime">
+            <mat-icon matSuffix>access_time</mat-icon>
+            <mat-error *ngIf="examForm.get('endTime')?.hasError('required')">وقت الانتهاء مطلوب</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+          <label for="endDate" class="ms-auto">تاريخ الانتهاء &nbsp;</label>
+
+          <mat-form-field appearance="outline">
+            <mat-label>تاريخ الانتهاء</mat-label>
+            <input matInput [matDatepicker]="endDatePicker" placeholder="تاريخ الانتهاء" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+            <mat-error *ngIf="examForm.get('endDate')?.hasError('required')">تاريخ الانتهاء مطلوب</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-column gap-1 align-items-baseline justift-conetent-center">
+      <label for="duration" class="ms-auto">المدة &nbsp;</label>
+
+      <mat-form-field appearance="outline">
+        <mat-label>المدة (بالدقائق)</mat-label>
+        <input matInput type="number" formControlName="duration">
+        <mat-icon matSuffix>access_time</mat-icon>
+        <mat-error *ngIf="examForm.get('duration')?.hasError('required')">
+          المدة مطلوبة
+        </mat-error>
+        <mat-error *ngIf="examForm.get('duration')?.hasError('min')">
+          المدة يجب أن تكون على الأقل 5 دقائق
+        </mat-error>
+        <mat-error *ngIf="examForm.get('duration')?.hasError('max')">
+          المدة يجب أن لا تتجاوز 180 دقيقة
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</form>

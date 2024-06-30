@@ -1,0 +1,56 @@
+input[type="radio"] {
+  display: none;
+}
+
+.true:checked+label {
+  color: green !important;
+}
+
+.true:checked+label::after {
+  content: "\2714";
+  color: green;
+}
+
+.false:checked+label::after {
+  content: "\2718";
+  color: red;
+}
+
+.false:checked+label {
+  color: red !important;
+}
+
+.delete {
+  color: red;
+}
+
+label::after {
+  content: "";
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 1.2em;
+}
+
+.disabled-label {
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+
+label {
+  font-weight: 700;
+}
+
+label {
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .answer {
+    align-items: center !important;
+    gap: 1rem;
+  }
+
+  .truefalse {
+    margin-bottom: 2rem;
+  }
+}

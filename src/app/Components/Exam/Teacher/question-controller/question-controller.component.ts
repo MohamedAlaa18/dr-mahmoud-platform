@@ -18,7 +18,13 @@ export class QuestionControllerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.onAddQuestionClicked();
+    // Ensure questions array is initialized before trying to add a question
+    if (this.examForm) {
+      const questionsArray = this.examForm.get('questions') as FormArray;
+      if (questionsArray && questionsArray.length === 0) {
+        this.onAddQuestionClicked();
+      }
+    }
   }
 
   get questionsArray(): FormArray {
@@ -29,7 +35,7 @@ export class QuestionControllerComponent implements OnInit {
     const questionsArray = this.examForm?.get('questions') as FormArray | null;
     if (questionsArray && questionsArray.controls.length < 12) {
       this.addQuestionClicked.emit();
-      this.sendIndexToParent(questionsArray.controls.length -1)
+      this.sendIndexToParent(questionsArray.controls.length); // Update index after adding question
     }
   }
 
@@ -40,7 +46,7 @@ export class QuestionControllerComponent implements OnInit {
 
   isQuestionInvalid(index: number): boolean {
     const questionControl = this.questionsArray.at(index);
-    return (this.formSubmitted && questionControl?.touched) && (questionControl?.invalid);
+    return this.formSubmitted && questionControl?.touched && questionControl?.invalid;
   }
 
 }

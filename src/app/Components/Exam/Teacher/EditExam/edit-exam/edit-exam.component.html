@@ -1,0 +1,29 @@
+<form [formGroup]="examForm" (ngSubmit)="onSaveClicked()" class="container flex" *ngIf="exam && lecture">
+  <div class="flex column flex-wrap gap-3 justify-content-center column-mobile mb-auto controllers-section">
+    <section class="section-header section-border p-3 d-flex flex-column">
+      <h5>{{courseTitle}}</h5>
+      <h6>{{lecture.lectureTitle}}</h6>
+    </section>
+
+    <div class="flex column flex-wrap gap-3 justify-content-center column-mobile mb-auto">
+      <app-exam-controller (sectionChange)="activeSection = $event"
+        [activeSection]="activeSection"></app-exam-controller>
+      <app-question-controller [examForm]="examForm" [formSubmitted]="formSubmitted"
+        (questionIndexClicked)="this.questionsForm.handleQuestionIndexClicked($event)"
+        (addQuestionClicked)="this.questionsForm.onAddQuestionClicked()"></app-question-controller>
+    </div>
+  </div>
+
+  <div class="section-container section-border p-4 w-100" dir="rtl">
+    <!-- question -->
+    <app-questions-form [examForm]="examForm" [activeSection]="activeSection"
+      [formSubmitted]="formSubmitted"></app-questions-form>
+
+    <!-- exam -->
+    <app-exam-form [examForm]="examForm" [activeSection]="activeSection"></app-exam-form>
+  </div>
+</form>
+
+<div *ngIf="!(exam && lecture)" class="spinner flex justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>

@@ -1,0 +1,51 @@
+<div class="flex mb-3">
+  <label [ngClass]="{ 'disabled-label': isAnswersLimitReached(i) }">
+    الاجابات
+    &nbsp;
+  </label>
+  <button mat-icon-button type="button" class="add-answer" (click)="addAnswer(i)" [disabled]="isAnswersLimitReached(i)">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+</div>
+
+<!-- Answer fields -->
+<div *ngFor="let answer of getFormArrayControls(getQuestionFormGroup(i).get('answers')); let j = index">
+  <form [formGroup]="getAnswerFormGroup(i,j)">
+    <div class="d-flex ms-auto">
+      <button mat-icon-button type="button" class="delete align-self-auto" (click)="removeAnswer(i, j)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <div class="flex gap-sm-2 align-items-baseline mb-sm-5 mb-md-0 answer">
+        <mat-form-field appearance="outline">
+          <mat-label>نص الاجابة</mat-label>
+          <input matInput type="text" formControlName="header"
+            [readonly]="getQuestionFormGroup(i).get('type')?.value === 'TrueFalse'" required>
+          <mat-error
+            *ngIf="answer.get('header')?.hasError('required') && (answer.get('header')?.dirty || answer.get('header')?.touched)">
+            هذا الحقل مطلوب
+          </mat-error>
+          <mat-icon matSuffix>library_add</mat-icon>
+        </mat-form-field>
+        <div class="flex flex-wrap gap-1 me-auto truefalse">
+          <input type="radio" [id]="'true' + j" class="true" (change)="handleAnswerSelection(i, j, true)"
+            formControlName="isCorrect" [value]="true">
+          <label [for]="'true' + j">صح</label>
+          <input type="radio" [id]="'false' + j" class="false" (change)="handleAnswerSelection(i, j, false)"
+            formControlName="isCorrect" [value]="false">
+          <label [for]="'false' + j">خطأ</label>
+          <div>
+            <mat-error
+              *ngIf="answer.get('isCorrect')?.hasError('required') && (answer.get('isCorrect')?.dirty || answer.get('isCorrect')?.touched)">
+              هذا الحقل مطلوب
+            </mat-error>
+            <mat-error
+              *ngIf="getAnswerFormGroup(i,j).get('isCorrect')?.invalid
+               && (getAnswerFormGroup(i,j).get('isCorrect')?.dirty || getAnswerFormGroup(i,j).get('isCorrect')?.touched)">
+              يجب اختيار إجابة واحدة صح على الأقل
+            </mat-error>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

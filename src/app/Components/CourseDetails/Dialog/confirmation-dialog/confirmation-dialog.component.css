@@ -1,5 +1,6 @@
 .red-button {
   border-radius: 20rem !important;
+  min-width: 150px;
 }
 
 h3{

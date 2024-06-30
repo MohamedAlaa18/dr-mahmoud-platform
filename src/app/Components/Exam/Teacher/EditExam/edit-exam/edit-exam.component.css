@@ -1,0 +1,105 @@
+form {
+  padding: 1px;
+}
+
+.section-container {
+  padding-bottom: 5rem;
+  width: 100%;
+  position: relative;
+  min-height: calc(700px + 2rem);
+  overflow: hidden;
+}
+
+.section-header {
+  width: 250px;
+  height: 100px;
+  justify-content: center;
+}
+
+.section-header h6,
+.section-header h5 {
+  font-weight: 700;
+}
+
+.section-header h6 {
+  opacity: 0.75;
+}
+
+.mat-icon {
+  height: 26px !important;
+  width: 22px !important;
+}
+
+.spinner {
+  min-height: 90dvh;
+}
+
+.spinner ::ng-deep circle {
+  stroke: var(--color2);
+}
+
+.section mat-card-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+form.container {
+  gap: 2rem;
+}
+
+.custom-submit1 {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-image: linear-gradient(120deg, var(--color1), var(--color2));
+  font-weight: 700;
+  color: white !important;
+  box-shadow: 0 9px var(--color2);
+  transition: 0.3;
+  width: 80%;
+  margin-top: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.custom-submit1:hover {
+  box-shadow: 0 4px var(--color1);
+  top: 2px;
+}
+
+.custom-submit1:active {
+  box-shadow: none;
+  top: 6px;
+}
+
+@media (min-width: 992px) {
+  .column {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 992px) {
+  .column {
+    justify-content: center;
+  }
+
+  form.container {
+    flex-direction: column;
+  }
+
+  .section-header {
+    align-items: center;
+  }
+
+  .section-container {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .column-mobile {
+    flex-direction: column;
+  }
+}
