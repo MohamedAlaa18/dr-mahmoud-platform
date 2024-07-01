@@ -1,0 +1,34 @@
+section {
+  max-height: 100dvh;
+}
+
+label {
+  font-size: 18px;
+}
+
+button {
+  height: 55px !important;
+  font-size: 18px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+p {
+  margin: 0 !important;
+}
+
+p a:hover {
+  text-decoration: underline !important;
+}
+
+.login-image {
+  width: 50%;
+  height: 100%;
+}
+
+@media (max-width: 990px) {
+  .login-image {
+    width: 100%;
+    height: 50%;
+  }
+}

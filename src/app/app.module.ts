@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 import { AppComponent } from './app.component';
@@ -52,6 +53,10 @@ import { ExamResultComponent } from './Components/Exam/Student/exam-result/exam-
 import { ExamFormComponent } from './Components/Exam/Teacher/EditExam/exam-form/exam-form.component';
 import { AnswersFormComponent } from './Components/Exam/Teacher/EditExam/answers-form/answers-form.component';
 import { QuestionsFormComponent } from './Components/Exam/Teacher/EditExam/questions-form/questions-form.component';
+import { StudentSignUpPageComponent } from './Components/SignUp/Student/student-sign-up-page/student-sign-up-page.component';
+import { LoginComponent } from './Components/login/login.component';
+import { StudentSignUpFormComponent } from './Components/SignUp/Student/student-sign-up-form/student-sign-up-form.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -84,6 +89,9 @@ import { QuestionsFormComponent } from './Components/Exam/Teacher/EditExam/quest
     ExamFormComponent,
     AnswersFormComponent,
     QuestionsFormComponent,
+    StudentSignUpPageComponent,
+    StudentSignUpFormComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,8 +118,9 @@ import { QuestionsFormComponent } from './Components/Exam/Teacher/EditExam/quest
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatButtonToggleModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

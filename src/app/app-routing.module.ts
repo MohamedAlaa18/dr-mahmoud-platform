@@ -6,6 +6,8 @@ import { CourseDetailsComponent } from './Components/CourseDetails/course-detail
 import { EditExamComponent } from './Components/Exam/Teacher/EditExam/edit-exam/edit-exam.component';
 import { StudentExamComponent } from './Components/Exam/Student/student-exam/student-exam.component';
 import { ExamResultComponent } from './Components/Exam/Student/exam-result/exam-result.component';
+import { StudentSignUpPageComponent } from './Components/SignUp/Student/student-sign-up-page/student-sign-up-page.component';
+import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
   { path: "home", component: MainComponent, data: { title: 'EduNex' } },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: "course/:courseId/lesson/:lessonId/create", component: EditExamComponent, data: { title: 'Exam' } },
   { path: "course/:courseId/lesson/:lessonId/view", component: StudentExamComponent, data: { title: 'Exam' } },
   { path: "course/:courseId/lesson/:lessonId/result", component: ExamResultComponent, data: { title: 'Result' } },
+  { path: "signup", component: StudentSignUpPageComponent, data: { title: 'Student Signup' } },
+  { path: "login", component: LoginComponent, data: { title: 'Login' } },
 ];
 
 @NgModule({

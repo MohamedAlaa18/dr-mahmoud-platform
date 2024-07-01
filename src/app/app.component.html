@@ -1,4 +1,5 @@
-<app-header></app-header>
+  <app-header  *ngIf="!hideLayout"></app-header>
+
 <svg *ngIf="!hideSVG" width="100%" height="100%" id="svg" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg"
   class="transition duration-300 ease-in-out delay-150 header-svg">
   <path
@@ -15,4 +16,4 @@
   <router-outlet></router-outlet>
 </main>
 
-<app-footer></app-footer>
+<app-footer *ngIf="!hideLayout"></app-footer>

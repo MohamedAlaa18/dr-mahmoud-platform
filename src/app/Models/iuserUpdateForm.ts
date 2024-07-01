@@ -1,6 +1,5 @@
 
 export interface IUserUpdateFormData {
-  address: string;
   City: string;
   confirmPassword: string;
   dateOfBirth: string;
@@ -11,7 +10,4 @@ export interface IUserUpdateFormData {
   ParentPhoneNumber: string
   Password: string;
   PhoneNumber: string;
-  religion: string;
-  levelId: number;
-  nationalId: number;
 }

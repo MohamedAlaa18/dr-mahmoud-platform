@@ -1,0 +1,61 @@
+<section class="d-flex justify-content-center" dir="rtl">
+  <div class="flex flex-column flex-lg-row gap-lg-3">
+    <img src="/assets/images/login.jpg" alt="" class="login-image col-lg-4">
+
+    <div class="px-4 container">
+      <div class="text-center mt-5">
+        <h3 class="text-second mb-4" style="color: orange;  font-weight: 700;"> تسجيل الدخول</h3>
+        <h6 class="mb-6 text-main font-24-bold">
+          أدخل علي حسابك بادخال رقم الهاتف وكلمة المرور المسجل بهم من قبل
+        </h6>
+      </div>
+
+      <form class="form-floating" action="" method="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="row mt-5">
+          <div class="col">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>رقم الهاتف</mat-label>
+              <input matInput type="tel" name="phoneNumber" formControlName="phoneNumber" id="phoneNumber"
+                placeholder="رقم الهاتف" aria-label="رقم الهاتف" required>
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-error *ngIf="loginForm.get('phoneNumber')?.touched && loginForm.get('phoneNumber')?.invalid">
+                <span *ngIf="loginForm.get('phoneNumber')?.errors?.['pattern']" class="text-danger">رقم الهاتف غير
+                  صالح</span>
+                <span *ngIf="loginForm.get('phoneNumber')?.errors?.['required']" class="text-danger">رقم الهاتف
+                  مطلوب</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>كلمة السر</mat-label>
+              <input matInput type="password" name="password" formControlName="password" id="password"
+                placeholder="كلمة السر" aria-label="كلمة السر" required>
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+                <span *ngIf="loginForm.get('password')?.errors?.['required']" class="text-danger"> كلمة المرور
+                  مطلوبة</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="d-grid gap-3 text-center my-4">
+          <button mat-button class="rounded-5 custom-button" type="submit"> تسجيل الدخول</button>
+          <p>لا يوجد لديك حساب؟
+            <a [routerLink]="['/signup']" class="text-second text-decoration-none" style="color: orange;"> انشئ حسابك
+              الآن</a>
+          </p>
+          <p>هل نسيت كلمة المرور؟
+            <a [routerLink]="['/reset-password']" class="text-second text-decoration-none"
+              style="color: orange;">استعادة
+              كلمة المرور</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
