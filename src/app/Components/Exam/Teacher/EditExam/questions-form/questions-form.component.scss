@@ -35,6 +35,20 @@ label {
   cursor: pointer;
 }
 
+// .image-input img {
+//   max-width: 100%;
+//   margin-top: 1rem;
+// }
+.image-input {
+  width: 100%;
+}
+
+// @media (min-width: 990px) {
+//   .image-input {
+//     margin-bottom: -2.35rem;
+//   }
+// }
+
 @media (max-width: 480px) {
   .column-mobile {
     flex-direction: column;

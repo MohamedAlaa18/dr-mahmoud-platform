@@ -33,7 +33,7 @@
   <div class="w-100">
     <h5>{{ lecture.lectureTitle }}</h5>
 
-    <div class="custom-checkbox-container flex flex-wrap gap-2 my-3">
+    <div class="custom-checkbox-container flex flex-wrap gap-2 py-3">
       <button mat-button *ngFor="let opt of videoOptions; let i = index" class="custom-checkbox flex-grow-1"
         [class.checked]="opt.selected" (click)="toggleOption(i)">
         <span>{{ opt.label }}</span>

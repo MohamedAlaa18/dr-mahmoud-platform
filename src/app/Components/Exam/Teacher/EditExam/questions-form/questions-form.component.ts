@@ -38,7 +38,6 @@ export class QuestionsFormComponent implements OnInit {
     this.activeQuestions.splice(index, 1);
   }
 
-  //add in Form
   addQuestion(): void {
     const questionFormGroup = this.createQuestionFormGroup();
     this.questionsControls.push(questionFormGroup);
@@ -57,7 +56,8 @@ export class QuestionsFormComponent implements OnInit {
       points: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
       header: ['', [Validators.required, Validators.pattern(/^[\u0600-\u06FF\u0750-\u077F\s0-9a-zA-Z]+$/)]],
       type: ['', Validators.required],
-      answers: this.fb.array([], [this.validateAnswersLength])
+      answers: this.fb.array([], [this.validateAnswersLength]),
+      image: [null] // Add image form control
     });
   }
 
@@ -75,7 +75,6 @@ export class QuestionsFormComponent implements OnInit {
     this.examForm?.markAsDirty();
   }
 
-  //getFormGroup
   get questionFormGroup(): FormGroup {
     if (this.questionIndex >= 0 && this.questionIndex < this.questionsControls.length) {
       return this.questionsControls.at(this.questionIndex) as FormGroup;
@@ -88,7 +87,6 @@ export class QuestionsFormComponent implements OnInit {
     return this.questionsControls.at(index) as FormGroup;
   }
 
-  //getAnswers
   getAnswersForActiveQuestion(): FormArray | undefined {
     if (this.activeQuestionIndex === -1) {
       console.error('No active question selected.');
@@ -135,7 +133,6 @@ export class QuestionsFormComponent implements OnInit {
     return answersArray;
   }
 
-  //createFormGroup
   private createAnswerFormArray(): FormArray {
     return this.fb.array([]);
   }
@@ -148,6 +145,20 @@ export class QuestionsFormComponent implements OnInit {
           control.get('isCorrect')?.setValue(false);
         }
       });
+    }
+  }
+
+  onImageChange(event: any, index: number): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageControl = this.getQuestionFormGroup(index).get('image');
+        if (imageControl) {
+          imageControl.setValue(reader.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
     }
   }
 }

@@ -15,34 +15,44 @@
       <button mat-icon-button type="button" class="delete align-self-auto" (click)="removeAnswer(i, j)">
         <mat-icon>delete</mat-icon>
       </button>
-      <div class="flex gap-sm-2 align-items-baseline mb-sm-5 mb-md-0 answer">
-        <mat-form-field appearance="outline">
-          <mat-label>نص الاجابة</mat-label>
-          <input matInput type="text" formControlName="header"
-            [readonly]="getQuestionFormGroup(i).get('type')?.value === 'TrueFalse'" required>
-          <mat-error
-            *ngIf="answer.get('header')?.hasError('required') && (answer.get('header')?.dirty || answer.get('header')?.touched)">
-            هذا الحقل مطلوب
-          </mat-error>
-          <mat-icon matSuffix>library_add</mat-icon>
-        </mat-form-field>
-        <div class="flex flex-wrap gap-1 me-auto truefalse">
-          <input type="radio" [id]="'true' + j" class="true" (change)="handleAnswerSelection(i, j, true)"
-            formControlName="isCorrect" [value]="true">
-          <label [for]="'true' + j">صح</label>
-          <input type="radio" [id]="'false' + j" class="false" (change)="handleAnswerSelection(i, j, false)"
-            formControlName="isCorrect" [value]="false">
-          <label [for]="'false' + j">خطأ</label>
-          <div>
+      <div class="flex flex-wrap align-items-baseline">
+        <div class="flex gap-sm-2 align-items-baseline mb-0 answer">
+          <mat-form-field appearance="outline">
+            <mat-label>نص الاجابة</mat-label>
+            <input matInput type="text" formControlName="header"
+              [readonly]="getQuestionFormGroup(i).get('type')?.value === 'TrueFalse'" required>
             <mat-error
-              *ngIf="answer.get('isCorrect')?.hasError('required') && (answer.get('isCorrect')?.dirty || answer.get('isCorrect')?.touched)">
+              *ngIf="answer.get('header')?.hasError('required') && (answer.get('header')?.dirty || answer.get('header')?.touched)">
               هذا الحقل مطلوب
             </mat-error>
-            <mat-error
-              *ngIf="getAnswerFormGroup(i,j).get('isCorrect')?.invalid
-               && (getAnswerFormGroup(i,j).get('isCorrect')?.dirty || getAnswerFormGroup(i,j).get('isCorrect')?.touched)">
-              يجب اختيار إجابة واحدة صح على الأقل
-            </mat-error>
+            <mat-icon matSuffix>library_add</mat-icon>
+          </mat-form-field>
+          <div class="flex flex-wrap gap-1 me-auto truefalse">
+            <input type="radio" [id]="'true' + j" class="true" (change)="handleAnswerSelection(i, j, true)"
+              formControlName="isCorrect" [value]="true">
+            <label [for]="'true' + j">صح</label>
+            <input type="radio" [id]="'false' + j" class="false" (change)="handleAnswerSelection(i, j, false)"
+              formControlName="isCorrect" [value]="false">
+            <label [for]="'false' + j">خطأ</label>
+            <div>
+              <mat-error
+                *ngIf="answer.get('isCorrect')?.hasError('required') && (answer.get('isCorrect')?.dirty || answer.get('isCorrect')?.touched)">
+                هذا الحقل مطلوب
+              </mat-error>
+              <mat-error
+                *ngIf="getAnswerFormGroup(i,j).get('isCorrect')?.invalid
+                 && (getAnswerFormGroup(i,j).get('isCorrect')?.dirty || getAnswerFormGroup(i,j).get('isCorrect')?.touched)">
+                يجب اختيار إجابة واحدة صح على الأقل
+              </mat-error>
+            </div>
+          </div>
+        </div>
+        <!-- Image input and preview -->
+        <div class="image-input mb-4">
+          <label for="answer-image">صورة الاجابة :</label>
+          <input type="file" (change)="onAnswerImageChange($event, i, j)" accept="image/*">
+          <div *ngIf="getAnswerFormGroup(i,j)?.get('image')?.value">
+            <img [src]="getAnswerFormGroup(i,j)?.get('image')?.value" alt="Answer Image" style="max-width: 100%;">
           </div>
         </div>
       </div>

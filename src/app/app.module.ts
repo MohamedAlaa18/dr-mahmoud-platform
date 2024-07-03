@@ -23,7 +23,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/shared/header/header.component';
 import { MainComponent } from './Components/main/main.component';
@@ -57,6 +56,7 @@ import { StudentSignUpPageComponent } from './Components/SignUp/Student/student-
 import { LoginComponent } from './Components/login/login.component';
 import { StudentSignUpFormComponent } from './Components/SignUp/Student/student-sign-up-form/student-sign-up-form.component';
 import { DatePipe } from '@angular/common';
+import { BreadcrumbComponent } from './Components/shared/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -92,6 +92,7 @@ import { DatePipe } from '@angular/common';
     StudentSignUpPageComponent,
     StudentSignUpFormComponent,
     LoginComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,

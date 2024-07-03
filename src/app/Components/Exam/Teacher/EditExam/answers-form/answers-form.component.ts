@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-answers-form',
   templateUrl: './answers-form.component.html',
@@ -71,11 +70,11 @@ export class AnswersFormComponent {
 
     return this.fb.group({
       header: [headerValue, Validators.required],
-      isCorrect: [answer?.isCorrect || null, Validators.required]
+      isCorrect: [answer?.isCorrect || null, Validators.required],
+      image: [null] // Add image form control
     }) as FormGroup;
   }
 
-  //remove from Form
   removeAnswer(questionIndex: number, answerIndex: number): void {
     const activeQuestionFormGroup = this.getQuestionFormGroup(questionIndex);
     const answersFormArray = activeQuestionFormGroup.get('answers') as FormArray;
@@ -88,7 +87,6 @@ export class AnswersFormComponent {
     answersFormArray.removeAt(answerIndex);
   }
 
-  // This method handles the selection of answers and checks if at least one answer is marked as correct
   handleAnswerSelection(questionIndex: number, selectedAnswerIndex: number, isTrueAnswer: boolean): void {
     const questionFormGroup = this.getQuestionFormGroup(questionIndex);
     if (questionFormGroup) {
@@ -112,19 +110,17 @@ export class AnswersFormComponent {
         const isCorrectControl = answerFormGroup.get('isCorrect');
         if (isCorrectControl) {
           isCorrectControl.setValue(isTrueAnswer);
-          // Check if at least one answer is marked as true
           const anyTrue = this.checkAnyTrue(questionIndex);
           if (anyTrue) {
-            // Clear error if any checkbox is checked as "true"
             this.clearErrorMessages(questionIndex);
           } else {
-            // Set error if all checkboxes are marked as false
             this.setErrorMessages(questionIndex);
           }
         }
       }
     }
   }
+
   getAnswerFormGroup(questionIndex: number, answerIndex: number): FormGroup {
     const questionFormGroup = this.getQuestionFormGroup(questionIndex);
     if (!questionFormGroup) {
@@ -146,7 +142,6 @@ export class AnswersFormComponent {
     }
   }
 
-  // Method to check if at least one answer is marked as true
   checkAnyTrue(questionIndex: number): boolean {
     const questionFormGroup = this.getQuestionFormGroup(questionIndex);
     if (questionFormGroup) {
@@ -164,7 +159,6 @@ export class AnswersFormComponent {
     return false;
   }
 
-  // Method to set the error message for all checkboxes when all are marked as false
   setErrorMessages(questionIndex: number): void {
     const questionFormGroup = this.getQuestionFormGroup(questionIndex);
     if (questionFormGroup) {
@@ -184,7 +178,6 @@ export class AnswersFormComponent {
     }
   }
 
-  // Method to clear the error messages for all checkboxes
   clearErrorMessages(questionIndex: number): void {
     const questionFormGroup = this.getQuestionFormGroup(questionIndex);
     if (questionFormGroup) {
@@ -200,7 +193,6 @@ export class AnswersFormComponent {
     }
   }
 
-  //getFormControls
   getFormArrayControls(control: AbstractControl | null): AbstractControl[] {
     if (control instanceof FormArray) {
       return control.controls;
@@ -210,5 +202,20 @@ export class AnswersFormComponent {
 
   getQuestionFormGroup(index: number): FormGroup {
     return this.questionsControls.at(index) as FormGroup;
+  }
+
+  onAnswerImageChange(event: Event, questionIndex: number, answerIndex: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const answerFormGroup = this.getAnswerFormGroup(questionIndex, answerIndex);
+        const imageControl = answerFormGroup.get('image');
+        if (imageControl) {
+          imageControl.setValue(reader.result as string);
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 }
