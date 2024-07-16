@@ -10,6 +10,7 @@
 
 <!-- Answer fields -->
 <div *ngFor="let answer of getFormArrayControls(getQuestionFormGroup(i).get('answers')); let j = index">
+
   <form [formGroup]="getAnswerFormGroup(i,j)">
     <div class="d-flex ms-auto">
       <button mat-icon-button type="button" class="delete align-self-auto" (click)="removeAnswer(i, j)">
@@ -46,13 +47,10 @@
               </mat-error>
             </div>
           </div>
-        </div>
-        <!-- Image input and preview -->
-        <div class="image-input mb-4">
-          <label for="answer-image">صورة الاجابة :</label>
-          <input type="file" (change)="onAnswerImageChange($event, i, j)" accept="image/*">
-          <div *ngIf="getAnswerFormGroup(i,j)?.get('image')?.value">
-            <img [src]="getAnswerFormGroup(i,j)?.get('image')?.value" alt="Answer Image" style="max-width: 100%;">
+          <!-- Image upload -->
+          <div class="image-upload">
+            <input type="file" formControlName="imageFile" (change)="handleFileInput($event, i, j)">
+            <img *ngIf="imagePreviews[j]" [src]="imagePreviews[j]" alt="Answer Image" class="uploaded-image">
           </div>
         </div>
       </div>

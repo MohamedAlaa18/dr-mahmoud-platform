@@ -10,6 +10,9 @@ export class AnswersFormComponent {
   @Input() i!: number;
   @Input() questionsControls!: FormArray;
 
+  selectedImages: { [key: number]: File } = {};
+  imagePreviews: { [key: number]: string | ArrayBuffer | null } = {};
+
   constructor(private fb: FormBuilder) { }
 
   addAnswer(questionIndex: number): void {
@@ -71,7 +74,7 @@ export class AnswersFormComponent {
     return this.fb.group({
       header: [headerValue, Validators.required],
       isCorrect: [answer?.isCorrect || null, Validators.required],
-      image: [null] // Add image form control
+      imageFile: [answer?.imageFile || null],
     }) as FormGroup;
   }
 
@@ -118,6 +121,23 @@ export class AnswersFormComponent {
           }
         }
       }
+    }
+  }
+
+  handleFileInput(event: Event, questionIndex: number, answerIndex: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.selectedImages[answerIndex] = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreviews[answerIndex] = reader.result;
+        const answerFormGroup = this.getAnswerFormGroup(questionIndex, answerIndex);
+        if (answerFormGroup) {
+          answerFormGroup.get('imageFile')?.setValue(file.name);
+        }
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -202,20 +222,5 @@ export class AnswersFormComponent {
 
   getQuestionFormGroup(index: number): FormGroup {
     return this.questionsControls.at(index) as FormGroup;
-  }
-
-  onAnswerImageChange(event: Event, questionIndex: number, answerIndex: number): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const answerFormGroup = this.getAnswerFormGroup(questionIndex, answerIndex);
-        const imageControl = answerFormGroup.get('image');
-        if (imageControl) {
-          imageControl.setValue(reader.result as string);
-        }
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
   }
 }

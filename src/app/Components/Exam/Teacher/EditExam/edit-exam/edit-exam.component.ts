@@ -110,6 +110,7 @@ export class EditExamComponent implements OnInit {
         points: [question.points, Validators.required],
         header: [question.header, Validators.required],
         type: [question.type, Validators.required],
+        imageFile: [question?.imageFile || null],
         answers: this.fb.array([])
       });
 
@@ -117,7 +118,8 @@ export class EditExamComponent implements OnInit {
       question.answers.forEach(answer => {
         answersArray.push(this.fb.group({
           header: [answer.header, Validators.required],
-          isCorrect: answer.isCorrect
+          isCorrect: answer.isCorrect,
+          imageFile: [answer?.imageFile || null],
         }));
       });
 

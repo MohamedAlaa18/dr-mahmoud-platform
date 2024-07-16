@@ -2,6 +2,10 @@ section {
   max-height: 100dvh;
 }
 
+.form {
+  height: 95%;
+}
+
 label {
   font-size: 18px;
 }

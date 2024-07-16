@@ -18,6 +18,8 @@ export class QuestionsFormComponent implements OnInit {
   activeQuestionIndex: number = 0;
   questionIndex: number = 0;
   selectedValue: number = 10;
+  selectedImage: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
 
   constructor(private fb: FormBuilder) { }
 
@@ -36,6 +38,9 @@ export class QuestionsFormComponent implements OnInit {
   removeQuestion(index: number): void {
     this.questionsControls.removeAt(index);
     this.activeQuestions.splice(index, 1);
+    if (index > 0) {
+      this.activeQuestionIndex = index - 1;
+    }
   }
 
   addQuestion(): void {
@@ -57,7 +62,7 @@ export class QuestionsFormComponent implements OnInit {
       header: ['', [Validators.required, Validators.pattern(/^[\u0600-\u06FF\u0750-\u077F\s0-9a-zA-Z]+$/)]],
       type: ['', Validators.required],
       answers: this.fb.array([], [this.validateAnswersLength]),
-      image: [null] // Add image form control
+      imageFile: [null]
     });
   }
 
@@ -122,7 +127,6 @@ export class QuestionsFormComponent implements OnInit {
     const questionsFormArray = this.examForm?.get('questions') as FormArray;
     const questionControl = questionsFormArray.at(this.questionIndex);
     if (!questionControl) {
-      // console.error(`Question index ${this.questionIndex} is out of bounds.`);
       return;
     }
     let answersArray = questionControl.get('answers') as FormArray;
@@ -148,17 +152,18 @@ export class QuestionsFormComponent implements OnInit {
     }
   }
 
-  onImageChange(event: any, index: number): void {
-    const file = event.target.files[0];
-    if (file) {
+  onImageSelected(event: Event, questionIndex: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedImage = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        const imageControl = this.getQuestionFormGroup(index).get('image');
-        if (imageControl) {
-          imageControl.setValue(reader.result as string);
-        }
+        this.imagePreview = reader.result;
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(this.selectedImage);
+
+      // Set the selected file value to the form control
+      this.getQuestionFormGroup(questionIndex).patchValue({ imageFile: this.selectedImage.name });
     }
   }
 }

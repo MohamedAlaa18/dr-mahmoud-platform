@@ -7,7 +7,12 @@
             <div id="triangle-topleft"></div>
             <div id="triangle-topright"></div>
           </div>
+
           <h5 class="m-0">السؤال رقم : <span>{{ activeQuestionIndex + 1 }}</span></h5>
+
+          <button mat-icon-button type="button" class="delete align-self-auto" (click)="removeQuestion(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
         <div class="me-md-auto">
           <label for="points">الدرجة &nbsp;</label>
@@ -36,35 +41,47 @@
           <mat-icon matPrefix>question_answer</mat-icon>
           <mat-label>نص السؤال</mat-label>
           <textarea matInput formControlName="header" required></textarea>
-          <mat-error *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('required') && (getQuestionFormGroup(i)?.get('header')?.touched)">
+          <mat-error
+            *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('required') && (getQuestionFormGroup(i)?.get('header')?.touched)">
             هذا الحقل مطلوب
           </mat-error>
-          <mat-error *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('pattern') && (getQuestionFormGroup(i)?.get('header')?.touched)">
+          <mat-error
+            *ngIf="getQuestionFormGroup(i)?.get('header')?.hasError('pattern') && (getQuestionFormGroup(i)?.get('header')?.touched)">
             يجب أن يحتوي نص السؤال على أحرف وأرقام فقط
           </mat-error>
         </mat-form-field>
-        <!-- Image input and preview -->
-        <div class="image-input mb-4">
-          <label for="image">صورة السؤال :</label>
-          <input type="file" (change)="onImageChange($event, i)" accept="image/*">
-          <div *ngIf="getQuestionFormGroup(i)?.get('image')?.value">
-            <img [src]="getQuestionFormGroup(i)?.get('image')?.value" alt="Question Image" style="max-width: 100%;">
+      </div>
+      <div class="flex justify-content-between flex-wrap">
+        <div class="flex align-items-baseline flex-wrap">
+          <label for="type">نوع السؤال &nbsp;</label>
+          <mat-form-field appearance="outline">
+            <mat-label>نوع السؤال</mat-label>
+            <mat-select formControlName="type" #type required>
+              <mat-option value="MultipleChoice" selected>اختيار من متعدد</mat-option>
+              <mat-option value="OneChoice">اختيار من متعدد (اختيار واحد)</mat-option>
+              <mat-option value="TrueFalse">صح أم خطأ</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="getQuestionFormGroup(i).get('type')?.invalid && (getQuestionFormGroup(i).get('type')?.dirty || getQuestionFormGroup(i).get('type')?.touched)">
+              هذا الحقل مطلوب
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="flex align-items-baseline flex-wrap">
+          <label for="image">صورة للسؤال &nbsp;</label>
+          <mat-form-field appearance="outline">
+            <mat-label>ملف صورة</mat-label>
+            <button mat-icon-button matPrefix (click)="imageInput.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+            <input type="text" readonly matInput [value]="selectedImage?.name" formControlName="imageFile" />
+            <input type="file" hidden #imageInput (change)="onImageSelected($event, i)" accept="image/*" />
+          </mat-form-field>
+          <div *ngIf="selectedImage" class="mx-3">
+            <img [src]="imagePreview" alt="Question Image" style="max-height: 70px; margin-top: 10px;">
           </div>
         </div>
-      </div>
-      <div class="flex align-items-baseline flex-wrap">
-        <label for="type">نوع السؤال &nbsp;</label>
-        <mat-form-field appearance="outline">
-          <mat-label>نوع السؤال</mat-label>
-          <mat-select formControlName="type" #type required>
-            <mat-option value="MultipleChoice" selected>اختيار من متعدد</mat-option>
-            <mat-option value="OneChoice">اختيار من متعدد (اختيار واحد)</mat-option>
-            <mat-option value="TrueFalse">صح أم خطأ</mat-option>
-          </mat-select>
-          <mat-error *ngIf="getQuestionFormGroup(i).get('type')?.invalid && (getQuestionFormGroup(i).get('type')?.dirty || getQuestionFormGroup(i).get('type')?.touched)">
-            هذا الحقل مطلوب
-          </mat-error>
-        </mat-form-field>
       </div>
       <app-answers-form [questionsControls]="questionsControls" [i]="i"></app-answers-form>
       <mat-error *ngIf="getQuestionFormGroup(i)?.get('answers')?.value.length < 2 && formSubmitted">

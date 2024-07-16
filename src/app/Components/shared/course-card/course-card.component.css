@@ -1,11 +1,10 @@
 .example-card {
   width: 305px;
   height: 366px;
-  /* margin: 10px; */
   border-radius: 10px;
-  box-shadow: var(--border) 0px 0px 0px 1px;
+  box-shadow: var(--active) 0px 0px 0px 1px;
   background-color: var(--bg);
-  transition: transform 0.5s, box-shadow 0.5s;
+  transition: 0.5s;
 }
 
 .example-card:hover {
@@ -64,6 +63,7 @@
   font-size: 16px;
   font-weight: 700;
 }
+
 .level {
   opacity: 0.75;
   font-size: 0.75rem;

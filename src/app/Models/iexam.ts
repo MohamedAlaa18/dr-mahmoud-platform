@@ -14,10 +14,12 @@ export interface IQuestion {
   type: string;
   points: number;
   answers: IAnswer[];
+  imageFile:[];
 }
 
 export interface IAnswer {
   id: number;
   header: string;
   isCorrect: boolean;
+  imageFile:[];
 }

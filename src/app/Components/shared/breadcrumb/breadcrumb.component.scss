@@ -6,6 +6,7 @@
   border-radius: 5px;
   /*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
   counter-reset: flag;
+  margin: 0;
 }
 
 .breadcrumb a {
@@ -16,7 +17,6 @@
   font-size: 12px;
   line-height: 36px;
   color: white;
-  /*need more margin on the left of links to accomodate the numbers*/
   padding: 0 10px 0 60px;
   background: #666;
   background: linear-gradient(#666, #333);
@@ -75,7 +75,7 @@
   background: linear-gradient(135deg, #666, #333);
   /*stylish arrow design using box shadow*/
   box-shadow:
-    2px -2px 0 2px rgba(0, 0, 0, 0.4),
+    1px -1px 0 1px rgba(0, 0, 0, 0.2),
     3px -3px 0 2px rgba(255, 255, 255, 0.1);
   /*
 		5px - for rounded arrows and

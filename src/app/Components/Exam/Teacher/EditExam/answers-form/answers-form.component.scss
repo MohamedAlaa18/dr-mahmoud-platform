@@ -44,6 +44,12 @@ label {
   cursor: pointer;
 }
 
+.uploaded-image {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+}
+
 @media (max-width: 480px) {
   .answer {
     align-items: center !important;

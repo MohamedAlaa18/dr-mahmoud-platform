@@ -1,5 +1,9 @@
 section {
-  max-height: 100dvh;
+  min-height: 100dvh;
+}
+
+.form {
+  height: 95%;
 }
 
 .login-image {
