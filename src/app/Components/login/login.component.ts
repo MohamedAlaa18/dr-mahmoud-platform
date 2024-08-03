@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/Services/Auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,6 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private titleService: Title,
-    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -48,6 +46,12 @@ export class LoginComponent implements OnInit {
     //   }
     // }, 0);
   }
+  setCookie(name: string, value: string, days: number = 1) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  }
 
   onSubmit() {
     const defaultFormData = {
@@ -60,21 +64,21 @@ export class LoginComponent implements OnInit {
         next: (data) => {
           // Save user data in cookies
           const userData = data.content;
-          this.cookieService.set('userToken', userData.token);
-          this.cookieService.set('userEmail', userData.email);
-          this.cookieService.set('userId', userData.id.toString());
-          this.cookieService.set('walletBalance', userData.walletBalance.toString());
-          this.cookieService.set('fullName', userData.fullName);
-          this.cookieService.set('firstName', userData.firstName);
-          this.cookieService.set('secondName', userData.secondName);
-          this.cookieService.set('lastName', userData.lastName);
-          this.cookieService.set('birthDate', userData.birthDate);
-          this.cookieService.set('mobileNo', userData.mobileNo);
-          this.cookieService.set('whatsAppNo', userData.whatsAppNo);
-          this.cookieService.set('roles', JSON.stringify(userData.roles));
-          this.cookieService.set('isActive', userData.isActive.toString());
-          this.cookieService.set('passwordChanged', userData.passwordChanged.toString());
-          this.cookieService.set('photoLink', userData.photoLink);
+          this.setCookie('userToken', userData.token);
+          this.setCookie('userEmail', userData.email);
+          this.setCookie('userId', userData.id.toString());
+          this.setCookie('walletBalance', userData.walletBalance.toString());
+          this.setCookie('fullName', userData.fullName);
+          this.setCookie('firstName', userData.firstName);
+          this.setCookie('secondName', userData.secondName);
+          this.setCookie('lastName', userData.lastName);
+          this.setCookie('birthDate', userData.birthDate);
+          this.setCookie('mobileNo', userData.mobileNo);
+          this.setCookie('whatsAppNo', userData.whatsAppNo);
+          this.setCookie('roles', JSON.stringify(userData.roles));
+          this.setCookie('isActive', userData.isActive.toString());
+          this.setCookie('passwordChanged', userData.passwordChanged.toString());
+          this.setCookie('photoLink', userData.photoLink);
 
           this.router.navigate(['/']);
           this.snackBar.open('!نجح تسجيل الدخول', 'حسناً', {

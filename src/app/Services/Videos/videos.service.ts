@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { IAttachment } from 'src/app/Models/iCourse';
 import { environment } from 'src/environments/environment';
@@ -11,11 +10,26 @@ import { environment } from 'src/environments/environment';
 export class VideosService {
   URL = environment.API_KEY;
 
-  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
+  constructor(private httpClient: HttpClient) { }
+
+  private getCookie(name: string): string {
+    const matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : '';
+  }
+
+  private getTokenFromCookies(): string {
+    const token = this.getCookie('userAdminToken');
+    return token;
+  }
 
   getVideos(lectureId: number, pageNumber: number = 1, pageSize: number = 10, title?: string): Observable<any[]> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
@@ -29,8 +43,12 @@ export class VideosService {
   }
 
   getVideoDetails(videoId: number): Observable<any> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
     const url = `${this.URL}/videos/${videoId}/details`;
     console.log('Request URL:', url);
 
@@ -38,8 +56,11 @@ export class VideosService {
   }
 
   addVideo(lectureId: number, videoFile: File): Observable<IAttachment> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     const formData = new FormData();
     formData.append('lectureId', lectureId.toString());
@@ -53,8 +74,11 @@ export class VideosService {
   }
 
   editVideo(videoId: number, title: string): Observable<void> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     const formData = new FormData();
     formData.append('id', videoId.toString());
@@ -68,8 +92,11 @@ export class VideosService {
   }
 
   deleteVideo(videoId: number): Observable<void> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     return this.httpClient.delete<void>(
       `${this.URL}/videos/${videoId}`,

@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { map, Observable } from 'rxjs';
 import { ICourse, ISubject } from 'src/app/Models/iCourse';
 import { environment } from 'src/environments/environment';
@@ -11,7 +10,19 @@ import { environment } from 'src/environments/environment';
 export class CoursesService {
   URL = environment.API_KEY;
 
-  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
+  constructor(private httpClient: HttpClient) { }
+
+  private getCookie(name: string): string {
+    const matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : '';
+  }
+
+  private getTokenFromCookies(): string {
+    const token = this.getCookie('userAdminToken');
+    return token;
+  }
 
   getAllCourses(pageNumber: number = 1, pageSize: number = 10, title?: string, description?: string, code?: string): Observable<any> {
     let params = new HttpParams()
@@ -28,16 +39,23 @@ export class CoursesService {
       params = params.set('code', code);
     }
 
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+     const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     return this.httpClient.get<any>(`${this.URL}/courses/`, { params, headers })
       .pipe(map(response => response.content));
   }
 
   getCourse(courseId: number): Observable<any> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+     const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
 
     return this.httpClient.get<ICourse>(`${this.URL}/courses/${courseId}`, { headers });
   }

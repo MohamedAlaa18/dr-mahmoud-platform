@@ -57,7 +57,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { StudentSignUpFormComponent } from './Components/SignUp/Student/student-sign-up-form/student-sign-up-form.component';
 import { DatePipe } from '@angular/common';
 import { BreadcrumbComponent } from './Components/shared/breadcrumb/breadcrumb.component';
-import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -121,7 +120,7 @@ import { CookieService } from 'ngx-cookie-service';
     MatRadioModule,
     MatButtonToggleModule
   ],
-  providers: [DatePipe, CookieService],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

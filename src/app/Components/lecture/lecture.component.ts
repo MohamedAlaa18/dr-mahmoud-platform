@@ -21,10 +21,11 @@ export class LectureComponent implements OnInit {
   panelOpenState = false;
   selected?: boolean;
   isEnrolled!: boolean;
+  otp!: string;
+  playbackInfo!: string;
 
   videoOptions: { id: number; label: string; selected: boolean; videoUrl: string; }[] = [];
   fileOptions: { id: number; label: string; pdfUrl: string; }[] = [];
-  selectedVideoUrl: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -104,7 +105,9 @@ export class LectureComponent implements OnInit {
       (response: any) => {
         console.log('Video details response:', response);
         if (response.content && response.content.playbackInfo) {
-          this.selectedVideoUrl = response.content.playbackInfo;
+          this.playbackInfo = response.content.playbackInfo;
+          this.otp = response.content.otp;
+
         } else {
           console.error('Failed to get video playback info', response);
         }

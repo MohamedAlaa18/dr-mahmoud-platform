@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { ILecture } from 'src/app/Models/iCourse';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +10,36 @@ import { CookieService } from 'ngx-cookie-service';
 export class LecturesService {
   URL = environment.API_KEY;
 
-  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
+  constructor(private httpClient: HttpClient) { }
+
+  private getCookie(name: string): string {
+    const matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : '';
+  }
+
+  private getTokenFromCookies(): string {
+    const token = this.getCookie('userAdminToken');
+    return token;
+  }
 
   getLecture(id: number): Observable<any> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     return this.httpClient.get<ILecture>(`${this.URL}/lectures/${id}`, { headers });
   }
 
   addLecture(courseId: number, lectureData: any): Observable<ILecture> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     const body = {
       lecture: {
@@ -41,8 +58,11 @@ export class LecturesService {
   }
 
   editLecture(updatedLecture: any): Observable<void> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     const body = {
       lecture: updatedLecture
@@ -56,14 +76,20 @@ export class LecturesService {
   }
 
   deleteLecture(lectureId: number): Observable<void> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
     return this.httpClient.delete<void>(`${this.URL}/lectures/${lectureId}`, { headers });
   }
 
   addAttachment(lectureId: number, file: File): Observable<void> {
-    const token = this.cookieService.get('userToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const token = this.getTokenFromCookies();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
     // Create FormData object
     const formData = new FormData();

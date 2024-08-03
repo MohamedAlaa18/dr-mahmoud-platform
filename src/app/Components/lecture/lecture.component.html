@@ -37,7 +37,7 @@
 
     <div class="custom-checkbox-container flex flex-wrap gap-2 py-3">
       <div mat-button *ngFor="let opt of videoOptions; let i = index" class="position-relative flex flex-grow-1">
-        <button class="custom-checkbox w-100" [class.checked]="opt.selected" (click)="toggleOption(i)">
+        <button class="custom-checkbox w-100 rounded-top-3" [class.checked]="opt.selected" (click)="toggleOption(i)">
           <span class="fw-medium">{{ opt.label }}</span>
         </button>
 
@@ -53,7 +53,12 @@
           </button>
         </div>
       </div>
-      <video [src]="selectedVideoUrl" width="100%" controls></video>
+      <!--
+      <video [src]="'https://player.vdocipher.com/v2/?otp=' + otp + '&playbackInfo=' + playbackInfo" width="100%"
+        class="rounded-bottom-3" controls></video> -->
+
+      <iframe [src]="'https://player.vdocipher.com/v2/?otp=' + otp + '&playbackInfo=' + playbackInfo"
+        style="width:100%;" allow="encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 </section>

@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LecturesService } from 'src/app/Services/Lectures/lectures.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-lecture-dialog',
@@ -19,7 +18,6 @@ export class LectureDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private lectureService: LecturesService,
-    private cookieService: CookieService,
     private router: Router,
     private snackBar: MatSnackBar
   ) { }
