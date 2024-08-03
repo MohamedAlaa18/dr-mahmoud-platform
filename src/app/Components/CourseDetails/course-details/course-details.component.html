@@ -4,107 +4,77 @@
   <section>
     <div class="container d-flex flex-wrap gap-3 justify-content-between">
       <div class="content-container">
-        <!-- Custom checkbox container -->
-        <!-- <div class="custom-checkbox-container flex flex-wrap gap-2 my-3 teacherCheckbox">
-          <button mat-button *ngFor="let opt of options; let i = index" class="custom-checkbox"
-            [class.checked]="opt.selected" (click)="toggleOption(i)">
-            <span>{{ opt.label }}</span>
-          </button>
-        </div> -->
-
         <div class="course d-flex flex-column gap-2">
           <div class="flex gap-1 mb-2">
             <h3 class="m-0" style="font-weight: 700;">محتوي الكورس</h3>
-            <button mat-icon-button (click)="openLessonDialog()"><mat-icon>note_add</mat-icon></button>
+            <button mat-icon-button (click)="createLectureDialog()">
+              <mat-icon>note_add</mat-icon>
+            </button>
           </div>
 
-          <mat-accordion class="flex crud-buttons w-100" *ngFor="let lecture of course?.lectureList; let i = index">
-            <mat-expansion-panel class="custom-expansion-panel" #panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title style="font-weight: 700;" class="flex container" [class.expanded]="panel.expanded">
-                  <div class="flex justify-content-between" style="width: 100%;">
-                    <div class="flex gap-3">
-                      <span class="title">{{lecture.lectureTitle}}</span>
+          <div class="flex crud-buttons w-100" *ngFor="let lecture of course?.lectures; let i = index">
+            <div class="custom-expansion-panel" #panel>
+              <div class="flex container">
+                <div class="flex justify-content-between" style="width: 100%; cursor: context-menu;">
+                  <div class="flex gap-3">
+                    <button [routerLink]="['/lecture', lecture.id]" [queryParams]="{ courseId: course.id }"
+                      class="title bg-transparent fw-semibold px-3 py-2">{{lecture.title}}</button>
 
-                      <button mat-icon-button [matMenuTriggerFor]="menu" class="width-50 m-0">
-                        <mat-icon>add_circle</mat-icon>
-                      </button>
-                    </div>
-
-                    <button mat-menu-item [routerLink]="['/course', course.id, 'lesson', lecture.id, 'view']"
-                      [queryParams]="{ examId: lecture.preExam }" *ngIf="lecture.preExam && (isStudentAllowed())"
-                      class="flex px-2 mx-2 my-0 exam-button">
-                      <i class="fas fa-clipboard-list"></i>
-                      امتحان
+                    <button mat-icon-button [matMenuTriggerFor]="menu" class="width-50 m-0">
+                      <mat-icon>add_circle</mat-icon>
                     </button>
                   </div>
+                </div>
 
-                  <mat-menu #menu="matMenu" class="lesson-menu" AppearFromRight>
-                    <button mat-menu-item (click)="addContentDialog('file', lecture.id)" style="direction: rtl;">
-                      ملف
-                    </button>
-                    <button mat-menu-item (click)="addContentDialog('video', lecture.id)" style="direction: rtl;">
-                      فيديو
-                    </button>
-                    <button mat-menu-item *ngIf="!lecture.preExam"
-                      (click)="openExamDialog('PreExam', course!, lecture, i)" style="direction: rtl;">
-                      امتحان
-                    </button>
-                    <button mat-menu-item *ngIf="!lecture.assignment"
-                      (click)="openExamDialog('Assignment', course!, lecture, i)" style="direction: rtl;">
-                      واجب
-                    </button>
-                  </mat-menu>
+                <mat-menu #menu="matMenu" class="lecture-menu" AppearFromRight>
+                  <button mat-menu-item (click)="addContentDialog('attachment', lecture.id)" style="direction: rtl;">
+                    ملف
+                  </button>
+                  <button mat-menu-item (click)="addContentDialog('video', lecture.id)" style="direction: rtl;">
+                    فيديو
+                  </button>
+                  <button mat-menu-item (click)="openExamDialog('PreExam', course!, lecture, i)"
+                    style="direction: rtl;">
+                    امتحان
+                  </button>
+                  <!-- <button mat-menu-item (click)="openExamDialog('Assignment', course!, lecture, i)"
+                    style="direction: rtl;">
+                    واجب
+                  </button> -->
+                </mat-menu>
+              </div>
 
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-
-              <ng-container *ngIf="lectureContact[lecture.id]">
-                <ng-container *ngFor="let content of lectureContact[lecture.id]">
+              <ng-container *ngIf="lecture">
+                <ng-container *ngFor="let attachment of lecture.attachments">
                   <div class="flex crud-buttons gap-2">
-                    <button mat-button class="d-flex justify-content-start gap-2" [routerLink]="['/lesson', lecture.id]"
-                      [queryParams]="{ courseId: course.id }">
+                    <button mat-button class="d-flex justify-content-start gap-2">
                       <mat-icon style="color:var(--color1);">airplay</mat-icon>
-                      <span>{{ getContentTitle(content) }}</span>
                     </button>
 
                     <div class="flex">
-                      <button mat-icon-button class="width-50 m-0 custom-icon-button" style="color: red;"
-                        (click)="openDeleteContentConfirmationDialog(lecture.id, content)">
+                      <button mat-icon-button class="width-50 m-0 custom-icon-button" style="color: red;">
                         <mat-icon>delete</mat-icon>
                       </button>
 
-                      <button mat-icon-button class="width-50 m-0 custom-icon-button" style="color: green;"
-                        (click)="editContentDialog(lecture.id, content)">
+                      <button mat-icon-button class="width-50 m-0 custom-icon-button" style="color: green;">
                         <mat-icon>edit</mat-icon>
                       </button>
                     </div>
                   </div>
                 </ng-container>
               </ng-container>
+            </div>
 
-            </mat-expansion-panel>
             <button mat-icon-button class="width-50 m-0 custom-icon-button" style="color: red;"
-              (click)="openDeleteLectureConfirmationDialog(lecture.id)">
+              (click)="DeleteLectureDialog(lecture.id)">
               <mat-icon>delete</mat-icon>
             </button>
             <button mat-icon-button class="width-50 m-0 custom-icon-button" style="color: green;"
-              (click)="editLessonDialog(lecture.id, lecture.lectureTitle ,lecture.price)">
+              (click)="editLectureDialog(lecture)">
               <mat-icon>edit</mat-icon>
             </button>
-          </mat-accordion>
+          </div>
         </div>
-
-        <!--<div class="teacher d-flex align-items-center align-items-lg-start gap-3 mt-4" *ngIf="options[1].selected">
-          <div class="image-panel">
-            <img mat-card-image [src]="course.profilePhoto" alt="Sample Image">
-          </div>
-          <div class="mt-5">
-            <p>
-              {{course.aboutTeacher}}
-            </p>
-          </div>
-        </div> -->
       </div>
 
       <div class="card-container">

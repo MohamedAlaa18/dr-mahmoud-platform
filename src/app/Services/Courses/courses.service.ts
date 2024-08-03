@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { map, Observable } from 'rxjs';
 import { ICourse, ISubject } from 'src/app/Models/iCourse';
 import { environment } from 'src/environments/environment';
 
@@ -10,17 +11,38 @@ import { environment } from 'src/environments/environment';
 export class CoursesService {
   URL = environment.API_KEY;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
-  getAllCourses(): Observable<ICourse[]> {
-    return this.httpClient.get<ICourse[]>(`${this.URL}/api/Courses`);
+  getAllCourses(pageNumber: number = 1, pageSize: number = 10, title?: string, description?: string, code?: string): Observable<any> {
+    let params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString());
+
+    if (title) {
+      params = params.set('title', title);
+    }
+    if (description) {
+      params = params.set('description', description);
+    }
+    if (code) {
+      params = params.set('code', code);
+    }
+
+    const token = this.cookieService.get('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get<any>(`${this.URL}/courses/`, { params, headers })
+      .pipe(map(response => response.content));
   }
 
-  getCourseById(courseId: number): Observable<ICourse> {
-    return this.httpClient.get<ICourse>(`${this.URL}/api/Courses/${courseId}`);
+  getCourse(courseId: number): Observable<any> {
+    const token = this.cookieService.get('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get<ICourse>(`${this.URL}/courses/${courseId}`, { headers });
   }
 
-  deleteCourseById(courseId: number): Observable<void> {
+  deleteCourse(courseId: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.URL}/api/Courses/${courseId}`);
   }
 
@@ -34,19 +56,6 @@ export class CoursesService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     return this.httpClient.put<void>(`${this.URL}/api/Courses/${courseId}`, updatedCourse, { headers });
-  }
-
-  getCoursesEnrolledByStudent(studentId: string): Observable<ICourse[]> {
-    const params = new HttpParams().set('studentId', studentId);
-    return this.httpClient.get<ICourse[]>(`${this.URL}/api/Courses/GetCoursesEnrolledByStudent`, { params });
-  }
-
-  checkEnrollment(courseId: number, studentId: string): Observable<boolean> {
-    const params = new HttpParams().set('studentId', studentId).set('courseId', courseId);
-    return this.httpClient.get<boolean>(
-      `${this.URL}/api/Courses/checkenrollment`,
-      { params }
-    );
   }
 
   courseEnroll(studentId: string, courseId: number, couponCode?: string): Observable<ICourse> {

@@ -22,14 +22,14 @@ export class StudentExamComponent implements OnInit {
   studentId!: string;
   examId!: number;
   exam!: IExam;
-  questions!: IQuestion[];
+  questions!: IQuestion[] | undefined;
   selectedQuestionIndex: number = 0;
   visitedQuestions: boolean[] = [];
   form: FormGroup;
   skippedQuestions: boolean[] = [];
   duration!: number;
   startData!: any;
-  userId: string;
+  userId = "123";
   loading = false;
 
   constructor(
@@ -44,14 +44,14 @@ export class StudentExamComponent implements OnInit {
     private titleService: Title
   ) {
     this.form = this.fb.group({});
-    this.userId = this.userData.getUserId();
+    // this.userId = this.userData.getUserId();
   }
 
   ngOnInit(): void {
     const pageTitle = this.activatedRoute.snapshot.data['title'];
     this.titleService.setTitle(pageTitle);
 
-    this.studentId = this.studentData.getUserId();
+    // this.studentId = this.studentData.getUserId();
 
     this.activatedRoute.queryParamMap.subscribe(queryParams => {
       this.examId = +queryParams.get('examId')!;
@@ -114,14 +114,14 @@ export class StudentExamComponent implements OnInit {
   }
 
   getLectureById(id: number) {
-    this.lectureData.getLectureById(this.courseId, id, this.userId).subscribe(lecture => {
+    this.lectureData.getLecture(id).subscribe(lecture => {
       this.lecture = lecture;
     });
   }
 
   buildFormControls() {
     const formControls: { [key: string]: any } = {};
-    this.exam.questions.forEach((question, i) => {
+    this.exam.questions?.forEach((question, i) => {
       const questionControls: { [key: string]: any } = {};
       question.answers.forEach((answer, j) => {
         if (question.type === 'MultipleChoice') {
@@ -169,7 +169,7 @@ export class StudentExamComponent implements OnInit {
   }
 
   navigateForward() {
-    if (this.selectedQuestionIndex === this.exam.questions.length - 1) {
+    if (this.exam.questions && this.selectedQuestionIndex === this.exam.questions.length - 1) {
       this.submitExam(this.examId);
     }
 
@@ -192,7 +192,7 @@ export class StudentExamComponent implements OnInit {
 
   getSelectedAnswersIdsAndIndex(questionId: number): { answerIds: number[], questionIndex: number }[] {
     const selectedAnswersIdsAndIndex: { answerIds: number[], questionIndex: number }[] = [];
-    const question = this.exam.questions.find(q => q.id === questionId);
+    const question = this.exam.questions?.find(q => q.id === questionId);
 
     if (question) {
       const formControls = this.form.controls;
@@ -201,7 +201,7 @@ export class StudentExamComponent implements OnInit {
       controlKeys.forEach(key => {
         const questionIndex = parseInt(key.split('_')[1]);
 
-        if (questionIndex !== -1 && questionIndex < this.exam.questions.length) {
+        if (this.exam.questions && questionIndex !== -1 && questionIndex < this.exam.questions.length) {
           const questionFormGroup = formControls[key] as FormGroup;
 
           if (question.type === 'MultipleChoice') {
@@ -241,22 +241,26 @@ export class StudentExamComponent implements OnInit {
 
     const selectedAnswersMap = new Map<number, number[]>();
 
-    this.exam.questions.forEach(question => {
-      const selectedAnswers = this.getSelectedAnswersIdsAndIndex(question.id);
+    if (this.exam.questions) {
+      this.exam.questions.forEach((question, questionIndex) => {
+        const selectedAnswers = this.getSelectedAnswersIdsAndIndex(question.id);
 
-      selectedAnswers.forEach(selectedAnswer => {
-        const existingAnswers = selectedAnswersMap.get(selectedAnswer.questionIndex) || [];
-        existingAnswers.push(...selectedAnswer.answerIds);
-        selectedAnswersMap.set(selectedAnswer.questionIndex, existingAnswers);
+        selectedAnswers.forEach(selectedAnswer => {
+          const existingAnswers = selectedAnswersMap.get(selectedAnswer.questionIndex) || [];
+          existingAnswers.push(...selectedAnswer.answerIds);
+          selectedAnswersMap.set(selectedAnswer.questionIndex, existingAnswers);
+        });
       });
-    });
 
-    selectedAnswersMap.forEach((selectedAnswerIds, questionIndex) => {
-      formattedExam.answers.push({
-        questionId: this.exam.questions[questionIndex].id,
-        selectedAnswersIds: selectedAnswerIds
+      selectedAnswersMap.forEach((selectedAnswerIds, questionIndex) => {
+        if (this.exam.questions && this.exam.questions[questionIndex]) {
+          formattedExam.answers.push({
+            questionId: this.exam.questions[questionIndex].id,
+            selectedAnswersIds: selectedAnswerIds
+          });
+        }
       });
-    });
+    }
 
     return formattedExam;
   }
@@ -281,7 +285,7 @@ export class StudentExamComponent implements OnInit {
   }
 
   getExamResult(examId: number) {
-    this.examData.getSubmissionExam(examId, this.studentData.getUserId()).subscribe(result => {
+    this.examData.getSubmissionExam(examId, "123").subscribe(result => {
       this.loading = false;
 
       const navigationExtras: NavigationExtras = {

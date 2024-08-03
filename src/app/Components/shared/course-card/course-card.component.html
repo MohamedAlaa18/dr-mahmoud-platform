@@ -1,24 +1,24 @@
 <a [routerLink]="['/course', course.id]" class="card-link">
   <mat-card class="example-card" (mousemove)="handleMouseMove($event)" (mouseleave)="handleMouseLeave($event)">
-    <img mat-card-image [src]="course.thumbnail" alt="Sample Image" class="thumbnail">
+    <img mat-card-image [src]="course.photoLink" alt="Sample Image" class="thumbnail">
     <div class="label">
       <!-- <p>{{ course.subjectName }}</p> -->
     </div>
     <div class="top-bottom-container">
-      <div class="top flex flex-column gap-2 profile">
+      <!-- <div class="top flex flex-column gap-2 profile">
         <img class="rounded-picture" [src]="course.profilePhoto" alt="Profile Picture">
-        <!-- <span class="name">{{ course.teacherName }}</span> -->
-      </div>
+        <span class="name">{{ course.teacherName }}</span>
+      </div> -->
       <div class="bottom">
-        <h1 class="description">{{ course.courseName }}</h1>
+        <h1 class="description">{{ course.title }}</h1>
         <div class="flex justify-content-between mb-3">
-          <div class="flex justify-content-center gap-2">
+          <div class="flex justify-content-center align-items-center gap-2">
             <img src="assets/images/boy.5g.svg" alt="boy">
-            <span class="level">{{ course.levelName }}</span>
+            <span class="level mt-1 p-0">{{ course.code }}</span>
           </div>
-          <div class="flex justify-content-center gap-2">
+          <div class="flex justify-content-center align-items-center gap-2">
             <img src="assets/images/money.svg" alt="boy">
-            <span class="price">{{ course.price }}</span>
+            <span class="price mt-1 p-0">{{ course.price }} جنيه</span>
           </div>
         </div>
       </div>

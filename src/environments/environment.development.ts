@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    API_KEY: 'http://localhost:5293',
+    API_KEY: 'https://theprof.tryasp.net',
 };

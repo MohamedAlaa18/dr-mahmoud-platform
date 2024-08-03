@@ -15,7 +15,7 @@ export class CourseDetailsHeaderComponent implements OnInit {
   constructor(private countsData: CountsService) { }
 
   ngOnInit(): void {
-    this.getCounts();
+    // this.getCounts();
   }
 
   getCounts() {

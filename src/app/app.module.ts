@@ -21,7 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/shared/header/header.component';
@@ -40,7 +40,7 @@ import { CourseDetailsHeaderComponent } from './Components/CourseDetails/course-
 import { ConfirmationDialogComponent } from './Components/CourseDetails/Dialog/confirmation-dialog/confirmation-dialog.component';
 import { EnrollDialogComponent } from './Components/CourseDetails/Dialog/enroll-dialog/enroll-dialog.component';
 import { ExamDialogComponent } from './Components/CourseDetails/Dialog/exam-dialog/exam-dialog.component';
-import { LectureDialogComponent } from './Components/CourseDetails/Dialog/lesson-dialog/lecture-dialog.component';
+import { LectureDialogComponent } from './Components/CourseDetails/Dialog/lecture-dialog/lecture-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ContentDialogComponent } from './Components/CourseDetails/Dialog/content-dialog/content-dialog.component';
 import { EditExamComponent } from './Components/Exam/Teacher/EditExam/edit-exam/edit-exam.component';
@@ -57,7 +57,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { StudentSignUpFormComponent } from './Components/SignUp/Student/student-sign-up-form/student-sign-up-form.component';
 import { DatePipe } from '@angular/common';
 import { BreadcrumbComponent } from './Components/shared/breadcrumb/breadcrumb.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -92,7 +92,7 @@ import { BreadcrumbComponent } from './Components/shared/breadcrumb/breadcrumb.c
     StudentSignUpPageComponent,
     StudentSignUpFormComponent,
     LoginComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +121,7 @@ import { BreadcrumbComponent } from './Components/shared/breadcrumb/breadcrumb.c
     MatRadioModule,
     MatButtonToggleModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

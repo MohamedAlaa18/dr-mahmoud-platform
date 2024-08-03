@@ -56,19 +56,18 @@
 .price,
 .level {
   display: block;
-  margin-top: 8px;
 }
 
-.price {
+.price,.level {
   font-size: 16px;
   font-weight: 700;
 }
 
-.level {
+/* .level {
   opacity: 0.75;
   font-size: 0.75rem;
   font-weight: 500;
-}
+} */
 
 .profile {
   margin-top: -50px;

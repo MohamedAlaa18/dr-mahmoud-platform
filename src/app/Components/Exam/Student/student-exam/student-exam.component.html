@@ -5,7 +5,7 @@
     <div class="flex flex-column gap-3 mobile-row flex-wrap justify-content-center">
       <section class="section-header section-border p-3 d-flex flex-column ">
         <h5 *ngIf="lecture">
-          {{ lecture.lectureTitle }}
+          {{ lecture.title }}
         </h5>
         <h6>{{ exam.title }}</h6>
       </section>
@@ -83,7 +83,7 @@
         <mat-icon class="fa-rotate-180">keyboard_backspace</mat-icon> &nbsp; رجوع
       </button>
       <!-- Skip Button -->
-      <div class="flex gap-3">
+      <div class="flex gap-3" *ngIf="exam.questions">
         <button mat-button class="" type="button" (click)="skipQuestion()"
           [disabled]="selectedQuestionIndex === exam.questions.length - 1 || selectedQuestionIndex >= exam.questions.length ">
           تخطي

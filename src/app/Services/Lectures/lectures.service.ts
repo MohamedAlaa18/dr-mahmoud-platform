@@ -1,8 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { ILecture } from 'src/app/Models/iCourse';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,39 +11,69 @@ import { ILecture } from 'src/app/Models/iCourse';
 export class LecturesService {
   URL = environment.API_KEY;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
-  getAllLectures(courseId: number): Observable<ILecture[]> {
-    return this.httpClient.get<ILecture[]>(`${this.URL}/api/courses/${courseId}/lectures`);
+  getLecture(id: number): Observable<any> {
+    const token = this.cookieService.get('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get<ILecture>(`${this.URL}/lectures/${id}`, { headers });
   }
 
-  getLectureById(courseId: number, lectureId: number, userId: string): Observable<ILecture> {
-    const params = new HttpParams().set('userId', userId);
-    return this.httpClient.get<ILecture>(
-      `${this.URL}/api/courses/${courseId}/lectures/${lectureId}`,
-      { params }
-    );
-  }
+  addLecture(courseId: number, lectureData: any): Observable<ILecture> {
+    const token = this.cookieService.get('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-  deleteLectureById(courseId: number, lectureId: number, userId: string): Observable<void> {
-    return this.httpClient.delete<void>(`${this.URL}/api/courses/${courseId}/Lectures/${lectureId}`, { params: { userId: userId.toString() } });
-  }
+    const body = {
+      lecture: {
+        title: lectureData.title,
+        description: lectureData.description,
+        code: lectureData.code,
+        courseId: courseId
+      }
+    };
 
-  addLecture(courseId: number, lectureData: ILecture, userId: string): Observable<ILecture> {
-    const params = new HttpParams().set('userId', userId);
     return this.httpClient.post<ILecture>(
-      `${this.URL}/api/courses/${courseId}/lectures`,
-      lectureData,
-      { params }
+      `${this.URL}/lectures/`,
+      body,
+      { headers }
     );
   }
 
-  editLecture(courseId: number, lectureId: number, updatedLecture: ILecture, userId: string): Observable<void> {
-    const params = new HttpParams().set('userId', userId);
+  editLecture(updatedLecture: any): Observable<void> {
+    const token = this.cookieService.get('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const body = {
+      lecture: updatedLecture
+    };
+
     return this.httpClient.put<void>(
-      `${this.URL}/api/courses/${courseId}/lectures/${lectureId}`,
-      updatedLecture,
-      { params }
+      `${this.URL}/lectures/`,
+      body,
+      { headers }
+    );
+  }
+
+  deleteLecture(lectureId: number): Observable<void> {
+    const token = this.cookieService.get('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.httpClient.delete<void>(`${this.URL}/lectures/${lectureId}`, { headers });
+  }
+
+  addAttachment(lectureId: number, file: File): Observable<void> {
+    const token = this.cookieService.get('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    // Create FormData object
+    const formData = new FormData();
+    formData.append('lectureId', lectureId.toString());
+    formData.append('attachment', file);
+
+    return this.httpClient.post<void>(
+      `${this.URL}/lectures/add-attachment`,
+      formData,
+      { headers }
     );
   }
 }

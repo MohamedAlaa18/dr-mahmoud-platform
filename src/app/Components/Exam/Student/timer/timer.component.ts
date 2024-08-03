@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
 export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() duration!: number;
   @Input() examId!: number;
-  @Input() type!: string;
+  @Input() type!: number;
   @Output() submitExam: EventEmitter<void> = new EventEmitter<void>();
   timerStarted: boolean = false;
   timerEnded: boolean = false;
@@ -94,7 +94,7 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
       this.dialog.open(ExamTimeOutComponent, {
         width: '300px',
         data: {
-          message: this.type == 'exam' ? 'انتهى وقت الامتحان' : 'انتهى وقت الواجب',
+          message: this.type == 0 ? 'انتهى وقت الامتحان' : 'انتهى وقت الواجب',
           courseId: courseId,
           lessonId: lessonId,
           examId: examId

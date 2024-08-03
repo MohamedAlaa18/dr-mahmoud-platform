@@ -1,20 +1,32 @@
 <form class="form-floating" action="" method="" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <div class="flex flex-column flex-lg-row gap-lg-3">
     <mat-form-field appearance="outline" style="width: 100% !important;">
-      <mat-label>الأسم </mat-label>
-      <input matInput type="text" name="fullName" formControlName="fullName" id="fullName" placeholder="اسم الطالب"
+      <mat-label>الأسم الأول</mat-label>
+      <input matInput type="text" name="firstName" formControlName="firstName" id="firstName" placeholder="اسم الطالب"
         aria-label=" اسم الطالب">
       <mat-icon matSuffix class="fa-regular fa-user"></mat-icon>
-      <mat-error *ngIf="signupForm.get('fullName')?.touched && signupForm.get('fullName')?.invalid">
-        <span *ngIf="signupForm.get('fullName')?.errors?.['pattern']" class="text-danger">الأسم يجب أن يكون 4 حروف على
+      <mat-error *ngIf="signupForm.get('firstName')?.touched && signupForm.get('firstName')?.invalid">
+        <span *ngIf="signupForm.get('firstName')?.errors?.['pattern']" class="text-danger">الأسم يجب أن يكون 4 حروف على
           الأقل ولا
           يحتوي على أرقام</span>
-        <span *ngIf="signupForm.get('fullName')?.errors?.['required']" class="text-danger">الأسم مطلوب</span>
+        <span *ngIf="signupForm.get('firstName')?.errors?.['required']" class="text-danger">الأسم مطلوب</span>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" style="width: 100% !important;">
-      <mat-label>اسم العائلة</mat-label>
+      <mat-label>الأسم الثاني</mat-label>
+      <input matInput type="text" name="secondName" formControlName="secondName" id="secondName"
+        placeholder="الأسم الثاني" aria-label="الأسم الثاني">
+      <mat-icon matSuffix class="fa-regular fa-user"></mat-icon>
+      <mat-error *ngIf="signupForm.get('secondName')?.touched && signupForm.get('secondName')?.invalid">
+        <span *ngIf="signupForm.get('secondName')?.errors?.['required']" class="text-danger">الأسم الثاني مطلوب</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-column flex-lg-row gap-lg-3">
+    <mat-form-field appearance="outline" style="width: 100% !important;">
+      <mat-label>الأسم الأخير</mat-label>
       <input matInput type="text" name="lastName" formControlName="lastName" id="lastName" placeholder="اسم العائلة"
         aria-label=" اسم المعلم">
       <mat-icon matSuffix class="fa-regular fa-user"></mat-icon>
@@ -22,149 +34,95 @@
         <span *ngIf="signupForm.get('lastName')?.errors?.['required']" class="text-danger">الأسم مطلوب</span>
       </mat-error>
     </mat-form-field>
-  </div>
 
-  <div class="flex flex-column flex-lg-row gap-lg-3">
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>عنوان البريد الإلكتروني</mat-label>
-      <input matInput type="email" name="studentEmail" formControlName="studentEmail" id="studentEmail"
-        placeholder="البريد الإلكتروني" aria-label="عنوان البريد الإلكتروني" required>
+      <input matInput type="email" name="email" formControlName="email" id="email" placeholder="البريد الإلكتروني"
+        aria-label="عنوان البريد الإلكتروني" required>
       <mat-icon matSuffix class="fa-solid fa-envelope"></mat-icon>
-      <mat-error *ngIf="signupForm.get('studentEmail')?.touched && signupForm.get('studentEmail')?.invalid">
-        <span *ngIf="signupForm.get('studentEmail')?.errors?.['pattern']" class="text-danger">البريد الإلكتروني غير
+      <mat-error *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+        <span *ngIf="signupForm.get('email')?.errors?.['pattern']" class="text-danger">البريد الإلكتروني غير
           صالح</span>
-        <span *ngIf="signupForm.get('studentEmail')?.errors?.['required']" class="text-danger">البريد الإلكتروني
+        <span *ngIf="signupForm.get('email')?.errors?.['required']" class="text-danger">البريد الإلكتروني
           مطلوب</span>
       </mat-error>
     </mat-form-field>
+  </div>
 
-
+  <div class="flex flex-column flex-lg-row gap-lg-3">
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>رقم تليفون الطالب</mat-label>
-      <input matInput type="text" name="studentPhoneNumber" formControlName="studentPhoneNumber" id="studentPhoneNumber"
-        placeholder="رقم الموبايل" aria-label="رقم تليفون الطالب">
+      <input matInput type="text" name="mobileNo" formControlName="mobileNo" id="mobileNo" placeholder="رقم الموبايل"
+        aria-label="رقم تليفون الطالب">
       <mat-icon matSuffix class="fa-solid fa-mobile-screen-button"></mat-icon>
-      <mat-error *ngIf="signupForm.get('studentPhoneNumber')?.touched && signupForm.get('studentPhoneNumber')?.invalid">
-        <span *ngIf="signupForm.get('studentPhoneNumber')?.errors?.['pattern']" class="text-danger">رقم الهاتف يجب أن
+      <mat-error *ngIf="signupForm.get('mobileNo')?.touched && signupForm.get('mobileNo')?.invalid">
+        <span *ngIf="signupForm.get('mobileNo')?.errors?.['pattern']" class="text-danger">رقم الهاتف يجب أن
           يكون من 11 رقم
           يبدأ بـ 010 أو 011 أو 012 أو 015</span>
-        <span *ngIf="signupForm.get('studentPhoneNumber')?.errors?.['required']" class="text-danger">رقم الهاتف
+        <span *ngIf="signupForm.get('mobileNo')?.errors?.['required']" class="text-danger">رقم الهاتف
           مطلوب</span>
       </mat-error>
     </mat-form-field>
 
-  </div>
-
-  <div class="flex flex-column flex-lg-row gap-lg-3">
     <mat-form-field appearance="outline" style="width: 100%;">
-      <mat-label>رقم تليفون ولي الأمر</mat-label>
-      <input matInput type="text" name="fatherPhoneNumber" formControlName="fatherPhoneNumber" id="fatherPhoneNumber"
-        placeholder="رقم الموبايل" aria-label="رقم تليفون ولي الأمر">
-      <mat-icon matSuffix class="fa-solid fa-mobile-screen-button"></mat-icon>
-      <mat-error *ngIf="signupForm.get('fatherPhoneNumber')?.touched && signupForm.get('fatherPhoneNumber')?.invalid">
-        <span *ngIf="signupForm.get('fatherPhoneNumber')?.errors?.['pattern']" class="text-danger">رقم الهاتف يجب أن
+      <mat-label>رقم واتساب الطالب</mat-label>
+      <input matInput type="text" name="whatsAppNo" formControlName="whatsAppNo" id="whatsAppNo"
+        placeholder="واتساب الطالب" aria-label=" واتساب الطالب">
+      <mat-icon matSuffix class="fa-brands fa-whatsapp"></mat-icon>
+      <mat-error *ngIf="signupForm.get('whatsAppNo')?.touched && signupForm.get('whatsAppNo')?.invalid">
+        <span *ngIf="signupForm.get('whatsAppNo')?.errors?.['pattern']" class="text-danger">رقم الهاتف يجب أن
           يكون من 11 رقم
           يبدأ بـ 010 أو 011 أو 012 أو 015</span>
-        <span *ngIf="signupForm.get('fatherPhoneNumber')?.errors?.['required']" class="text-danger">رقم الهاتف
+        <span *ngIf="signupForm.get('whatsAppNo')?.errors?.['required']" class="text-danger">رقم الهاتف
           مطلوب</span>
       </mat-error>
     </mat-form-field>
-
-
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <mat-label>تاريخ الميلاد</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="تاريخ الميلاد"
-        aria-label="تاريخ الميلاد" required>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="signupForm.get('birthday')?.touched && signupForm.get('birthday')?.errors?.['required']"
-        class="text-danger">تاريخ
-        الميلاد مطلوب</mat-error>
-    </mat-form-field>
   </div>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>تاريخ الميلاد</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="تاريخ الميلاد"
+      aria-label="تاريخ الميلاد" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="signupForm.get('birthDate')?.touched && signupForm.get('birthDate')?.errors?.['required']"
+      class="text-danger">تاريخ
+      الميلاد مطلوب</mat-error>
+  </mat-form-field>
 
   <div class="flex flex-column flex-lg-row gap-lg-3">
     <mat-form-field appearance="outline" style="width: 100%;">
-      <mat-label>النوع</mat-label>
-      <mat-select formControlName="gender" placeholder="اختر النوع" aria-label="النوع" required>
-        <mat-option value="" disabled selected hidden>اختر النوع</mat-option>
-        <mat-option value="Male">ذكر</mat-option>
-        <mat-option value="Female">أنثى</mat-option>
-      </mat-select>
-      <mat-icon matSuffix class="fa-solid fa-mars-and-venus"></mat-icon>
-      <mat-error *ngIf="signupForm.get('gender')?.touched && signupForm.get('gender')?.invalid"> يجب تحديد
-        النوع</mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <mat-label>المحافظة</mat-label>
-      <mat-select formControlName="governorate" placeholder="اختر المحافظة" aria-label="المحافظة" required
-        [ngClass]="{'is-invalid': isInputFocused}" id="Governorate" name="Governorate">
-        <mat-option value="" disabled selected hidden>اختر المحافظة</mat-option>
-        <mat-option value="cairo">القاهرة</mat-option>
-        <mat-option value="qalyubia">القليوبية</mat-option>
-        <mat-option value="alexandria">الإسكندرية</mat-option>
-        <mat-option value="asyut">أسيوط</mat-option>
-        <mat-option value="aswan">أسوان</mat-option>
-        <mat-option value="beni_suef">بني سويف</mat-option>
-        <mat-option value="beheira">البحيرة</mat-option>
-        <mat-option value="damietta">دمياط</mat-option>
-        <mat-option value="gharbia">الغربية</mat-option>
-        <mat-option value="faiyum">الفيوم</mat-option>
-        <mat-option value="ismailia">الإسماعيلية</mat-option>
-        <mat-option value="giza">الجيزة</mat-option>
-        <mat-option value="luxor">الأقصر</mat-option>
-        <mat-option value="kafr_el_sheikh">كفر الشيخ</mat-option>
-        <mat-option value="minya">المنيا</mat-option>
-        <mat-option value="matruh">مطروح</mat-option>
-        <mat-option value="new_valley">الوادي الجديد</mat-option>
-        <mat-option value="monufia">المنوفية</mat-option>
-        <mat-option value="port_said">بورسعيد</mat-option>
-        <mat-option value="north_sinai">شمال سيناء</mat-option>
-        <mat-option value="qena">قنا</mat-option>
-        <mat-option value="sohag">سوهاج</mat-option>
-        <mat-option value="red_sea">البحر الأحمر</mat-option>
-        <mat-option value="suez">السويس</mat-option>
-        <mat-option value="south_sinai">جنوب سيناء</mat-option>
-      </mat-select>
-      <mat-icon matSuffix class="fa-solid fa-location-dot"></mat-icon>
-      <mat-error *ngIf="signupForm.get('governorate')?.touched && signupForm.get('governorate')?.invalid">يجب تحديد
-        المحافظة</mat-error>
-    </mat-form-field>
-  </div>
-
-  <div class="flex flex-column flex-lg-row gap-lg-3">
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <mat-label>كلمة السر</mat-label>
-      <input matInput type="password" name="password" formControlName="password" placeholder="كلمة السر"
-        aria-label="كلمة السر" required>
-      <mat-icon matSuffix class="fa-solid fa-lock"></mat-icon>
+      <mat-label>كلمة المرور</mat-label>
+      <input matInput type="password" name="password" formControlName="password" id="password" placeholder="كلمة المرور"
+        aria-label="كلمة المرور">
+      <mat-icon matSuffix class="fa-solid fa-key"></mat-icon>
       <mat-error *ngIf="isPasswordInvalid()">
-        <span *ngIf="signupForm.get('password')?.errors?.['required']" class="text-danger">كلمة المرور مطلوبة</span>
-        <span *ngIf="signupForm.get('password')?.errors?.['minlength']" class="text-danger">كلمة المرور يجب أن تكون أكثر
-          من 8
+        <span *ngIf="signupForm.get('password')?.errors?.['required']" class="text-danger">كلمة المرور
+          مطلوبة</span>
+        <span *ngIf="signupForm.get('password')?.errors?.['minlength']" class="text-danger">كلمة المرور يجب أن
+          تكون على الأقل 8
           أحرف</span>
-        <span *ngIf="signupForm.get('password')?.errors?.['weakPassword']" class="text-danger">كلمة المرور ضعيفة. يجب أن
-          تحتوي على
-          حرف كبير وحرف صغير ورقم ورمز خاص.</span>
+        <span *ngIf="signupForm.get('password')?.errors?.['weakPassword']" class="text-danger">كلمة المرور
+          يجب أن تحتوي على حرف
+          كبير وصغير ورقم ورمز خاص</span>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" style="width: 100%;">
-      <mat-label>تأكيد كلمة السر</mat-label>
-      <input matInput type="password" name="confirmPassword" formControlName="confirmPassword"
-        placeholder="تأكيد كلمة السر" aria-label="تأكيد كلمة السر" required>
-      <mat-icon matSuffix class="fa-solid fa-lock"></mat-icon>
-      <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('unMatchedPassword')">
-        <span class="text-danger">كلمة المرور غير متطابقة</span>
+      <mat-label>تأكيد كلمة المرور</mat-label>
+      <input matInput type="password" name="confirmPassword" formControlName="confirmPassword" id="confirmPassword"
+        placeholder="تأكيد كلمة المرور" aria-label="تأكيد كلمة المرور">
+      <mat-icon matSuffix class="fa-solid fa-key"></mat-icon>
+      <mat-error *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.invalid">
+        <span *ngIf="signupForm.get('confirmPassword')?.errors?.['required']" class="text-danger">تأكيد كلمة
+          المرور مطلوب</span>
+        <span *ngIf="signupForm.hasError('passwordMatched')" class="text-danger">كلمة المرور غير متطابقة</span>
       </mat-error>
     </mat-form-field>
   </div>
 
   <div class="d-grid gap-lg-3 text-center mt-3">
     <button mat-button class="rounded-5 custom-button" type="submit">{{ 'إنشاء حساب' }}</button>
-    <!-- <p> هل أنت معلم؟ <a [routerLink]="['/teacherSignup']" class="ms-1 text-second text-decoration-none"
-        style="color: orange;"> انشئ حساب معلم الأن</a></p> -->
     <p>يوجد لديك حساب بالفعل؟ <a [routerLink]="['/login']" class="ms-1 text-second text-decoration-none"
         style="color: orange;">ادخل إلى حسابك الآن</a></p>
   </div>

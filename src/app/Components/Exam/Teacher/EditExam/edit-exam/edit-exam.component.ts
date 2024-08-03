@@ -24,7 +24,7 @@ export class EditExamComponent implements OnInit {
   activeSection: string = 'questionSettings';
   questions: any[] = [];
   courseTitle!: string;
-  userId: string;
+  userId = "123";
   formSubmitted: boolean = false;
 
   @ViewChild(QuestionsFormComponent) questionsForm!: QuestionsFormComponent;
@@ -39,7 +39,7 @@ export class EditExamComponent implements OnInit {
     private router: Router,
     private titleService: Title
   ) {
-    this.userId = this.userData.getUserId();
+    // this.userId = this.userData.getUserId();
   }
 
   ngOnInit(): void {
@@ -71,7 +71,7 @@ export class EditExamComponent implements OnInit {
   }
 
   getLectureId(courseId: number, lectureId: number) {
-    this.lectureData.getLectureById(courseId, lectureId, this.userId).subscribe(
+    this.lectureData.getLecture(lectureId).subscribe(
       lecture => {
         this.lecture = lecture;
       },
@@ -105,7 +105,7 @@ export class EditExamComponent implements OnInit {
 
   initQuestions(): void {
     const questionsArray = this.examForm.get('questions') as FormArray;
-    this.exam.questions.forEach(question => {
+    this.exam.questions?.forEach(question => {
       const questionGroup = this.fb.group({
         points: [question.points, Validators.required],
         header: [question.header, Validators.required],
@@ -128,8 +128,8 @@ export class EditExamComponent implements OnInit {
   }
 
   getExamDate(exam: IExam) {
-    const startDateTime = new Date(exam.startDateTime);
-    const endDateTime = new Date(exam.endDateTime);
+    const startDateTime = new Date(exam.startDate);
+    const endDateTime = new Date(exam.dueDate);
 
     this.examForm.patchValue({
       title: exam.title || '',

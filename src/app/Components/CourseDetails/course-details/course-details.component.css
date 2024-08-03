@@ -39,9 +39,13 @@ section {
   rotate: 0;
 }
 
-.expanded .title {
-  color: var(--color2);
-  transition: color 0.3s ease;
+.title {
+  color: var(--color6);
+  transition: 0.3s ease;
+}
+
+.title:hover {
+  background-color: var(--active) !important;
 }
 
 .custom-expansion-panel {

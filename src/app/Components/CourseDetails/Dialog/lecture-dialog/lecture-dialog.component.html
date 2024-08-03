@@ -1,0 +1,57 @@
+<section class="flex justify-content-center" dir="rtl">
+  <div class="col-md-7 px-4 w-100">
+    <div class="text-center mt-5">
+      <h3 class="text-second mb-4" style="color: var(--color2); font-weight: 700;">
+        {{ data.header }}
+      </h3>
+    </div>
+
+    <form [formGroup]="lectureForm" (ngSubmit)="onSubmit()" class="form-floating">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>أسم الحصة</mat-label>
+            <input matInput formControlName="lectureTitle" placeholder="أسم الحصة" aria-label="أسم الحصة">
+            <mat-icon matSuffix>library_add</mat-icon>
+            <mat-error
+              *ngIf="lectureForm.controls['lectureTitle'].invalid && lectureForm.controls['lectureTitle'].touched">
+              <span class="text-danger" *ngIf="lectureForm.controls['lectureTitle'].errors?.['required']">أسم الحصة
+                مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>رمز الحصة</mat-label>
+            <input matInput formControlName="code" placeholder="رمز الحصة" aria-label="رمز الحصة">
+            <mat-icon matSuffix>code</mat-icon>
+            <mat-error *ngIf="lectureForm.controls['code'].invalid && lectureForm.controls['code'].touched">
+              <span class="text-danger" *ngIf="lectureForm.controls['code'].errors?.['required']">رمز الحصة مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>وصف الحصة</mat-label>
+            <textarea matInput formControlName="description" placeholder="وصف الحصة" aria-label="وصف الحصة"></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-error
+              *ngIf="lectureForm.controls['description'].invalid && lectureForm.controls['description'].touched">
+              <span class="text-danger" *ngIf="lectureForm.controls['description'].errors?.['required']">وصف الحصة
+                مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-grid gap-3 text-center my-4">
+        <button mat-button class="rounded-5 custom-button" type="submit" [disabled]="lectureForm.invalid">
+          {{ data.confirmButtonText }}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

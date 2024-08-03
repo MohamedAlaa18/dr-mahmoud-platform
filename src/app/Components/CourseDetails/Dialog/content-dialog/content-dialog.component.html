@@ -15,7 +15,7 @@
         </mat-form-field>
       </mat-card-content>
 
-      <mat-card-content *ngIf="data.contentType !== 'file' && data.operation === 'add'">
+      <mat-card-content *ngIf="data.contentType !== 'attachment' && data.operation === 'add'">
         <mat-form-field appearance="outline">
           <mat-label>ملف الفيديو</mat-label>
           <button mat-icon-button matPrefix (click)="videoInput.click()">

@@ -341,3 +341,7 @@ $EduNexProject-theme: mat.define-light-theme((color: (primary: $EduNexProject-pr
 mat-error {
   color: red !important;
 }
+
+mat-label {
+  color: var(--secondary) !important;
+}

@@ -3,35 +3,40 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { IUserUpdateFormData } from 'src/app/Models/iuserUpdateForm';
+import { IUser } from 'src/app/Models/iuser';
 import { AuthService } from 'src/app/Services/Auth/auth.service';
 import { passwordMatched } from 'src/app/Validators/CrossfiledValidation';
 
 @Component({
   selector: 'app-student-sign-up-form',
   templateUrl: './student-sign-up-form.component.html',
-  styleUrls: ['./student-sign-up-form.component.css']
+  styleUrls: ['./student-sign-up-form.component.css'],
+  providers: [DatePipe]  // Provide DatePipe here
 })
 export class StudentSignUpFormComponent implements OnInit {
   isInputFocused: boolean = false;
   signupForm!: FormGroup;
   errorMeg: string = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private datePipe: DatePipe, private router: Router, private _snackBar: MatSnackBar) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private datePipe: DatePipe,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.pattern('^(?!\d).{4,}$')]],
+      firstName: ['', [Validators.required, Validators.pattern('^(?!\d).{4,}$')]],
+      secondName: ['', Validators.required],
       lastName: ['', Validators.required],
-      studentPhoneNumber: ['', [Validators.required, Validators.pattern('^(010|015|011|012)\\d{8}$')]],
-      fatherPhoneNumber: ['', [Validators.required, Validators.pattern('^(010|015|011|012)\\d{8}$')]],
-      birthday: ['', Validators.required],
-      gender: ['', Validators.required],
-      governorate: ['', Validators.required],
-      address: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      mobileNo: ['', [Validators.required, Validators.pattern('^(010|015|011|012)\\d{8}$')]],
+      whatsAppNo: ['', [Validators.required, Validators.pattern('^(010|015|011|012)\\d{8}$')]],
+      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')]],
       password: ['', [Validators.required, Validators.minLength(8), this.passwordStrengthValidator]],
-      confirmPassword: ['',],
-      studentEmail: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')]],
+      confirmPassword: ['', Validators.required],
     }, { validators: passwordMatched });
   }
 
@@ -44,54 +49,54 @@ export class StudentSignUpFormComponent implements OnInit {
     if (control.value && !regex.test(control.value)) {
       return { 'weakPassword': true };
     }
-
     return null;
   }
 
-  dateFilter = (date: Date | null): boolean => {
+  // Returns a CSS class for the given date
+  dateClass = (d: Date | null): string => {
     const currentDate = new Date();
-    return date ? date <= currentDate : true;
+    return d && d > currentDate ? 'disabled-date' : '';
   }
 
   onSubmit() {
-    const formattedDateOfBirth = this.datePipe.transform(this.signupForm.value.birthday, 'yyyy-MM-dd');
+    const birthDate = this.signupForm.value.birthDate;
+    const formattedDateOfBirth = birthDate.toISOString();
 
     if (this.signupForm.valid) {
-
-      const defaultFormData: IUserUpdateFormData = {
-        City: this.signupForm.value.governorate,
-        confirmPassword: this.signupForm.value.confirmPassword,
-        dateOfBirth: `${formattedDateOfBirth}`,
-        Email: this.signupForm.value.studentEmail,
-        FirstName: this.signupForm.value.fullName,
-        gender: this.signupForm.value.gender,
+      const formData: IUser = {
+        firstName: this.signupForm.value.firstName,
+        secondName: this.signupForm.value.secondName,
         lastName: this.signupForm.value.lastName,
-        ParentPhoneNumber: this.signupForm.value.fatherPhoneNumber,
-        Password: this.signupForm.value.password,
-        PhoneNumber: this.signupForm.value.studentPhoneNumber,
+        birthDate: formattedDateOfBirth,
+        mobileNo: this.signupForm.value.mobileNo,
+        email: this.signupForm.value.email,
+        whatsAppNo: this.signupForm.value.whatsAppNo,
+        password: this.signupForm.value.password,
       };
-
+      console.log(formData)
       // Save data in DB
-      this.authService.signUp(defaultFormData).subscribe(
-        {
-          next: (data) => {
-            console.log(data)
-            if (data.token) {
-              this.authService.signUp(this.signupForm.value);
-              this.router.navigate(['/login'])
-              this._snackBar.open('تم انشاء الحساب بنجاح', 'حسناَ', {
-                duration: 2000,
-                verticalPosition: 'bottom',
-                horizontalPosition: 'right',
-                panelClass: 'snackbar-success'
-              });
-            }
-          },
-          error: (err) => {
-            this.errorMeg = err.error.errors.msg;
-            console.log(err);
+      this.authService.register(formData).subscribe({
+        next: (data) => {
+          console.log("data : ", data)
+          if (data) {
+            this.router.navigate(['/login']);
+            this.snackBar.open('تم انشاء الحساب بنجاح', 'حسناَ', {
+              duration: 2000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'right',
+              panelClass: 'snackbar-success'
+            });
           }
-        })
+        },
+        error: (err) => {
+          if (err.error && err.error.errors) {
+            this.errorMeg = err.error.errors.msg;
+          } else {
+            this.errorMeg = 'An unknown error occurred';
+          }
+          console.log(this.errorMeg);
+        }
+      });
     } else {
       Object.keys(this.signupForm.controls).forEach(controlName => {
         this.signupForm.get(controlName)?.markAsTouched();

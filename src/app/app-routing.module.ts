@@ -10,15 +10,15 @@ import { StudentSignUpPageComponent } from './Components/SignUp/Student/student-
 import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
-  { path: "home", component: MainComponent, data: { title: 'EduNex' } },
-  { path: "", redirectTo: "home", pathMatch: "full", data: { title: 'EduNex' } },
+  { path: "home", component: MainComponent, data: { title: 'منصة د. محمود اسماعيل' } },
+  { path: "", redirectTo: "home", pathMatch: "full", data: { title: 'منصة د. محمود اسماعيل' } },
   // { path: "courses", component: MainComponent, data: { title: 'courses' } },
   // { path: "offers", component: MainComponent, data: { title: 'offers' } },
-  { path: "lesson/:id", component: LectureComponent, data: { title: 'Lecture' } },
+  { path: "lecture/:id", component: LectureComponent, data: { title: 'Lecture' } },
   { path: "course/:id", component: CourseDetailsComponent, data: { title: 'Course Details' } },
-  { path: "course/:courseId/lesson/:lessonId/create", component: EditExamComponent, data: { title: 'Exam' } },
-  { path: "course/:courseId/lesson/:lessonId/view", component: StudentExamComponent, data: { title: 'Exam' } },
-  { path: "course/:courseId/lesson/:lessonId/result", component: ExamResultComponent, data: { title: 'Result' } },
+  { path: "course/:courseId/lecture/:lectureId/create", component: EditExamComponent, data: { title: 'Exam' } },
+  { path: "course/:courseId/lecture/:lectureId/view", component: StudentExamComponent, data: { title: 'Exam' } },
+  { path: "course/:courseId/lecture/:lectureId/result", component: ExamResultComponent, data: { title: 'Result' } },
   { path: "signup", component: StudentSignUpPageComponent, data: { title: 'Student Signup' } },
   { path: "login", component: LoginComponent, data: { title: 'Login' } },
 ];

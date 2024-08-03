@@ -7,9 +7,9 @@
 
       <div class="d-flex flex-column justify-content-center form">
         <div class="text-center">
-          <h3 class="text-second mb-3" style="color: orange;  font-weight: 700;"> تسجيل الدخول</h3>
+          <h3 class="text-second mb-3" style="color: orange; font-weight: 700;"> تسجيل الدخول</h3>
           <h6 class="mb-6 text-main font-24-bold">
-            أدخل علي حسابك بادخال رقم الهاتف وكلمة المرور المسجل بهم من قبل
+            أدخل علي حسابك بادخال البريد الإلكتروني وكلمة المرور المسجل بهم من قبل
           </h6>
         </div>
 
@@ -17,14 +17,14 @@
           <div class="row mt-5">
             <div class="col">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>رقم الهاتف</mat-label>
-                <input matInput type="tel" name="phoneNumber" formControlName="phoneNumber" id="phoneNumber"
-                  placeholder="رقم الهاتف" aria-label="رقم الهاتف" required>
-                <mat-icon matSuffix>phone</mat-icon>
-                <mat-error *ngIf="loginForm.get('phoneNumber')?.touched && loginForm.get('phoneNumber')?.invalid">
-                  <span *ngIf="loginForm.get('phoneNumber')?.errors?.['pattern']" class="text-danger">رقم الهاتف غير
+                <mat-label>البريد الإلكتروني</mat-label>
+                <input matInput type="email" name="email" formControlName="email" id="email"
+                  placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني" required>
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+                  <span *ngIf="loginForm.get('email')?.errors?.['pattern']" class="text-danger">البريد الإلكتروني غير
                     صالح</span>
-                  <span *ngIf="loginForm.get('phoneNumber')?.errors?.['required']" class="text-danger">رقم الهاتف
+                  <span *ngIf="loginForm.get('email')?.errors?.['required']" class="text-danger">البريد الإلكتروني
                     مطلوب</span>
                 </mat-error>
               </mat-form-field>

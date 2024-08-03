@@ -11,8 +11,13 @@ import { CoursesService } from 'src/app/Services/Courses/courses.service';
 })
 export class CoursesComponent implements OnInit {
   panelOpenState = false;
-
   courses: ICourse[] = [];
+  totalPages: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 10;
+  title: string = '';
+  description: string = '';
+  code: string = '';
 
   constructor(
     private courseData: CoursesService,
@@ -28,10 +33,22 @@ export class CoursesComponent implements OnInit {
   }
 
   getAllCourses() {
-    this.courseData.getAllCourses().subscribe(courses => {
-      // console.log(courses);
-      this.courses = courses;
+    this.courseData.getAllCourses(this.currentPage, this.pageSize, this.title, this.description, this.code).subscribe(response => {
+      if (response) {
+        this.courses = response.data;
+        this.totalPages = response.totalPages;
+        console.log(response.data);
+      } else {
+        console.error('Response is not valid:', response);
+      }
+    }, error => {
+      console.error('Error fetching courses:', error);
     });
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.getAllCourses();
   }
 
   calculateMiddlePrice(prices: number[]): number {

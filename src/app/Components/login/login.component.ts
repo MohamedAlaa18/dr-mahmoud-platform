@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/Services/Auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -28,16 +30,17 @@ export class LoginComponent implements OnInit {
     this.titleService.setTitle(pageTitle);
 
     this.loginForm = this.fb.group({
-      phoneNumber: [
+      email: [
         '',
         [
           Validators.required,
-          Validators.pattern('^(010|015|011|012)\\d{8}$'),
+          Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
         ],
       ],
       password: ['', Validators.required],
     });
 
+    // Uncomment if you need to redirect authenticated users
     // setTimeout(() => {
     //   if (this.authService.getUserId()) {
     //     this.router.navigate(['/']);
@@ -47,23 +50,47 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    type DefaultFormData = {
-      phoneNumber: string;
-      password: string;
-    };
-    const defaultFormData: DefaultFormData = {
-      phoneNumber: this.loginForm.value.phoneNumber,
+    const defaultFormData = {
+      email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
 
     if (this.loginForm.valid) {
-      this.authService.login(defaultFormData).subscribe({
+      this.authService.login(defaultFormData.email, defaultFormData.password).subscribe({
         next: (data) => {
-          console.log(`success ${data.token}`);
+          // Save user data in cookies
+          const userData = data.content;
+          this.cookieService.set('userToken', userData.token);
+          this.cookieService.set('userEmail', userData.email);
+          this.cookieService.set('userId', userData.id.toString());
+          this.cookieService.set('walletBalance', userData.walletBalance.toString());
+          this.cookieService.set('fullName', userData.fullName);
+          this.cookieService.set('firstName', userData.firstName);
+          this.cookieService.set('secondName', userData.secondName);
+          this.cookieService.set('lastName', userData.lastName);
+          this.cookieService.set('birthDate', userData.birthDate);
+          this.cookieService.set('mobileNo', userData.mobileNo);
+          this.cookieService.set('whatsAppNo', userData.whatsAppNo);
+          this.cookieService.set('roles', JSON.stringify(userData.roles));
+          this.cookieService.set('isActive', userData.isActive.toString());
+          this.cookieService.set('passwordChanged', userData.passwordChanged.toString());
+          this.cookieService.set('photoLink', userData.photoLink);
+
+          this.router.navigate(['/']);
+          this.snackBar.open('!نجح تسجيل الدخول', 'حسناً', {
+            duration: 2000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'right',
+            panelClass: 'snackbar-success'
+          });
         },
         error: (err) => {
           console.error(err);
-          this.openSnackBar('فشل تسجيل الدخول', 'حسناً');
+          this.snackBar.open('فشل تسجيل الدخول', 'حسناً', {
+            duration: 2000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'right',
+          });
         },
       });
     } else {
@@ -74,8 +101,8 @@ export class LoginComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      horizontalPosition: 'right',
     });
   }
 }
